@@ -1,0 +1,23 @@
+.Content {
+    padding: 16px;
+    float: right;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in;
+}
+
+.Extended {
+    width: 100%;
+    transform: translateX(0%);
+}
+
+.Shrunken {
+    width: 85%;
+    transform: translateX(0%);
+}
+
+.Body {
+    margin-top: 80px;
+    height: 75%;
+    width: 100%;
+    box-sizing: border-box;
+}
