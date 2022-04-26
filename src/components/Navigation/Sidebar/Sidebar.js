@@ -1,7 +1,7 @@
 import React from "react";
 import SideNavigationItems from "./SideNavigationItems/SideNavigationItems";
 import classes from "./Sidebar.css";
-import Aux from "../../../hoc/Aux/Aux";
+import Aux from "../../../hoc/_Aux/_Aux";
 
 const sidebar = (props) => {
     let attachedClasses = [classes.Sidebar, classes.Close];
