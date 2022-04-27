@@ -1,0 +1,32 @@
+
+/*Stats*/
+.Stats_chiffres {
+    font-Size: 64px;
+    color: #D72F2F;
+    text-Align: center;
+    width: auto;
+    font-Weight: bold;
+    padding: 0;
+}
+.Stats_titre {
+    color: #000;
+    font-Size: 24px;
+    margin-Top: -50px;
+}
+
+/*Satistiques*/
+.Statistiques{
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: -10px;
+}
+
+.Statistiques_titre_asebem{
+    text-align: center;
+    font-size: 32px;
+    margin-top: 50px;
+    margin-bottom: -50px;
+    font-weight: bold;
+}

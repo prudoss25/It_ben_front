@@ -1,0 +1,146 @@
+{
+  "global": {
+    "arriere plan user et services": {
+      "value": "#fff",
+      "type": "color",
+      "description": "Use this for all backgrounds except homepage"
+    },
+    "Footer et Menus": {
+      "value": "#344A53",
+      "type": "color"
+    },
+    "Lignes jaunes et boutons": {
+      "value": "#FFB900",
+      "type": "color",
+      "description": "Use this for buttons and yellow line decorations"
+    },
+    "text": {
+      "value": "#000",
+      "type": "color",
+      "description": "All texts"
+    },
+    "Statistiques et Titres": {
+      "value": "#D72F2F",
+      "type": "color",
+      "description": "Use this for number ithe statistics and the titles such as actualité, information"
+    },
+    "HeaderPartenaires": {
+      "value": "#7FBA00",
+      "type": "color",
+      "description": "Use this for the header for the PArtenaire section"
+    },
+    "Arriere plan accueil": {
+      "value": "#96BACA",
+      "type": "color",
+      "description": "Use this for home page background"
+    },
+    "recherche": {
+      "value": "#C4C4C4",
+      "type": "color",
+      "description": "use this for the research tab"
+    },
+    "Background herosection": {
+      "value": "64px",
+      "type": "borderRadius",
+      "description": "Background of Bienvenue sur la plate forme de l'asebem"
+    },
+    "Background herosectioN": {
+      "value": "#0B857D",
+      "type": "color",
+      "description": "Background of Bienvenue sur la plate forme de l'asebem"
+    },
+    "All buttons": {
+      "value": "32px",
+      "type": "borderRadius",
+      "description": "Use this for all buttoons in yellow"
+    },
+    "Images in actualités et informations": {
+      "value": "24px",
+      "type": "borderRadius",
+      "description": "Use this for images in actualités et informations"
+    },
+    "evenements et activités": {
+      "value": "16px",
+      "type": "borderRadius",
+      "description": "Use this for images in evebements et activités"
+    },
+    "se connecter et rechercher": {
+      "value": "8px",
+      "type": "borderRadius",
+      "description": "use this for se connecter et rechercher in all headers"
+    },
+    "services": {
+      "value": "32px",
+      "type": "borderRadius",
+      "description": " use this for services part"
+    },
+    "Police utilisée": {
+      "value": "Rubik",
+      "type": "fontFamilies",
+      "description": "Use this font for all pages"
+    },
+    "image hero section": {
+      "value": "70%",
+      "type": "opacity",
+      "description": "use this for the opacity of the image in the hero section"
+    },
+    "BodyTextForDesktop": {
+      "value": "16px",
+      "type": "fontSizes",
+      "description": "use this for BodyTextForDesktops"
+    },
+    "hero  header": {
+      "value": "48px",
+      "type": "fontSizes",
+      "description": "use ths for bienvenue sur l aplkateforme de l'asebem"
+    },
+    "Button": {
+      "value": "16px",
+      "type": "fontSizes",
+      "description": "text on all buttons"
+    },
+    "titres1desktop": {
+      "value": "36px",
+      "type": "fontSizes",
+      "description": "use this for titles such as actulités et infos , evenements et acti, partenaires, galerie photo, in footer, ...."
+    },
+    "Titres In actu et information": {
+      "value": "20px",
+      "type": "fontSizes",
+      "description": "Titres en dessous des images (actualités et titre de l'information ou de l 'actu)"
+    },
+    "titres in evenments et activités et categories": {
+      "value": "16px",
+      "type": "fontSizes",
+      "description": "dans evenements et activités, evenements en rouge, et categories das les services"
+    },
+    "dates": {
+      "value": " 16px",
+      "type": "fontSizes",
+      "description": "Pour les dates"
+    },
+    "Statistiques": {
+      "value": "64px",
+      "type": "fontSizes",
+      "description": "chiffres dan sles staistiques"
+    },
+    "Headerss": {
+      "value": "16px",
+      "type": "fontSizes",
+      "description": "liens dans le header"
+    },
+    "menu": {
+      "value": "16px",
+      "type": "fontSizes",
+      "description": "Text in menus"
+    },
+    "BorduresLignes verticales": {
+      "value": "7px",
+      "type": "sizing"
+    },
+    "BorduresLisgnesHorizontales": {
+      "value": "15px",
+      "type": "sizing"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+/*Event
+*/
+
+.Event_Img{
+    width: 150px;
+    height: 150px;
+    border-radius: 16px;
+
+}
+.Bloc_Img{
+    margin-right: 10px;
+}
+
+.Event_Titre{
+    color: #D72F2F;
+    margin-bottom: -10px;
+    font-size: 16px;
+    text-align: center;
+}
+.Event_Date{
+    text-align: end;
+    font-weight: bold;
+}
+.Event_Description{
+    text-align: justify;
+    width: 300px;
+    margin-top: -10px;
+
+}
+.Event_Header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.Event{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+   
+}
+
+/*Evenements*/
+.Evenement_Events{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.Evenement{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}

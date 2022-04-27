@@ -1,0 +1,50 @@
+#carousel{
+    width: 1000px;
+    height: 450px;
+    border: solid 4px #fff;
+    box-shadow: 0 0 14px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    margin: auto;
+
+}
+.chevron{
+    position: absolute;
+    width: 70px;
+    cursor: pointer;
+    top: 200px;
+} 
+#gauche{
+    left: 0;
+    opacity: 0.6;
+    transition: all 0.5 ease;
+}
+#droit{
+    right: 0;
+    opacity: 0.6;
+    transition: all 0.5 ease;
+}
+#droit:hover{
+    transform: scale(1.5);
+    opacity: 1;
+    transition: all 0.5 ease;
+}
+#gauche:hover{
+    transform: scale(1.5);
+    opacity: 1;
+    transition: all 0.5 ease;
+}
+.image{
+    width: 1000px;
+    height: 450px;
+    margin: 0;
+    display: inline-block;
+    background-size: cover;
+    
+}
+.titre_Galerie{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}

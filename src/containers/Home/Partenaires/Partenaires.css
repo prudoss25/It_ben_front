@@ -1,0 +1,30 @@
+/*Partenaires*/
+.Partenaires{
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.Partenaires_titre{
+    text-align: center;
+    font-size: 32px;
+    margin-top: 15px;
+    margin-bottom: -50px;
+    font-weight: bold;
+    background-color: #7FBA00;
+}
+
+/*Part*/
+
+.Part_titre {
+    text-align: center;
+    color: #000;
+    font-size: 24px;
+}
+
+.Part_img{
+    text-align: center;
+    width: 75px;
+    height: 75px;
+    margin-top: 50px;
+}
