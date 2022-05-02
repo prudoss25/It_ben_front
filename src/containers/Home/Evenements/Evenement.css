@@ -1,53 +1,68 @@
 /*Event
 */
 
-.Event_Img{
-    width: 150px;
-    height: 150px;
+.EventImg {
+    width: 100%;
+    height: 100%;
     border-radius: 16px;
-
-}
-.Bloc_Img{
-    margin-right: 10px;
 }
 
-.Event_Titre{
+.BlocImg {
+    width: 200px;
+    height: 150px;
+    margin-right: 1px;
+}
+
+.EventTitre {
     color: #D72F2F;
     margin-bottom: -10px;
     font-size: 16px;
     text-align: center;
 }
-.Event_Date{
+
+.EventDate {
     text-align: end;
     font-weight: bold;
 }
-.Event_Description{
+
+.EventDescription {
     text-align: justify;
     width: 300px;
     margin-top: -10px;
 
 }
-.Event_Header{
+
+.EventHeader {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
 }
-.Event{
+
+.Event {
+    cursor: pointer;
+    padding-top: 10px;
+    margin: 5px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    border-radius: 6px;
     width: 100%;
-   
 }
 
+.Event:hover {
+    box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+
 /*Evenements*/
-.Evenement_Events{
+.EvenementEvents {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-.Evenement{
+
+.Evenement {
     display: flex;
     flex-direction: column;
     width: 40%;

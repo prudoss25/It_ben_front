@@ -43,7 +43,8 @@
     background-size: cover;
     
 }
-.titre_Galerie{
+.titreGalerie{
+    align-items: center;
     text-align: center;
     margin-top: 25px;
     margin-bottom: 50px;

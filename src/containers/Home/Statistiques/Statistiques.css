@@ -1,14 +1,14 @@
 
 /*Stats*/
-.Stats_chiffres {
+.StatsChiffres {
     font-Size: 64px;
     color: #D72F2F;
-    text-Align: center;
+    text-align: center;
     width: auto;
     font-Weight: bold;
     padding: 0;
 }
-.Stats_titre {
+.StatsTitre {
     color: #000;
     font-Size: 24px;
     margin-Top: -50px;
@@ -23,7 +23,7 @@
     margin-top: -10px;
 }
 
-.Statistiques_titre_asebem{
+.StatistiquesTitreAsebem{
     text-align: center;
     font-size: 32px;
     margin-top: 50px;

@@ -1,61 +1,56 @@
 import React from "react";
-import classes from './Evenement.css';
-import Classes from '../Actualites/Actualitee.css';
-import BarreHorizontale from "../../../components/Barres_styles/BarreHorizontale";
-import BarreVerticale from "../../../components/Barres_styles/BarreVerticale";
+import classes from "./Evenement.css";
+import RubriqueTitle from "../../../components/UI/RubriqueTitle/RubriqueTitle";
 
-function Evenement () {
-    const description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+const evenement = (props) => {
+  const description =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ";
 
-    const Data_Event=[
-        {
-            id:'1',
-            img:"https://picsum.photos/150/150",
-            date:'20 aout 1980',
-            description: description
-        },
-        {
-            id:'2',
-            img:"https://picsum.photos/150/150",
-            date:'20 aout 1980',
-            description: description
-        }
-    ]
+  const DataEvent = [
+    {
+      id: "1",
+      title:"Journée Culturelle 2022",
+      img: "https://picsum.photos/150/150",
+      date: "20 aout 1980",
+      description: description,
+    },
+    {
+      id: "2",
+      title:"Journée Culturelle 2022",
+      img: "https://picsum.photos/150/150",
+      date: "20 aout 1980",
+      description: description,
+    },
+  ];
 
+  return (
+    <div className={classes.Evenement}>
+      <RubriqueTitle>A venir</RubriqueTitle>
 
-
-
-    return (
-
-        <div className={classes.Evenement}>
-
-            <div >
-                <p className={Classes.Subheader1} >
-                    <BarreVerticale/>
-                    <p className={Classes.Header}>Evènements et<br/>Activités</p>
-                </p>
-                <BarreHorizontale/>
+      <div className={classes.EvenementEvents}>
+        {DataEvent.map((event) => (
+          <div className={classes.Event} key={event.id}>
+            <div className={classes.BlocImg}>
+                <img
+                  className={classes.EventImg}
+                  src={event.img}
+                  alt={event.title}
+                />
             </div>
-
-            <div className={classes.Evenement_Events}>
-                {Data_Event.map(evenement=> (
-                    <div className={classes.Event} key={evenement.id}>
-                        <div className={classes.Bloc_Img}>
-                            <p><img className={classes.Event_Img} src={evenement.img} alt='event'/></p>
-                        </div>
-                        <div >
-                            <div className={classes.Event_Header}>
-                                <p className={classes.Event_Titre}>Activité</p>
-                                <p className={classes.Event_Date}>{evenement.date}</p>
-                            </div>
-                            <p className={classes.Event_Description}>{evenement.description}</p>
-                        </div>
-                    </div>  
-                ))}
+            <div>
+              <div className={classes.EventHeader}>
+                <p className={classes.EventTitre}>{event.title}</p>
+                <p className={classes.EventDate}>{event.date}</p>
+              </div>
+              <p className={classes.EventDescription}>
+                {event.description}
+              </p>
             </div>
-
-        </div>
-    )
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default Evenement
+export default evenement;

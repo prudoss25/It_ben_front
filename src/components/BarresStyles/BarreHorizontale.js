@@ -8,7 +8,7 @@ function BarreHorizontale () {
         marginLeft : '75px'
     }
     return (
-        <p style={style}></p>
+        <span style={style}></span>
     )
 }
 

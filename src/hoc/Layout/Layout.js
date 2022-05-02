@@ -1,43 +1,40 @@
-import React, { Component } from "react";
+import React from "react";
+import { useState } from "react";
 import Aux from "../_Aux/_Aux";
 import classes from "./Layout.css";
-import Footer from "../../components/Footer/Footer";
 import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 import Sidebar from "../../components/Navigation/Sidebar/Sidebar";
 
-class Layout extends Component {
-  state = {
-    openSidebar: false,
-  };
+const layout = (props) => {
 
-  handleToggleSidebar = () => {
-    this.setState((prevState) => {
-      return { openSidebar: !prevState.openSidebar };
-    });
-  };
+  const [openSidebar, setOpenSidebar] = useState(false);
 
-  render() {
-    const content = this.state.openSidebar
+  const handleToggleSidebar = () => {
+    setOpenSidebar(!openSidebar)
+
+  };
+  const content = openSidebar
       ? [classes.Content, classes.Shrunken]
       : [classes.Content, classes.Extended];
+    
     return (
       <Aux>
         {/* HEADER */}
         <Toolbar
-          toggleSidebar={this.handleToggleSidebar}
-          openSidebar={this.state.openSidebar}
+          toggleSidebar={handleToggleSidebar}
+          openSidebar={openSidebar}
         />
         <div className={classes.Body}>
           {/* SIDEBAR */}
-          <Sidebar open={this.state.openSidebar} />
+          <Sidebar open={openSidebar} />
           {/* CONTENT */}
-          <main className={content.join(" ")}>{this.props.children}</main>
+          <main className={content.join(" ")}>{props.children}</main>
         </div>
         {/* FOOTER */}
-        <Footer />
+        {/* <Footer /> */}
       </Aux>
     );
-  }
+  
 }
 
-export default Layout;
+export default layout;

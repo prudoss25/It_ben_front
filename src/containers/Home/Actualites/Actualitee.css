@@ -1,44 +1,8 @@
-/*Actu*/
-.ActuImg{
-    width: 100%;
-    height: 200px;
-    border-radius: 16px;
-}
-.ActuTitre{
-    color: #D72F2F;
-    text-transform: uppercase;
-    width: 100%;
-    margin-bottom: -10px;
-}
-.ActuSousTitre{
-    text-align: justify;
-    width: 100%;
-}
-.ActuDescription{
-    text-align: justify;
-    width: 100%;
-    margin-top: -10px;
 
-}
-.Actu{
-    margin-left: 20px;
-    width: 50%;
-}
 
 
 /*HeadeActu*/
 
-.Header{
-    font-size: 24px;
-    font-weight: bold;
-}
-.Subheader1{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: -30px;
-    
-}
 .Chevron{
     width: 24px;
     height: 24px;
