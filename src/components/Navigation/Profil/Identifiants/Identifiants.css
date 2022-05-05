@@ -1,0 +1,18 @@
+.Identifiants {
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    align-items: flex-start !important;    
+}
+
+.Name {
+    font-weight: bold;
+    margin-top: 4px;
+    text-align: start;
+}
+
+.Title {
+    font-weight: normal;
+    margin-bottom: 0px;
+    text-align: start;
+}

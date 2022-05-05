@@ -1,0 +1,13 @@
+.Profil {
+    width: 100%;
+    height: auto;
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.AvatarContainer {
+    margin-left: 40px;
+    margin-right: 40px;
+}
