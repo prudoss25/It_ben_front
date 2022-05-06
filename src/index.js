@@ -6,7 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const app = (
-  <BrowserRouter>
+  <BrowserRouter> 
     <React.StrictMode>
     <App />
   </React.StrictMode>

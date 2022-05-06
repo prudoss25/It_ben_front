@@ -1,7 +1,8 @@
 .Notification {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 45px;
     background-color: #ccc;
+    border: 4px solid #344A53;
     border-radius: 50%;
     font-size: 30px;
     cursor: pointer;
