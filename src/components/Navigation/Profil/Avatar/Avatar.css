@@ -1,5 +1,4 @@
 .Avatar {
-    height: 100%;
     width: 60px;
     background-color: white;
     padding: 0px;
@@ -7,6 +6,8 @@
 }
 
 .Avatar img {
-    height: 100%;
+    margin: 5px;
+    border: 4px solid #ccc;
+    height: 90%;
     border-radius: 50%;
 }

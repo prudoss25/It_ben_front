@@ -1,19 +1,18 @@
 .Notification {
-    width: 55px;
-    height: 45px;
-    background-color: #ccc;
-    border: 4px solid #344A53;
-    border-radius: 50%;
-    font-size: 30px;
+    background-color: white;
+    font-size: 25px;
     cursor: pointer;
 }
 
 .Notification2 {
-    width: 100%;
-    position: relative;
+    /* width: 55px; */
+    /* width: 80%; */
+    /* height: 90%; */
+    border-radius: 50%;
+    /* position: relative; */
 }
 
 
-.Notification .Notification2 {
+/* .Notification .Notification2 {
     text-align: center;
-}
+} */
