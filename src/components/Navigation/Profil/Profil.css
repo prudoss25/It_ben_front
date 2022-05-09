@@ -1,0 +1,10 @@
+.Profil {
+    width: 100%;
+    height: auto;
+    flex: 1;
+}
+
+.AvatarContainer {
+    margin-left: 40px;
+    margin-right: 10px;
+}

@@ -4,6 +4,8 @@ import Logo from "../../Logo/Logo";
 import DrawerToggle from "../Sidebar/DrawerToggle/DrawerToggle";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import Search from "../Search/Search";
+import Notification from "../Notification/Notification";
+import Profil from "../Profil/Profil";
 
 const toolbar = (props) => {
   return (
@@ -23,11 +25,15 @@ const toolbar = (props) => {
         </nav>
       </div>
       <div>
-        <Search/>
+        <Search />
       </div>
       <div>
-        <div>NOTIFICATIONS</div>
-        <div>PROFIL</div>
+        <div className={classes.Notification}>
+          <Notification />
+        </div>
+        <div>
+          <Profil />
+        </div>
       </div>
     </header>
   );
