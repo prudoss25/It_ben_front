@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../../../../components/UI/Button/Button";
 import classes from "./ActualiteItem.css";
 
+
 const actualiteItem = (props) => {
   return (
     <div className={classes.Actu}>

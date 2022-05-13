@@ -1,6 +1,7 @@
 import React from "react";
 import BarreVerticale from "../../BarresStyles/BarreVerticale";
 import classes from "./RubriqueTitle.css";
+import PropTypes from "prop-types";
 
 const rubriqueTitle = (props) => {
   return (
@@ -12,3 +13,7 @@ const rubriqueTitle = (props) => {
 };
 
 export default rubriqueTitle;
+
+rubriqueTitle.propTypes = {
+  children: PropTypes.node.isRequired,
+};

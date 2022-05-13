@@ -28,7 +28,7 @@ const toolbar = (props) => {
         <Search />
       </div>
       <div>
-        <div className={classes.Notification}>
+        <div>
           <Notification />
         </div>
         <div>
