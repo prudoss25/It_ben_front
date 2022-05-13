@@ -1,6 +1,8 @@
 .Toolbar {
     height: 56px;
-    width: 100%;
+    width: 98%;
+    margin-right: 16px;
+    margin-left: 16px;
     position: fixed;
     top: 0;
     left: 0;
@@ -40,5 +42,9 @@
 }
 
 .Notification {
+    height: 75%;
+}
+
+.Profil {
     height: 75%;
 }

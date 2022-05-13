@@ -138,6 +138,7 @@ class Actualite extends Component {
               sousTitre={actu.sousTitre}
               description={actu.description}
               titreBouton={actu.titreBouton}
+              action={actu.action}
             />
           ))}
         </div>

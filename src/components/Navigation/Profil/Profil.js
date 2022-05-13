@@ -11,7 +11,7 @@ const profil = (props) => {
         <Avatar photoProfil={defaultAvatar} name="Dossou Prudence" />
       </div>
       <div>
-        <Identifiants name="John Joe" title="SG" />
+        <Identifiants name="John Joe" title="Sécrétaire Général" />
       </div>
     </div>
   );
