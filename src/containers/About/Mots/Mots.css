@@ -1,0 +1,30 @@
+.Mots{
+    width: 45%;
+    margin: auto;
+    text-align: justify;
+    
+
+}
+.Mots h2 {
+    text-align: center;
+
+}
+.Mots h5 {
+    text-align: right;
+    color: #D72F2F;
+}
+.Mots span {
+    width: 100%;
+    margin: auto;
+    /*border: 1px solid black;*/
+    display: flex;
+    justify-content: center;
+
+}
+.Mots img {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 20px;
+    
+        
+}

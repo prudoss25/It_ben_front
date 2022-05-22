@@ -1,0 +1,17 @@
+.ContactezNous{
+    width: 50%;
+}
+
+.ContactezNous section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+}
+.ContactezNous h4 {
+    font-weight: normal;
+}
+.ContactezNous h1 {
+    color: #ffb900;
+}
