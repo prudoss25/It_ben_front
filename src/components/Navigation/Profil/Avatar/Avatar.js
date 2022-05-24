@@ -1,11 +1,13 @@
+import { Avatar } from "@mui/material";
 import React from "react";
-import classes from "./Avatar.css";
 
 const avatar = (props) => {
   return (
-    <div className={classes.Avatar}>
-      <img src={props.photoProfil} alt={props.name} />
-    </div>
+    <Avatar
+      alt={props.name}
+      src={props.photoProfil}
+      sx={{ width: 50, height: '50px !important', border: "1px solid #ccc" }}
+    />
   );
 };
 

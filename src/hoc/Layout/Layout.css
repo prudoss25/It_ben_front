@@ -1,5 +1,7 @@
 .Content {
-    padding: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 32px;
     float: right;
     box-sizing: border-box;
     transition: transform 0.3s ease-in;
