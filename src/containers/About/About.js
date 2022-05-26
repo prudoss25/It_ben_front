@@ -13,13 +13,12 @@ class About extends Component
 
         return(
             <Aux>
-                About
                 <Presentation/>
                 <EquipeDirigeante/>
-                <p className={classes.Mots}>
+                <div className={classes.Mots}>
                     <Mots titre="Mot de l'Ambassade" auteur = "Serge Dagnon"/>
                     <Mots titre="Mot du CC" auteur = "DOSSOU Prudence"/>
-                </p>
+                </div>
                 <Concepteur/>
 
             </Aux>

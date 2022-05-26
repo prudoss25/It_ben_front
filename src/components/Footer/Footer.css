@@ -1,10 +1,8 @@
 .Footer {
-    background: #344A53;
-    /* position: fixed; */
+    background: #ccc;
+    border: #344A53 ;
     bottom: 0;
     width: 100%;
     padding-top: 0;
-    /* padding-top: 50px; */
-    /* height: 10%; */
     height: 250px;
 }
