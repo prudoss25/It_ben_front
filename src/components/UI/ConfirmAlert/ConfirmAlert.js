@@ -1,11 +1,7 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogTitle,
-} from "@mui/material";
+
 import React from "react";
 import PropTypes from "prop-types";
+import { Button, Dialog, DialogActions, DialogTitle } from "@material-ui/core";
 
 const confirmAlert = (props) => {
   return (
@@ -17,8 +13,8 @@ const confirmAlert = (props) => {
     >
       <DialogTitle id="alert-dialog-title">{props.message}</DialogTitle>
       <DialogActions>
-        <Button onClick={props.handleClose}>Annuler</Button>
-        <Button onClick={props.handleConfirm} autoFocus>
+        <Button color="secondary" onClick={props.handleClose}>Annuler</Button>
+        <Button color="primary" onClick={props.handleConfirm} autoFocus>
           Confirmer
         </Button>
       </DialogActions>

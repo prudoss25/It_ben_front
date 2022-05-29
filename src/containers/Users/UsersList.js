@@ -1,5 +1,5 @@
+import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Grid, Typography } from "@mui/material";
 import axios from "axios";
 
 import Aux from "../../hoc/_Aux/_Aux";

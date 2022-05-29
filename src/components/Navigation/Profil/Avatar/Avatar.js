@@ -1,4 +1,4 @@
-import { Avatar } from "@mui/material";
+import { Avatar } from "@material-ui/core";
 import React from "react";
 
 const avatar = (props) => {
@@ -6,7 +6,7 @@ const avatar = (props) => {
     <Avatar
       alt={props.name}
       src={props.photoProfil}
-      sx={{ width: 50, height: '50px !important', border: "1px solid #ccc" }}
+      style={{ width: 55, border: "1px solid #ccc" }}
     />
   );
 };

@@ -8,7 +8,7 @@ const usersListTable = (props) => {
     props.users && props.users.length > 0 ? (
       props.users.map((user) => (
         <UsersListItem
-          key={user.idUser}
+          key={user.registrationNumber}
           user={user}
           onConsult={() => props.onConsult(user)}
           onDelete={() => props.onDelete(user)}
