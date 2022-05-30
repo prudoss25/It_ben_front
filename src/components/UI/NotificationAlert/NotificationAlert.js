@@ -12,7 +12,7 @@ const noticationAlert = (props) => {
   // });
   
   return (
-    <Snackbar open={props.open} autoHideDuration={6000} onClose={props.handleClose}>
+    <Snackbar open={props.open} autoHideDuration={3000} onClose={props.handleClose}>
       <Alert severity={props.type} sx={{ width: "100%" }} onClose={props.handleClose}>
         {props.message}
       </Alert>

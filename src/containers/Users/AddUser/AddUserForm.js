@@ -5,7 +5,6 @@ import "date-fns";
 import FormModal from "../../../common/FormModal/FormModal";
 import axios, { morrocoTownFetcher } from "../../../axios";
 import { MOROCCO_TOWN, POST_USER } from "../../../Routes";
-import NoticationAlert from "../../../components/UI/NotificationAlert/NotificationAlert";
 import { RoleList } from "../../../Constantes";
 import {
   Button,
@@ -32,7 +31,12 @@ const addUserForm = (props) => {
       setGeneralInfos(...props.user);
     }
   }, []);
-
+  useEffect(() => {
+    if(props.user)
+    {
+      setGeneralInfos(props.user)
+    }
+  },[props.user])
   const [generalInfos, setGeneralInfos] = useState({
     lastName: "",
     firstName: "",
@@ -41,11 +45,6 @@ const addUserForm = (props) => {
     role: "",
     city: "",
     registrationNumber: "",
-  });
-  const [notification, setNotification] = useState({
-    open: false,
-    message: "",
-    type: "info",
   });
   const [villes, setVilles] = useState([]);
   const defaultProps = {
@@ -71,41 +70,48 @@ const addUserForm = (props) => {
         .post(POST_USER, generalInfos)
         .then((response) => {
           if (response.status === 200)
-            setNotification({
-              open: true,
-              message: `Utilisateur ${generalInfos.lastName} ${generalInfos.firstName} est ajouté!`,
-              type: "success",
-            });
+          props.openNotication("success",`Utilisateur ${generalInfos.lastName} ${generalInfos.firstName} est ajouté!`,);
           props.handleToggle();
         })
         .catch(() => {
-          setNotification({
-            open: true,
-            message: "Une erreur est survenue !",
-            type: "error",
-          });
+          props.openNotication("error","Une erreur est survenue !");
           props.handleToggle();
         });
     }
   };
 
-  const onEdit = () => {};
+  const onEdit = () => {
+    if (
+      generalInfos.city &&
+      generalInfos.emailAddress &&
+      generalInfos.firstName &&
+      generalInfos.lastName &&
+      generalInfos.registrationDate &&
+      generalInfos.registrationNumber &&
+      generalInfos.role
+    ) {
+      axios
+        .post(POST_USER, generalInfos)
+        .then((response) => {
+          if (response.status === 200)
+            props.openNotication("success",`Utilisateur ${generalInfos.lastName} ${generalInfos.firstName} est modifié!`);
+          props.handleToggle();
+        })
+        .catch(() => {
+          props.openNotication("error","Une erreur est survenue !");
+          props.handleToggle();
+        });
+    }
+  };
 
   const onSubmit = () => {
-    if (props.edit) {
+    if (props.user) {
       onEdit();
     } else {
       onSave();
     }
   };
 
-  const handleNotificationClose = () => {
-    setNotification({
-      open: false,
-      message: "",
-      type: "info",
-    });
-  };
   return (
     <FormModal
       open={props.open}
@@ -254,12 +260,6 @@ const addUserForm = (props) => {
           </Grid>
         </Grid>
       </form>
-      <NoticationAlert
-        message={notification.message}
-        open={notification.open}
-        type={notification.type}
-        handleClose={handleNotificationClose}
-      />
     </FormModal>
   );
 };
@@ -268,12 +268,13 @@ export default addUserForm;
 
 addUserForm.defaultProps = {
   edit: false,
-  user: {},
+  user: null,
 };
 
 addUserForm.propTypes = {
   open: PropTypes.bool.isRequired,
   handleToggle: PropTypes.func.isRequired,
+  openNotication: PropTypes.func.isRequired,
   edit: PropTypes.bool,
   user: PropTypes.object,
 };
