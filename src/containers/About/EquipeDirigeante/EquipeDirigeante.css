@@ -1,0 +1,26 @@
+.EquipeDirigeante {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+.EquipeDirigeante p {
+    text-align: center;
+    width: 30%;
+    
+}
+.Titre{
+    text-align: center;
+    margin: 20px;
+}
+.EquipeDirigeante span {
+    font-weight: 600;
+    color: #D72F2F;
+}
+.EquipeDirigeante img {
+    height: 150px;
+    width: 150px;
+    border: 2px solid #D72F2F;
+    border-radius: 128px;
+}

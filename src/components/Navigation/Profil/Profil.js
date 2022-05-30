@@ -8,11 +8,11 @@ const profil = (props) => {
   return (
     <div className={classes.Profil}>
       <div className={classes.AvatarContainer}>
-        <Avatar photoProfil={defaultAvatar} name="Dossou Prudence" />
+        <Avatar photoProfil={defaultAvatar} name="John Joe" />
       </div>
-      <div>
+      {/* <div> */}
         <Identifiants name="John Joe" title="Sécrétaire Général" />
-      </div>
+      {/* </div> */}
     </div>
   );
 };

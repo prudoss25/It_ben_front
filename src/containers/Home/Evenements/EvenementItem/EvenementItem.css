@@ -1,0 +1,56 @@
+/*Event
+*/
+
+.EventImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+}
+
+.BlocImg {
+    width: 200px;
+    height: 150px;
+    margin-right: 1px;
+}
+
+.EventTitre {
+    color: #D72F2F;
+    margin-bottom: -10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.EventDate {
+    text-align: end;
+    font-weight: bold;
+}
+
+.EventDescription {
+    text-align: justify;
+    width: 300px;
+    margin-top: -10px;
+
+}
+
+.EventHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.Event {
+    cursor: pointer;
+    padding-top: 10px;
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-radius: 6px;
+    width: 100%;
+    align-items: center;
+}
+
+.Event:hover {
+    box-shadow: 1px 1px 1px 1px #ccc;
+}

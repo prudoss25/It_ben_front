@@ -1,11 +1,13 @@
+import { Avatar } from "@material-ui/core";
 import React from "react";
-import classes from "./Avatar.css";
 
 const avatar = (props) => {
   return (
-    <div className={classes.Avatar}>
-      <img src={props.photoProfil} alt={props.name} />
-    </div>
+    <Avatar
+      alt={props.name}
+      src={props.photoProfil}
+      style={{ width: 55, border: "1px solid #ccc" }}
+    />
   );
 };
 

@@ -22,6 +22,7 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #344A53;
+    /* background-color: #344A53; */
+    background-color: #ccc;
     color: white;
 }
