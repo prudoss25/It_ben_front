@@ -14,10 +14,10 @@ const usersListItem = (props) => {
       <td>{props.user.city}</td>
       <td>{props.user.role}</td>
       <td style={{display:"flex", justifyContent:"space-between"}}>
-        <IconButton onClick={props.onEdit}>
+        <IconButton onClick={props.onConsult}>
           <VisibilityIcon color="primary" /> 
         </IconButton>
-        <IconButton onClick={props.onConsult}>
+        <IconButton onClick={props.onEdit}>
           <EditIcon color="secondary" />
         </IconButton>
         <IconButton onClick={props.onDelete}>

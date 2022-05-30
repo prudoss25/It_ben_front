@@ -9,18 +9,21 @@ import { FIND_ALL_USERS, DELETE_USER } from "../../Routes";
 import { ROLES } from "../../Constantes";
 import Loading from "../../common/Loading/Loading";
 import AddUserForm from "./AddUser/AddUserForm";
+import ConsultUser from "./ConsultUser/ConsultUser";
 import ConfirmAlert from "../../components/UI/ConfirmAlert/ConfirmAlert";
 import NoticationAlert from "../../components/UI/NotificationAlert/NotificationAlert";
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [openAddUser, setOpenAddUser] = useState(false);
+  const [openUserForm, setOpenUserForm] = useState(false);
+  const [openConsultUser, setOpenConsultUser] = useState(false);
   const [notification, setNotification] = useState({
     open: false,
     type: "info",
     message: "",
   });
+  const [currentUser, setCurrentUser] = useState(null);
   const [alert, setAlert] = useState({
     open: false,
     message: "",
@@ -29,23 +32,27 @@ const UsersList = () => {
     onDelete: () => onConfirmDelete(null),
     onEdit: () => onConfirmEdit(null),
   });
-
-  useEffect(() => {
+  const getData = () => {
     setLoading(true);
     axios.get(FIND_ALL_USERS).then((response) => {
       if (response.status === 200) {
         const liste = response.data.map((user) => ({
           ...user,
           role: ROLES[user.role] || "",
+          registrationDate: user.registrationDate && new Date(user.registrationDate)
         }));
         setUsers(liste);
         setLoading(false);
       }
     });
+  }
+  useEffect(() => {
+    getData();
   }, []);
 
+  
+  /*Delete User Management */
   const deleteUser = (user) => {
-    console.log(user);
     setAlert({
       ...alert,
       open: true,
@@ -59,42 +66,63 @@ const UsersList = () => {
       axios
         .delete(`${DELETE_USER}${user.registrationNumber}`)
         .then((response) => {
-          if(response.status === 200){
-            setNotification({
-              open: true,
-              type: "success",
-              message: `L'utilisateur ${user.lastName} ${user.firstName} a été supprimé`,
-            });
-            onAlertClosed()
+          if (response.status === 200) {
+            openNotification("success",`L'utilisateur ${user.lastName} ${user.firstName} a été supprimé`);
+            onAlertClosed();
           }
         })
         .catch(() => {
-          setNotification({
-            open: true,
-            type: "error",
-            message: `Une erreur est survenue`,
-          });
+          openNotification("error",`Une erreur est survenue`);
         });
     }
   };
 
-  const editUser = (user) => {};
+  const openNotification = (type, message) => {
+    setNotification({
+      open: true,
+      type,
+      message,
+    });
+  }
+
+  /*Edit User Management */
+  const editUser = (user) => {
+    setCurrentUser(user);
+    setOpenUserForm(true);
+  };
   const onConfirmEdit = () => {};
 
-  const consultUser = (user) => {};
+  const consultUser = (user) => {
+     handleConsultUser(user);
+  };
 
+  /* Add User */
   const handleAddUser = () => {
-    setOpenAddUser(true);
+    setOpenUserForm(true);
   };
   const handleCloseForm = () => {
-    setOpenAddUser(false);
+    setOpenUserForm(false);
+    setCurrentUser(null);
   };
+
+  /* Consult User Informations */
+  const handleCloseConsult = () => {
+    setOpenConsultUser(false);
+    setCurrentUser(null);
+  };
+  const handleConsultUser = (user) => {
+    setCurrentUser(user);
+    setOpenConsultUser(true);
+  };
+
   const onNotificationClosed = () => {
+    getData()
     setNotification({
       open: false,
       type: "info",
       message: "",
     });
+    
   };
   const onAlertClosed = () => {
     setAlert({
@@ -127,7 +155,15 @@ const UsersList = () => {
             onDelete={deleteUser}
             onEdit={editUser}
           />
-          <AddUserForm open={openAddUser} handleToggle={handleCloseForm} />
+          <AddUserForm open={openUserForm} handleToggle={handleCloseForm} user={currentUser} openNotication={(type, message) => openNotification(type, message) } />
+          {
+            openConsultUser &&
+            <ConsultUser
+              user={currentUser}
+              open={openConsultUser}
+              handleToggle={handleCloseConsult}
+            />
+          }
         </CardContent>
       </Card>
       <ConfirmAlert
@@ -135,7 +171,9 @@ const UsersList = () => {
         message={alert.message}
         handleClose={onAlertClosed}
         handleConfirm={
-          (alert.delete && alert.onDelete) || (alert.edit && alert.onEdit) || (() => {})
+          (alert.delete && alert.onDelete) ||
+          (alert.edit && alert.onEdit) ||
+          (() => {})
         }
       />
       <NoticationAlert handleClose={onNotificationClosed} {...notification} />
