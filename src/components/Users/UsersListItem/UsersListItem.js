@@ -12,7 +12,7 @@ const usersListItem = (props) => {
       <td>{props.user.firstName}</td>
       <td>{props.user.registrationNumber}</td>
       <td>{props.user.city}</td>
-      <td>{props.user.role}</td>
+      <td>{props.user.roleLabel}</td>
       <td style={{display:"flex", justifyContent:"space-between"}}>
         <IconButton onClick={props.onConsult}>
           <VisibilityIcon color="primary" /> 
@@ -34,7 +34,7 @@ usersListItem.propTypes = {
   user: PropTypes.shape({
     lastName: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
-    role: PropTypes.string.isRequired,
+    roleLabel: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
     registrationNumber: PropTypes.string.isRequired,
   }).isRequired,

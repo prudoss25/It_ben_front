@@ -6,8 +6,8 @@ export const ROLES = {
   Commissaire: "Commissaire Au Compte",
   Communication: "Chargé Communication",
   CCS: "Chargé Culturel et Sportif",
-  PCC: "Président CC",
-  PACC: "Président Adjoint CC",
+  PCC: "Président Conseil Consultatif",
+  PACC: "Président Adjoint Conseil Consultatif",
   SGH: "Secrétaire Général d'Honneur",
   RV: "Responsable Ville",
 };
@@ -44,11 +44,11 @@ export const RoleList =  [
     },
     {
       value: "PCC",
-      label: "Président CC",
+      label: "Président Conseil Consultatif",
     },
     {
       value: "PACC",
-      label: "Président Adjoint CC",
+      label: "Président Adjoint Conseil Consultatif",
     },
     {
       value: "SGH",

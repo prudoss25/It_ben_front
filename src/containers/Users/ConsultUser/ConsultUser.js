@@ -20,6 +20,14 @@ const consultUser = (props) => {
         {props.user.firstName}
       </p>
       <p>
+        <strong>Nom d'utilisateur : </strong>
+        {props.user.userName}
+      </p>
+      <p>
+        <strong>Mot de Passe : </strong>
+        {props.user.password}
+      </p>
+      <p>
         <strong>Matricule : </strong>
         {props.user.registrationNumber}
       </p>
@@ -34,7 +42,7 @@ const consultUser = (props) => {
       </p>
       <p>
         <strong>Role : </strong>
-        {props.user.role}
+        {props.user.roleLabel}
       </p>
       <Grid
         container

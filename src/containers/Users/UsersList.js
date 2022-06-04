@@ -38,7 +38,7 @@ const UsersList = () => {
       if (response.status === 200) {
         const liste = response.data.map((user) => ({
           ...user,
-          role: ROLES[user.role] || "",
+          roleLabel: ROLES[user.role] || "",
           registrationDate: user.registrationDate && new Date(user.registrationDate)
         }));
         setUsers(liste);
@@ -64,7 +64,7 @@ const UsersList = () => {
   const onConfirmDelete = (user) => {
     if (user) {
       axios
-        .delete(`${DELETE_USER}${user.registrationNumber}`)
+        .delete(`${DELETE_USER}${user.idUser}`)
         .then((response) => {
           if (response.status === 200) {
             openNotification("success",`L'utilisateur ${user.lastName} ${user.firstName} a été supprimé`);

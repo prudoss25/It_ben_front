@@ -4,7 +4,7 @@ import "date-fns";
 
 import FormModal from "../../../common/FormModal/FormModal";
 import axios, { morrocoTownFetcher } from "../../../axios";
-import { MOROCCO_TOWN, POST_USER } from "../../../Routes";
+import { MOROCCO_TOWN, POST_USER, UPDATE_USER } from "../../../Routes";
 import { RoleList } from "../../../Constantes";
 import {
   Button,
@@ -32,16 +32,21 @@ const addUserForm = (props) => {
     }
   }, []);
   useEffect(() => {
-    if(props.user)
-    {
-      setGeneralInfos(props.user)
+    if (props.user) {
+      setGeneralInfos(props.user);
     }
-  },[props.user])
+  }, [props.user]);
   const [generalInfos, setGeneralInfos] = useState({
     lastName: "",
     firstName: "",
+    userName:"",
+    password:"",
+    profilePicture: "Not Set",
     emailAddress: "",
     registrationDate: new Date(),
+    birthDate: new Date(),
+    startFunctionDate: new Date(),
+    phoneNumber: "",
     role: "",
     city: "",
     registrationNumber: "",
@@ -64,17 +69,27 @@ const addUserForm = (props) => {
       generalInfos.firstName &&
       generalInfos.lastName &&
       generalInfos.registrationDate &&
+      generalInfos.birthDate &&
       generalInfos.role
     ) {
+      const infos = {
+        ...generalInfos,
+        userName: `${generalInfos.lastName}_${generalInfos.firstName}`,
+        password: Math.random().toString(36).substring(8),
+        startFunctionDate:generalInfos.registrationDate,
+      }
       axios
-        .post(POST_USER, generalInfos)
+        .post(POST_USER, infos)
         .then((response) => {
           if (response.status === 200)
-          props.openNotication("success",`Utilisateur ${generalInfos.lastName} ${generalInfos.firstName} est ajouté!`,);
+            props.openNotication(
+              "success",
+              `Utilisateur ${generalInfos.lastName} ${generalInfos.firstName} est ajouté!`
+            );
           props.handleToggle();
         })
         .catch(() => {
-          props.openNotication("error","Une erreur est survenue !");
+          props.openNotication("error", "Une erreur est survenue !");
           props.handleToggle();
         });
     }
@@ -87,18 +102,22 @@ const addUserForm = (props) => {
       generalInfos.firstName &&
       generalInfos.lastName &&
       generalInfos.registrationDate &&
+      generalInfos.birthDate &&
       generalInfos.registrationNumber &&
       generalInfos.role
     ) {
       axios
-        .post(POST_USER, generalInfos)
+        .put(UPDATE_USER, generalInfos)
         .then((response) => {
           if (response.status === 200)
-            props.openNotication("success",`Utilisateur ${generalInfos.lastName} ${generalInfos.firstName} est modifié!`);
+            props.openNotication(
+              "success",
+              `Utilisateur ${generalInfos.lastName} ${generalInfos.firstName} est modifié!`
+            );
           props.handleToggle();
         })
         .catch(() => {
-          props.openNotication("error","Une erreur est survenue !");
+          props.openNotication("error", "Une erreur est survenue !");
           props.handleToggle();
         });
     }
@@ -163,11 +182,12 @@ const addUserForm = (props) => {
           >
             <Grid item xs={6}>
               <TextField
-                value={generalInfos.registrationNumber}
-                label="Matricule"
-                InputProps={{
-                  readOnly: true,
-                }}
+                value={generalInfos.phoneNumber}
+                name="phoneNumber"
+                label="Numéro Téléphone"
+                onChange={(event) =>
+                  handleInfosChange(event.target.value, "phoneNumber")
+                }
                 id="standard-size-small"
                 size="small"
                 variant="standard"
@@ -188,12 +208,40 @@ const addUserForm = (props) => {
             </Grid>
           </Grid>
           <Grid item container xs={12}>
+            <Grid item xs={6}>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  label="Date de Naissance"
+                  name="birthDate"
+                  format="dd/MM/yyyy"
+                  value={generalInfos.birthDate}
+                  onChange={(date) => handleInfosChange(date, "birthDate")}
+                />
+              </MuiPickersUtilsProvider>
+            </Grid>
+            <Grid item xs={6}>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  label="Date d'inscription"
+                  name="registrationDate"
+                  format="dd/MM/yyyy"
+                  value={generalInfos.registrationDate}
+                  onChange={(date) =>
+                    handleInfosChange(date, "registrationDate")
+                  }
+                />
+              </MuiPickersUtilsProvider>
+            </Grid>
+          </Grid>
+          <Grid item container xs={12}>
             <Autocomplete
               {...defaultProps}
               name="city"
               onChange={(event, value) =>
                 handleInfosChange(value.ville, "city")
               }
+              value={{
+                ville:generalInfos.city}}
               fullWidth
               id="auto-complete"
               autoComplete
@@ -202,18 +250,6 @@ const addUserForm = (props) => {
                 <TextField {...params} label="Ville" variant="standard" />
               )}
             />
-          </Grid>
-          <Grid item container xs={12}>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardDatePicker
-                label="Date d'inscription"
-                name="registrationDate"
-                format="dd/MM/yyyy"
-                fullWidth
-                value={generalInfos.registrationDate}
-                onChange={(date) => handleInfosChange(date, "registrationDate")}
-              />
-            </MuiPickersUtilsProvider>
           </Grid>
           <Grid item container>
             <FormControl variant="standard" fullWidth>
@@ -247,15 +283,15 @@ const addUserForm = (props) => {
           style={{ marginTop: "16px" }}
         >
           <Grid item>
-            <Button color="primary" onClick={onSubmit}>
-              {" "}
-              Valider{" "}
-            </Button>
-          </Grid>
-          <Grid item>
             <Button color="secondary" onClick={props.handleToggle}>
               {" "}
               Annuler{" "}
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button color="primary" onClick={onSubmit}>
+              {" "}
+              Valider{" "}
             </Button>
           </Grid>
         </Grid>
