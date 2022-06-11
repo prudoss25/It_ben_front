@@ -21,7 +21,21 @@ import {
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
 import { Autocomplete } from "@material-ui/lab";
-
+const initialGeneralInfo = {
+  lastName: "",
+  firstName: "",
+  userName:"",
+  password:"",
+  profilePicture: "Not Set",
+  emailAddress: "",
+  registrationDate: new Date(),
+  birthDate: new Date(),
+  startFunctionDate: new Date(),
+  phoneNumber: "",
+  role: "",
+  city: "",
+  registrationNumber: "",
+}
 const addUserForm = (props) => {
   useEffect(() => {
     morrocoTownFetcher.get(MOROCCO_TOWN).then((response) => {
@@ -35,22 +49,11 @@ const addUserForm = (props) => {
     if (props.user) {
       setGeneralInfos(props.user);
     }
+    else {
+      setGeneralInfos(initialGeneralInfo)
+    }
   }, [props.user]);
-  const [generalInfos, setGeneralInfos] = useState({
-    lastName: "",
-    firstName: "",
-    userName:"",
-    password:"",
-    profilePicture: "Not Set",
-    emailAddress: "",
-    registrationDate: new Date(),
-    birthDate: new Date(),
-    startFunctionDate: new Date(),
-    phoneNumber: "",
-    role: "",
-    city: "",
-    registrationNumber: "",
-  });
+  const [generalInfos, setGeneralInfos] = useState(initialGeneralInfo);
   const [villes, setVilles] = useState([]);
   const defaultProps = {
     options: villes,

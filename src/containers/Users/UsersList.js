@@ -49,7 +49,18 @@ const UsersList = () => {
   useEffect(() => {
     getData();
   }, []);
+  
+  useEffect(() => {
+    if(openUserForm === false){
+      setCurrentUser(null)
+    }
+  }, [openUserForm])
 
+  useEffect(() => {
+    if(openConsultUser === false){
+      setCurrentUser(null)
+    }
+  }, [openConsultUser])
   
   /*Delete User Management */
   const deleteUser = (user) => {
@@ -102,13 +113,13 @@ const UsersList = () => {
   };
   const handleCloseForm = () => {
     setOpenUserForm(false);
-    setCurrentUser(null);
+    // setCurrentUser(null);
   };
 
   /* Consult User Informations */
   const handleCloseConsult = () => {
     setOpenConsultUser(false);
-    setCurrentUser(null);
+    // setCurrentUser(null);
   };
   const handleConsultUser = (user) => {
     setCurrentUser(user);
@@ -155,7 +166,10 @@ const UsersList = () => {
             onDelete={deleteUser}
             onEdit={editUser}
           />
+          {
+            openUserForm &&
           <AddUserForm open={openUserForm} handleToggle={handleCloseForm} user={currentUser} openNotication={(type, message) => openNotification(type, message) } />
+          }
           {
             openConsultUser &&
             <ConsultUser
