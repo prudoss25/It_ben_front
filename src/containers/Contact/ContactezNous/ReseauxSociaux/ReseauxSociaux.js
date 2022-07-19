@@ -1,23 +1,46 @@
 import React from "react";
 import Aux from "../../../../hoc/_Aux/_Aux";
-import facebook from "../../../../assets/images/facebook.png";
-import instagram from "../../../../assets/images/instagram.png";
-import linkedin from "../../../../assets/images/linkedin.png";
-import classes from './ReseauxSociaux.css';
+import { Grid, Container, Typography } from '@material-ui/core';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import LanguageIcon from '@material-ui/icons/Language';
 
+import { makeStyles } from '@material-ui/core/styles';
 
-const ReseauxSociaux = () => {
+const useStyles = makeStyles({
+    root: {
+     
+      color: '#D72F2F',
+      
+    },
+    list : {
+        
+        color:'black',
+    },
+    
+  });
+  export default function ReseauxSociaux() {
+    const classes = useStyles();
     return (
         <Aux>
-            <p className={classes.ReseauxSociaux}>
-                <h1>Nos Reseaux Sociaux</h1>
-                <ul>
-                    <li><a href="/"><img src={facebook} alt="Facebook"/></a></li>
-                    <li><a href="/"><img src={instagram} alt="Instagram"/></a></li>
-                    <li><a href="/"><img src={linkedin} alt="Linkedin"/></a></li>
-                </ul>
-            </p>
+            <Grid container item xs={12} spacing={3}>
+                <Container>
+                        
+                            <Typography  className={classes.root} gutterBottom variant="h5">
+                                <LanguageIcon/>
+                                    Nos Reseaux Sociaux
+                            </Typography>
+                            <Typography gutterBottom variant="body1">
+                                <ul className={classes.list}>
+                                    <li><a href='/'><FacebookIcon/> Facebook</a></li>
+                                    <li><a href='/'><InstagramIcon/>Instagram</a></li>
+                                    <li><a href='/'><LinkedInIcon/>LinkedIn</a></li>
+                                </ul>
+                            </Typography>
+                        
+                </Container>
+            </Grid>
         </Aux>
     )
 }
-export default ReseauxSociaux
