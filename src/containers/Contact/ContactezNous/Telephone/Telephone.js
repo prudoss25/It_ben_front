@@ -1,23 +1,41 @@
 import React from "react";
-import Aux from "../../../../hoc/_Aux/_Aux";
-import telephone from  "../../../../assets/images/telephone.png";
-import classes from './Telephone.css';
+import {
+  Grid,
+  List,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+} from "@material-ui/core";
+import PhoneIcon from "@material-ui/icons/Phone";
+import RubriqueTitle from "../../../../components/UI/RubriqueTitle/RubriqueTitle";
 
-const Telephone = () => {
-    return (
-        <Aux>
-            <div className={classes.Telephone}>
-                <p >
-                    <img src={telephone} alt="Telephone"/>
-                    <h2>Téléphone</h2>
-                </p>
-                <ul>
-                    <li>060000000</li>
-                    <li>061111111</li>
-                    <li>062222222</li>
-                </ul>
-            </div>
-        </Aux>
-    )
+const telephone = [
+  {
+    name: "+212 XXX XXX XXX",
+    link: "https://web.facebook.com/AsebemOfficiel",
+    icon: <PhoneIcon />,
+  },
+  {
+    name: "+212 XXX XXX XXX",
+    link: "https://web.facebook.com/AsebemOfficiel",
+    icon: <PhoneIcon />,
+  },
+];
+export default function Telephone() {
+  return (
+    <Grid item>
+      <RubriqueTitle>Téléphone</RubriqueTitle>
+      <List dense>
+        {telephone.map((reseau, index) => (
+          <ListItem key={index}>
+            <ListItemAvatar>
+              <Avatar>{reseau.icon}</Avatar>
+            </ListItemAvatar>
+            <ListItemText primary={reseau.name} />
+          </ListItem>
+        ))}
+      </List>
+    </Grid>
+  );
 }
-export default Telephone
