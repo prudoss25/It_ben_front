@@ -2,13 +2,18 @@ import React from "react";
 
 function BarreVerticale() {
   const style = {
-    width: "10px",
-    height: "40px",
+    // border: "1px solid black",
+    width: 15,
+    height: "50%",
     backgroundColor: "#FFB900",
-    marginTop: "18px",
+    // marginTop: "18px",
     marginRight: "20px"
   };
-  return <span style={style}></span>;
+  return (
+    <div style={style}>
+      <span ></span>
+    </div>
+  );
 }
 
 export default BarreVerticale;

@@ -1,34 +1,37 @@
 import React from "react";
-import Aux from "../../../../hoc/_Aux/_Aux";
-import { Grid, Container, Typography} from '@material-ui/core';
-import MailIcon from '@material-ui/icons/Mail';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid, List, ListItem, ListItemAvatar, Avatar, ListItemText } from "@material-ui/core";
+import MailIcon from "@material-ui/icons/Mail";
+import RubriqueTitle from "../../../../components/UI/RubriqueTitle/RubriqueTitle";
 
-const useStyles = makeStyles({
-    root: {
-     
-      color: '#D72F2F',
-      
-    },
-  });
-  export default function AdresseMail() {
-    const classes = useStyles();
-    return (
-        <Aux>
-            <Grid  container item xs={12} spacing={3}>
-               <Container>
-                        <Typography className={classes.root} gutterBottom variant="h5">
-                            <MailIcon/>
-                            Adresses mails
-                        </Typography>
-                        <Typography gutterBottom variant="body1">
-                            <ul>
-                                <li>mailasebem@gmail.com</li>
-                                <li>mailcc@gmail.com</li>
-                            </ul>
-                        </Typography>
-               </Container>
-            </Grid>
-        </Aux>
-    )
+const mails = [
+  {
+    name:"Conseil Consultatif",
+    link:"https://web.facebook.com/AsebemOfficiel",
+    icon:<MailIcon/>
+  },
+  {
+    name:"Bureau Exécutif",
+    link:"https://www.instagram.com/asebem_nationale/",
+    icon:<MailIcon />
+  }
+]
+export default function AdresseMail() {
+  return (
+    <Grid item>
+      <RubriqueTitle>
+        {/* <MailIcon fontSize="medium" style={{marginRight:8}} /> */}
+        Adresses mails
+      </RubriqueTitle>
+      <List dense>
+        {mails.map((reseau, index) => (
+          <ListItem key={index}>
+            <ListItemAvatar>
+              <Avatar>{reseau.icon}</Avatar>
+            </ListItemAvatar>
+            <ListItemText primary={reseau.name} />
+          </ListItem>
+        ))}
+      </List>
+    </Grid>
+  );
 }

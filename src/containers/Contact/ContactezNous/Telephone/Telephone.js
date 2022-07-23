@@ -1,38 +1,41 @@
 import React from "react";
-import Aux from "../../../../hoc/_Aux/_Aux";
-import { Grid, Container, Typography} from '@material-ui/core';
-import PhoneIcon from '@material-ui/icons/Phone';
+import {
+  Grid,
+  List,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+} from "@material-ui/core";
+import PhoneIcon from "@material-ui/icons/Phone";
+import RubriqueTitle from "../../../../components/UI/RubriqueTitle/RubriqueTitle";
 
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-    root: {
-     
-      color: '#D72F2F',
-      
-    },
-  });
-  export default function Telephone() {
-    const classes = useStyles();
-    return (
-        <Aux>
-            <Grid container item xs={12} spacing={3}>
-                <Container>
-                        
-                            <Typography  className={classes.root}  gutterBottom variant="h5">
-                                <PhoneIcon/>
-                                Téléphone
-                            </Typography>
-                            <Typography gutterBottom variant="body1">
-                                <ul>
-                                    <li>060000000</li>
-                                    <li>061111111</li>
-                                    <li>062222222</li>
-                                </ul>
-                            </Typography>
-                      
-                </Container>
-            </Grid>
-        </Aux>
-    )
+const telephone = [
+  {
+    name: "+212 XXX XXX XXX",
+    link: "https://web.facebook.com/AsebemOfficiel",
+    icon: <PhoneIcon />,
+  },
+  {
+    name: "+212 XXX XXX XXX",
+    link: "https://web.facebook.com/AsebemOfficiel",
+    icon: <PhoneIcon />,
+  },
+];
+export default function Telephone() {
+  return (
+    <Grid item>
+      <RubriqueTitle>Téléphone</RubriqueTitle>
+      <List dense>
+        {telephone.map((reseau, index) => (
+          <ListItem key={index}>
+            <ListItemAvatar>
+              <Avatar>{reseau.icon}</Avatar>
+            </ListItemAvatar>
+            <ListItemText primary={reseau.name} />
+          </ListItem>
+        ))}
+      </List>
+    </Grid>
+  );
 }
