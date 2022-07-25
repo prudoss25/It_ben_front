@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import "date-fns";
+// import "date-fns";
 
 import FormModal from "../../../common/FormModal/FormModal";
 import axios, { morrocoTownFetcher } from "../../../axios";
@@ -15,7 +15,7 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
-import DateFnsUtils from "@date-io/date-fns";
+// import DateFnsUtils from "@date-io/date-fns";
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -210,7 +210,7 @@ const addUserForm = (props) => {
               />
             </Grid>
           </Grid>
-          <Grid item container xs={12}>
+          {/* <Grid item container xs={12}>
             <Grid item xs={6}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardDatePicker
@@ -235,7 +235,7 @@ const addUserForm = (props) => {
                 />
               </MuiPickersUtilsProvider>
             </Grid>
-          </Grid>
+          </Grid> */}
           <Grid item container xs={12}>
             <Autocomplete
               {...defaultProps}
