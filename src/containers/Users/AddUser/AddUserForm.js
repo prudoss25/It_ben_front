@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-
+import 'date-fns';
 import FormModal from "../../../common/FormModal/FormModal";
 import axios, { morrocoTownFetcher } from "../../../axios";
 import { MOROCCO_TOWN, POST_USER, UPDATE_USER } from "../../../Routes";
