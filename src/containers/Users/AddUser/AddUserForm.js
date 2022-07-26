@@ -210,8 +210,8 @@ const addUserForm = (props) => {
             </Grid>
           </Grid>
           <Grid item container xs={12}>
-            <Grid item xs={6}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid item xs={6}>
                 <KeyboardDatePicker
                   label="Date de Naissance"
                   name="birthDate"
@@ -219,10 +219,9 @@ const addUserForm = (props) => {
                   value={generalInfos.birthDate}
                   onChange={(date) => handleInfosChange(date, "birthDate")}
                 />
-              </MuiPickersUtilsProvider>
             </Grid>
             <Grid item xs={6}>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
                 <KeyboardDatePicker
                   label="Date d'inscription"
                   name="registrationDate"
@@ -231,9 +230,10 @@ const addUserForm = (props) => {
                   onChange={(date) =>
                     handleInfosChange(date, "registrationDate")
                   }
-                />
-              </MuiPickersUtilsProvider>
+                  />
+              {/* </MuiPickersUtilsProvider> */}
             </Grid>
+                  </MuiPickersUtilsProvider>
           </Grid> 
           <Grid item container xs={12}>
             <Autocomplete
