@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import 'date-fns';
 import FormModal from "../../../common/FormModal/FormModal";
 import axios, { morrocoTownFetcher } from "../../../axios";
 import { MOROCCO_TOWN, POST_USER, UPDATE_USER } from "../../../Routes";
@@ -14,7 +13,7 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
-import DateFnsUtils from "@date-io/date-fns";
+import DateFnsUtils from '@date-io/date-fns';
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -23,8 +22,8 @@ import { Autocomplete } from "@material-ui/lab";
 const initialGeneralInfo = {
   lastName: "",
   firstName: "",
-  userName:"",
-  password:"",
+  userName: "",
+  password: "",
   profilePicture: "Not Set",
   emailAddress: "",
   registrationDate: new Date(),
@@ -34,7 +33,7 @@ const initialGeneralInfo = {
   role: "",
   city: "",
   registrationNumber: "",
-}
+};
 const addUserForm = (props) => {
   useEffect(() => {
     morrocoTownFetcher.get(MOROCCO_TOWN).then((response) => {
@@ -47,9 +46,8 @@ const addUserForm = (props) => {
   useEffect(() => {
     if (props.user) {
       setGeneralInfos(props.user);
-    }
-    else {
-      setGeneralInfos(initialGeneralInfo)
+    } else {
+      setGeneralInfos(initialGeneralInfo);
     }
   }, [props.user]);
   const [generalInfos, setGeneralInfos] = useState(initialGeneralInfo);
@@ -78,8 +76,8 @@ const addUserForm = (props) => {
         ...generalInfos,
         userName: `${generalInfos.lastName}_${generalInfos.firstName}`,
         password: Math.random().toString(36).substring(8),
-        startFunctionDate:generalInfos.registrationDate,
-      }
+        startFunctionDate: generalInfos.registrationDate,
+      };
       axios
         .post(POST_USER, infos)
         .then((response) => {
@@ -132,7 +130,6 @@ const addUserForm = (props) => {
       onSave();
     }
   };
-
   return (
     <FormModal
       open={props.open}
@@ -210,19 +207,20 @@ const addUserForm = (props) => {
             </Grid>
           </Grid>
           <Grid item container xs={12}>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid item xs={6}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid item xs={6}>
                 <KeyboardDatePicker
+                  autoOk={true}
                   label="Date de Naissance"
                   name="birthDate"
                   format="dd/MM/yyyy"
                   value={generalInfos.birthDate}
                   onChange={(date) => handleInfosChange(date, "birthDate")}
                 />
-            </Grid>
-            <Grid item xs={6}>
-              {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
+              </Grid>
+              <Grid item xs={6}>
                 <KeyboardDatePicker
+                  autoOk={true}
                   label="Date d'inscription"
                   name="registrationDate"
                   format="dd/MM/yyyy"
@@ -230,11 +228,10 @@ const addUserForm = (props) => {
                   onChange={(date) =>
                     handleInfosChange(date, "registrationDate")
                   }
-                  />
-              {/* </MuiPickersUtilsProvider> */}
-            </Grid>
-                  </MuiPickersUtilsProvider>
-          </Grid> 
+                />
+              </Grid>
+            </MuiPickersUtilsProvider>
+          </Grid>
           <Grid item container xs={12}>
             <Autocomplete
               {...defaultProps}
@@ -243,7 +240,8 @@ const addUserForm = (props) => {
                 handleInfosChange(value.ville, "city")
               }
               value={{
-                ville:generalInfos.city}}
+                ville: generalInfos.city,
+              }}
               fullWidth
               id="auto-complete"
               autoComplete
