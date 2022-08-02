@@ -39,7 +39,8 @@ const UsersList = () => {
         const liste = response.data.map((user) => ({
           ...user,
           roleLabel: ROLES[user.role] || "",
-          registrationDate: user.registrationDate && new Date(user.registrationDate)
+          registrationDate: user.registrationDate && new Date(user.registrationDate),
+          birthDate: user.birthDate && new Date(user.birthDate)
         }));
         setUsers(liste);
         setLoading(false);

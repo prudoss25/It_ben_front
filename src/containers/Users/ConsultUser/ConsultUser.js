@@ -24,6 +24,11 @@ const consultUser = (props) => {
         {props.user.userName}
       </p>
       <p>
+        <strong>Date de Naissance : </strong>
+        {props.user.birthDate &&
+          props.user.birthDate.toLocaleDateString()}
+      </p>
+      <p>
         <strong>Mot de Passe : </strong>
         {props.user.password}
       </p>
