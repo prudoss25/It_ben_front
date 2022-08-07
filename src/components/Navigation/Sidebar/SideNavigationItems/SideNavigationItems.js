@@ -17,6 +17,12 @@ const sideNavigationItems = () => {
       <SideNavigationItem link="/users" active={location.pathname === "/users"}>
         Liste Membres
       </SideNavigationItem>
+      <SideNavigationItem link="/events" active={location.pathname === "/events"}>
+        Evènements
+      </SideNavigationItem>
+      <SideNavigationItem link="/sponsors" active={location.pathname === "/sponsors"}>
+        Sponsors
+      </SideNavigationItem>
     </ul>
   );
 };
