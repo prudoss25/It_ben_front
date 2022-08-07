@@ -5,6 +5,8 @@ import Contacts from "./containers/Contact/Contact";
 import Home from "./containers/Home/Home";
 import Layout from "./hoc/Layout/Layout";
 import UsersList from "./containers/Users/UsersList";
+import EventsList from "./containers/Evenements/EventsList";
+import SponsorsList from "./containers/Sponsors/SponsorsList";
 
 class App extends Component {
   render() {
@@ -16,6 +18,8 @@ class App extends Component {
             <Route path="/about" component={About} />
             <Route path="/contacts" component={Contacts} />
             <Route path="/users" component={UsersList} />
+            <Route path="/events" component={EventsList} />
+            <Route path="/sponsors" component={SponsorsList} />
           </Switch>
         </Layout>
       </div>

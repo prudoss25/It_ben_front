@@ -21,6 +21,7 @@ import {
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
 import { Autocomplete } from "@material-ui/lab";
+import withManagementForm from "../../../common/ManagementDashboard/withManagementForm";
 const initialGeneralInfo = {
   lastName: "",
   firstName: "",
@@ -42,9 +43,6 @@ const addUserForm = (props) => {
     morrocoTownFetcher.get(MOROCCO_TOWN).then((response) => {
       setVilles(response.data);
     });
-    if (props.edit) {
-      setGeneralInfos(...props.user);
-    }
   }, []);
   useEffect(() => {
     if (props.user) {
@@ -318,7 +316,7 @@ const addUserForm = (props) => {
   );
 };
 
-export default addUserForm;
+export default withManagementForm(addUserForm);
 
 addUserForm.defaultProps = {
   edit: false,

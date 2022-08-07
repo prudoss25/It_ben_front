@@ -59,3 +59,9 @@ export const RoleList =  [
       label: "Responsable Ville",
     },
   ];
+
+export const UsersManagementType = "Users";
+
+export const EventsManagementType = "Events";
+
+export const SponsorsManagementType = "Sponsors";
