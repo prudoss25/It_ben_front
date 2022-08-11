@@ -12,6 +12,9 @@ import AdresseMail from "./ContactezNous/AdresseMail/AdresseMail";
 import ReseauxSociaux from "./ContactezNous/ReseauxSociaux/ReseauxSociaux";
 import Telephone from "./ContactezNous/Telephone/Telephone";
 
+import DownloadExcel from "./AddButton/DownloadExcel";
+import SubmitExcel from "./AddButton/SubmitExcel";
+
 class Contacts extends Component {
   render() {
     return (
@@ -35,6 +38,10 @@ class Contacts extends Component {
         </Grid>
         <Grid style={{ padding: "20px 5px" }}>
           <Formulaire />
+        </Grid>
+        <Grid>
+            <DownloadExcel/>
+            <SubmitExcel/>
         </Grid>
       </Aux>
     );
