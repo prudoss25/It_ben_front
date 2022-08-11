@@ -12,8 +12,8 @@ import axios from "axios";
 import { FIND_ALL_NEXT_EVENTS } from "../../Routes";
 
 const Home = () => {
-  const [actualites, setActualites] = useState([]);
-  const [evenements, setEvenements] = useState([]);
+  const [actualites, setActualites] = useState(null);
+  const [evenements, setEvenements] = useState(null);
   useEffect(() => {
     getActualites()
   }, []);
@@ -30,8 +30,8 @@ const Home = () => {
     <Aux>
       <HeroSection />
       <div className={classes.Section_Actu}>
-        {actualites.length > 0 && <Actualite actualites={actualites} />}
-        {evenements.length > 0 && <Evenement evenements={evenements} />}
+        <Actualite actualites={actualites} />
+        <Evenement evenements={evenements} />
       </div>
       <Partenaires />
       <Statistiques />

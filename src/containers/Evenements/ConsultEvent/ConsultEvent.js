@@ -28,7 +28,7 @@ const ConsultEvent = (props) => {
     setEvent({
       ...props.event,
       sponsors:
-        (props.event.sponsors &&
+        (props.event.sponsors && props.sponsors &&
           [...props.event.sponsors].map((idSponsor) => {
             return [...props.sponsors].find(
               (sponsor) => parseInt(idSponsor, 10) === sponsor.idSponsor
