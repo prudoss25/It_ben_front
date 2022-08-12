@@ -25,7 +25,8 @@ const SponsorForm = (props) => {
   
  
   useEffect(() => {
-    if (props.event) {
+    if (props.sponsor) {
+      console.log("sponsor test",props.sponsor)
       setGeneralInfos({
         ...props.sponsor,
       });
@@ -125,7 +126,7 @@ const SponsorForm = (props) => {
             <TextField
               fullWidth
               name="name"
-              value={generalInfos.title}
+              value={generalInfos.name}
               onChange={(event) =>
                 handleInfosChange(event.target.value, "name")
               }
@@ -139,7 +140,7 @@ const SponsorForm = (props) => {
             <TextField
               fullWidth
               name="site"
-              value={generalInfos.theme}
+              value={generalInfos.site}
               onChange={(event) =>
                 handleInfosChange(event.target.value, "site")
               }
