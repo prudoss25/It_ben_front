@@ -4,3 +4,6 @@ export const toBase64 = file => new Promise((resolve, reject) => {
     reader.onload = () => resolve(reader.result);
     reader.onerror = error => reject(error);
 });
+
+export const stringTruncedShower = (text,limit) => 
+  `${text.substring(0,limit)}${text.length > limit ? '...':''}`

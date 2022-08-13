@@ -1,55 +1,64 @@
 import React from "react";
 import Aux from "../../../hoc/_Aux/_Aux";
 import classes from "./EquipeDirigeante.css";
+import sg_honneur from "../../../assets/images/sg_honneur.jpeg";
+import sga from "../../../assets/images/sga.jpeg";
+import tresoriere from "../../../assets/images/tresoriere.jpeg";
+import PCC from "../../../assets/images/PCC.jpeg";
+import charge_com from "../../../assets/images/charge_com.jpeg";
+import charge_sport_cult from "../../../assets/images/charge_sport_cult.jpeg";
+import commiss_compte from "../../../assets/images/commiss_compte.jpeg";
+import sg from "../../../assets/images/sg.jpeg";
+import cca from "../../../assets/images/cca.jpeg";
 
 const EquipeDirigeante = props => {
     const BureauExecutif =[
         {
-            nom : "NompPrenom",
+            nom : "TCHAGAFO Nazif",
             poste : "Secretaire general",
-            image: "https://picsum.photos/150/150?1"
+            image: sg
         },
         {
-            nom : "NompPrenom",
+            nom : "ENIANLOKO Dylan",
             poste : "Secretaire general Adjoint",
-            image: "https://picsum.photos/150/150?1"
+            image: sga
         },
         {
-            nom : "NompPrenom",
+            nom : "BIOKOU Saint Luc",
             poste : "Commissaire aux comptes",
-            image: "https://picsum.photos/150/150?1"
+            image: commiss_compte
         },
         {
-            nom : "NompPrenom",
-            poste : "Tresorier Général",
-            image: "https://picsum.photos/150/150?1"
+            nom : "NASSARA Marie Colombe",
+            poste : "Tresorier(e) Général",
+            image: tresoriere
         },
         {
-            nom : "NompPrenom",
+            nom : "AHOSSI Nelly",
             poste : "Chargé de la communication",
-            image: "https://picsum.photos/150/150?1"
+            image: charge_com
         },
         {
-            nom : "NompPrenom",
+            nom : "ADDA Réthens",
             poste : "Chargé culturel et sportif",
-            image: "https://picsum.photos/150/150?1"
+            image: charge_sport_cult
         }
     ]
     const ConseilConsultatif =[
         {
-            nom : "NompPrenom",
+            nom : "DOSSOU Prudence",
             poste : "President",
-            image: "https://picsum.photos/150/150?1"
+            image: PCC
         },
         {
-            nom : "NompPrenom",
+            nom : "Akakpo Joël",
             poste : "Vice-President",
-            image: "https://picsum.photos/150/150?1"
+            image: cca
         },
         {
-            nom : "NompPrenom",
+            nom : "Soglo Oscar",
             poste : "Secretaire Général d'honneur",
-            image: "https://picsum.photos/150/150?1"
+            image: sg_honneur
         }
     ]
     return (
@@ -58,7 +67,7 @@ const EquipeDirigeante = props => {
             <section className={classes.EquipeDirigeante}>
                 {BureauExecutif.map((membre, index) =>(
                     <p key={index}>
-                        <img src={membre.image} alt="Membre Equipe Dirigeante"/>
+                        <img style={{objectFit:"contain"}} src={membre.image} alt="Membre Equipe Dirigeante"/>
                         <br/>
                         {membre.nom}
                         <br/>
@@ -70,7 +79,7 @@ const EquipeDirigeante = props => {
             <section className={classes.EquipeDirigeante}>
                 {ConseilConsultatif.map((membre, index) =>(
                     <p key={index}>
-                        <img src={membre.image} alt="Membre Equipe Dirigeante"/>
+                        <img style={{objectFit:"contain"}} src={membre.image} alt="Membre Equipe Dirigeante"/>
                         <br/>
                         {membre.nom}
                         <br/>

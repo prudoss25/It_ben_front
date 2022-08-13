@@ -10,7 +10,7 @@ const statistiques = (props) => {
     },
     {
       id: "2",
-      titre: "Années d'esxistences",
+      titre: "Années d'existences",
       chiffre: "26",
     },
     {

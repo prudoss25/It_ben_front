@@ -34,6 +34,7 @@ function Partenaires() {
         {Data_Partenaires.map((partenaire) => (
           <div className={classes.Partenaire} key={partenaire.id}>
             <img
+            style={{objectFit:"contain"}}
               className={classes.PartImg}
               title={partenaire.nom}
               src={partenaire.logo}
