@@ -118,6 +118,7 @@ const Actualite = (props) => {
       <div style={style}>
         {Data_Actu.map((actu) => (
           <ActualiteItem
+            startDate={actu.startDate}
             loading={loading}
             key={actu.idEvent}
             title={actu.title}

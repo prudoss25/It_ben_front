@@ -8,7 +8,7 @@ const logo = (props) => {
   const history = useHistory()
   return(
   <div className={classes.Logo} onClick={() => history.push("/")}>
-    <Avatar src={asebemLogo} alt="ASEBEM" style={{ width: 50,height: '50px !important'}} />
+    <Avatar src={asebemLogo} alt="ASEBEM" style={{objectFit:"contain", width: 50,height: '50px !important'}} />
   </div>
 )};
 

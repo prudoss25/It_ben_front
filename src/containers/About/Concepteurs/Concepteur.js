@@ -1,28 +1,37 @@
 import React from "react";
 import Aux from "../../../hoc/_Aux/_Aux";
 import classes from "./Concepteur.css";
-
+import PCC from "../../../assets/images/PCC.jpeg";
+import cca from "../../../assets/images/cca.jpeg";
+import manoel from "../../../assets/images/manoel.jpg";
+import michel from "../../../assets/images/michel.jpg";
+import eraste from "../../../assets/images/eraste.jpg";
 const Concepteur = props => {
     const Concepteur =[
         {
+            nom : "AKAKPO Joël",
+            Titre : "Consultant",
+            image: cca
+        },
+        {
             nom : "Prudence DOSSOU",
             Titre : "Developpeur FullStack",
-            image: "https://picsum.photos/150/150?1"
+            image: PCC
         },
         {
             nom : "Eraste Akande",
             Titre : "Data Scientist",
-            image: "https://picsum.photos/150/150?2"
+            image: eraste
         },
         {
             nom : "Michel SAGBO",
             Titre: "Etudiant en Data Science",
-            image: "https://picsum.photos/150/150?3"
+            image: michel
         },
         {
             nom : "Manoel AZON",
             Titre : "Etudiant en Informatique",
-            image: "https://picsum.photos/150/150?4"
+            image: manoel
         }
     ]
     return (
@@ -31,7 +40,7 @@ const Concepteur = props => {
             <section className={classes.Concepteur}>
                 {Concepteur.map((membre, index) =>(
                     <p  key={index}>
-                        <img src={membre.image} alt="Membre Equipe Dirigeante"/>
+                        <img style={{objectFit:"contain"}} src={membre.image} alt={membre.Titre}/>
                         <br/>
                         {membre.nom}
                         <br/>
