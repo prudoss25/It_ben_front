@@ -57,8 +57,7 @@ const SponsorForm = (props) => {
     if (
       generalInfos.site &&
       generalInfos.name &&
-      generalInfos.description &&
-      generalInfos.logo
+      generalInfos.description 
     ) {
       setLoading(true);
       const infos = {
@@ -83,11 +82,9 @@ const SponsorForm = (props) => {
 
   const onEdit = () => {
     if (
-      generalInfos.title &&
-      generalInfos.theme &&
-      generalInfos.startDate &&
-      generalInfos.endDate &&
-      generalInfos.description
+      generalInfos.site &&
+      generalInfos.name &&
+      generalInfos.description 
     ) {
       setLoading(true);
       axios
@@ -192,7 +189,7 @@ const SponsorForm = (props) => {
               <ImageList rowHeight={215} cols={3}>
                 {[generalInfos.logo].map((picture, index) => (
                   <ImageListItem key={index} cols={3}>
-                    <img src={picture} alt={index} />
+                    <img style={{objectFit:"scale-down"}}  src={picture} alt={index} />
                   </ImageListItem>
                 ))}
               </ImageList>

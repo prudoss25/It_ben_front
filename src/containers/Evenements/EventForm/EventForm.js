@@ -271,7 +271,7 @@ const EventForm = (props) => {
               <ImageList rowHeight={215} cols={3}>
                 {generalInfos.pictures.map((picture, index) => (
                   <ImageListItem key={index} cols={1}>
-                    <img src={picture} alt={index} />
+                    <img style={{objectFit:"scale-down"}} src={picture} alt={index} />
                   </ImageListItem>
                 ))}
               </ImageList>

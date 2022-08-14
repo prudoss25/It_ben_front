@@ -39,7 +39,7 @@ const ConsultSponsor = (props) => {
         <ImageList rowHeight={375} cols={3}>
           {props.sponsor.logo && [props.sponsor.logo].map((picture, index) => (
             <ImageListItem key={index} cols={3}>
-              <img src={picture} alt={index} />
+              <img style={{objectFit:"scale-down"}} src={picture} alt={index} />
             </ImageListItem>
           ))}
         </ImageList>
