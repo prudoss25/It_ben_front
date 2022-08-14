@@ -1,12 +1,13 @@
 import React from "react";
 import classes from "./Partenaires.css";
+import cobem from "../../../assets/images/cobem.jpeg"
 
 function Partenaires() {
   const Data_Partenaires = [
     {
       id: "1",
-      nom: "Banque Populaire",
-      logo: "http://fnh.ma//uploads/actualites/5e1334d6c660f.png",
+      nom: "COBEM",
+      logo: cobem,
     },
     {
       id: "2",
@@ -15,11 +16,6 @@ function Partenaires() {
     },
     {
       id: "3",
-      nom: "CIH",
-      logo: "https://www.maghrebtitrisation.ma/sites/default/files/news/2022-01/cih-logo.jpg",
-    },
-    {
-      id: "4",
       nom: "Ambassade Bénin",
       logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4tVlUqmInV6r9kZe6RTA5PtMW04FOXxWgkZHxRpXIWdZRd1sAyCVmJJhsVichbBGlGOc&usqp=CAU",
     },

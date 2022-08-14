@@ -75,7 +75,7 @@ const ConsultEvent = (props) => {
               <section className={classes.Sponsor}>
                 {[...event.sponsors].map((sponsor, index) => (
                   <p key={index}>
-                    <img src={sponsor.logo} alt={sponsor.name} />
+                    <img style={{objectFit:"scale-down"}} src={sponsor.logo} alt={sponsor.name} />
                     <span>{sponsor.name}</span>
                   </p>
                 ))}
@@ -87,7 +87,7 @@ const ConsultEvent = (props) => {
           {props.event.pictures &&
             props.event.pictures.map((picture, index) => (
               <ImageListItem key={index} cols={3}>
-                <img src={picture} alt={index} />
+                <img style={{objectFit:"scale-down"}} src={picture} alt={index} />
               </ImageListItem>
             ))}
         </ImageList>
