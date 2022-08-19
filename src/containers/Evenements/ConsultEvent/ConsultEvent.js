@@ -36,7 +36,7 @@ const ConsultEvent = (props) => {
           })) ||
         [],
     });
-  }, [props.event]);
+  }, [props.event, props.sponsors]);
   return (
     <Dialog
       open={props.open}
@@ -69,7 +69,7 @@ const ConsultEvent = (props) => {
             <strong>Date de Fin : </strong>
             {event.endDate && moment(props.event.endDate).format("ll")}
           </p>
-          {event.sponsors && event.sponsors && (
+          {event.sponsors && event.sponsors.length > 0 && (
             <p>
               <strong>Sponsors : </strong>
               <section className={classes.Sponsor}>
