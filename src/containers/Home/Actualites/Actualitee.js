@@ -129,6 +129,7 @@ const Actualite = (props) => {
         ))}
         {openConsult && (
           <ConsultEvent
+            sponsors={props.sponsors}
             event={currentActualite}
             open={openConsult}
             handleToggle={() => handleCloseConsult()}

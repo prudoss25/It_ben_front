@@ -150,6 +150,7 @@ const evenement = (props) => {
       </div>
       {openConsult && (
           <ConsultEvent
+            sponsors={props.sponsors}
             event={currentEvent}
             open={openConsult}
             handleToggle={() => handleCloseConsult()}
