@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Grid,  Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import ManagementDashboard from "../../common/ManagementDashboard/ManagementDashboard";
 import { UsersManagementType } from "../../Constantes";
@@ -7,7 +7,6 @@ import ConsultUser from "./ConsultUser/ConsultUser";
 import Aux from "../../hoc/_Aux/_Aux";
 import { FIND_ALL_USERS, DELETE_USER } from "../../Routes";
 
-import DownloadButton from "./AddButton/DownloadButton";
 import AddButton from "./AddButton/AddButton";
 
 const UsersList = () => {
@@ -33,12 +32,11 @@ const UsersList = () => {
                 Liste des Membres
               </Typography>
             </Grid>
-            <Grid item>
-              <DownloadButton/>
-            </Grid>
+           
             <Grid item>
               <AddButton/>
             </Grid>
+      
               <AddUserForm
                 visible={openUserForm}
                 open={openUserForm}

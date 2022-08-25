@@ -97,7 +97,6 @@ const addUserForm = (props) => {
         });
     }
   };
-
   const onEdit = () => {
     if (
       generalInfos.city &&
