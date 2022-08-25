@@ -61,3 +61,4 @@ TableWithManagementData.propTypes = {
   onDelete: PropTypes.func,
   onConsult: PropTypes.func,
 };
+ 
