@@ -11,18 +11,36 @@ import {Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
 import axios from "../../../axios";
 import {  ADD_ALL_USERS } from "../../../Routes";
-import moment from "moment";
 import "moment/locale/fr";
-import loading from '../../../common/Loading/Loading';
 import { ROLES } from '../../../Constantes';
-
-// function createData(lastName, firstName, emailAddress,birthDate, phoneNumber, city) {
-//   return { lastName, firstName, emailAddress,birthDate, phoneNumber, city };
-// }
-
+import NoticationAlert from '../../../components/UI/NotificationAlert/NotificationAlert';
+import Aux from '../../../hoc/_Aux/_Aux';
 
 export default function UserTable(props) {
-  const [loading,setLoading] = useState(false);
+  const [notification, setNotification] = useState({
+    open: false,
+    type: "info",
+    message: "",
+  });
+
+  const onNotificationClosed = () => {
+    //props.refreshDataFunc();
+    setNotification({
+      open: false,
+      type: "info",
+      message: "",
+    });
+  };
+
+  const openNotification = (type, message) => {
+    setNotification({
+      open: true,
+      type,
+      message,
+    });
+  };
+
+
     const rows = props.dataRows;
     const onSave = () => {
 
@@ -45,71 +63,61 @@ export default function UserTable(props) {
         role:ROLES.Membre
       })});
 
-      
-      console.log("AllUserInfos",AllUserInfos);
-
-       
-        setLoading(true);
         axios
           .post(ADD_ALL_USERS, AllUserInfos)
           .then((response) => 
           {
-            // if (response.status === 200)
-            //   props.openNotication(
-            //     "success",
-            //     `Utilisateur ${UserInformations.lastName} ${UserInformations.firstName} est ajouté!`
-            //   );
-            // props.handleToggle();
+            if (response.status === 200)
+              openNotification(
+                "success",
+                `Les Utilisateurs ont été ajouté!`
+              );
           })
           .catch(() => {
-            // props.openNotication("error", "Une erreur est survenue !");
-            // props.handleToggle();
+            openNotification("error", "Une erreur est survenue !");
           }
           );
       
     };
 
-
-
-
-
-
-
-
-
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="right" >Nom</TableCell>
-            <TableCell align="right">Prenom</TableCell>
-            <TableCell align="right">AddresseMail</TableCell>
-            <TableCell align="right">Date de Naissance</TableCell>
-            <TableCell align="right">Telephone</TableCell>
-            <TableCell align="right">Ville</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-             
-              <TableCell align="right">{row.Nom}</TableCell>
-              <TableCell align="right">{row.Prenom}</TableCell>
-              <TableCell align="right">{row.AddresseMail}</TableCell>
-              <TableCell align="right">{row.DateDeNaissance}</TableCell>
-              <TableCell align="right">{row.Telephone}</TableCell>
-              <TableCell align="right">{row.Ville}</TableCell>
+    <Aux>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="right" >Nom</TableCell>
+              <TableCell align="right">Prenom</TableCell>
+              <TableCell align="right">AddresseMail</TableCell>
+              <TableCell align="right">Date de Naissance</TableCell>
+              <TableCell align="right">Telephone</TableCell>
+              <TableCell align="right">Ville</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+              
+                <TableCell align="right">{row.Nom}</TableCell>
+                <TableCell align="right">{row.Prenom}</TableCell>
+                <TableCell align="right">{row.AddresseMail}</TableCell>
+                <TableCell align="right">{row.DateDeNaissance}</TableCell>
+                <TableCell align="right">{row.Telephone}</TableCell>
+                <TableCell align="right">{row.Ville}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <Grid>
-            <Button onClick={onSave}>Ajouter</Button>
+              <Button onClick={onSave}>Ajouter</Button>
       </Grid>
-    </TableContainer>
+      <NoticationAlert handleClose={onNotificationClosed} {...notification} />
+    </Aux>
   );
+ 
+
 }

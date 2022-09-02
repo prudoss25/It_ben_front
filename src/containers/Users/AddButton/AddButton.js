@@ -32,13 +32,7 @@ export default function AddButton() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [rows, setRows] =useState(null);
-
-
-
-  const [fileName, setFileName] = useState(null);
-
-
-
+   const [fileName, setFileName] = useState(null);
   const handleOnChange= async (e) => {
     let dataFinal=[];
     const file =e.target.files[0];
@@ -67,9 +61,8 @@ export default function AddButton() {
        && row.Telephone !=="" &&row.Telephone!=null
        && row.Ville !=="" && row.Ville!=null
        )
-    console.log()
        setRows(dataFinal);
-       console.log(dataFinal);
+       
   };
 
     

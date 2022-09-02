@@ -60,5 +60,4 @@ TableWithManagementData.propTypes = {
   onEdit: PropTypes.func,
   onDelete: PropTypes.func,
   onConsult: PropTypes.func,
-};
- 
+}
