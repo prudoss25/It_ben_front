@@ -12,8 +12,12 @@ import React, { useEffect, useState } from "react";
 import "moment/locale/fr";
 import moment from "moment";
 import classes from "./ConsultEvent.css";
+import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
 const ConsultEvent = (props) => {
+  const sponsors = useSelector((state) => state.sponsor.value)
+
   const [event, setEvent] = useState({});
   const descriptionElementRef = React.useRef(null);
   React.useEffect(() => {
@@ -28,15 +32,15 @@ const ConsultEvent = (props) => {
     setEvent({
       ...props.event,
       sponsors:
-        (props.event.sponsors && props.sponsors &&
+        (props.event.sponsors && sponsors &&
           [...props.event.sponsors].map((idSponsor) => {
-            return [...props.sponsors].find(
+            return [sponsors].find(
               (sponsor) => parseInt(idSponsor, 10) === sponsor.idSponsor
             );
           })) ||
         [],
     });
-  }, [props.event, props.sponsors]);
+  }, [props.event, sponsors]);
   return (
     <Dialog
       open={props.open}
@@ -104,3 +108,9 @@ const ConsultEvent = (props) => {
 };
 
 export default ConsultEvent;
+
+ConsultEvent.propTypes = {
+  event: PropTypes.object.isRequired,
+  open: PropTypes.bool.isRequired,
+  handleToggle:PropTypes.func.isRequired
+};

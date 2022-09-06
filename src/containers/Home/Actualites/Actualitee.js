@@ -5,6 +5,7 @@ import chevronDroit from "../../../assets/images/chevron-droit.png";
 import ActualiteItem from "./ActualiteItem/ActualiteItem";
 import RubriqueTitle from "../../../components/UI/RubriqueTitle/RubriqueTitle";
 import ConsultEvent from "../../Evenements/ConsultEvent/ConsultEvent";
+import PropTypes from "prop-types";
 
 const Actualite = (props) => {
   const [currentActualite, setCurrentActualite] = useState(null);
@@ -33,6 +34,7 @@ const Actualite = (props) => {
     else{
       setLoading(true)
     }
+    console.log("EVENT_BUG",props.actualites)
   },[props.actualites])
  
   const { Data_Actu, n } = useMemo(() => {
@@ -129,7 +131,6 @@ const Actualite = (props) => {
         ))}
         {openConsult && (
           <ConsultEvent
-            sponsors={props.sponsors}
             event={currentActualite}
             open={openConsult}
             handleToggle={() => handleCloseConsult()}
@@ -141,3 +142,7 @@ const Actualite = (props) => {
 };
 
 export default Actualite;
+
+Actualite.propTypes = {
+  actualites: PropTypes.array.isRequired
+};

@@ -1,5 +1,3 @@
-// import { Container, Modal, Typography } from "@mui/material";
-// import { Box } from "@mui/system";
 import React from "react";
 import PropTypes from "prop-types";
 import { Box, Container, Modal, Typography } from "@material-ui/core";
