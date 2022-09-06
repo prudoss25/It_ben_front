@@ -1,20 +1,13 @@
 import * as React from "react";
 import { useState } from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { Grid } from "@material-ui/core";
-import Button from "@mui/material/Button";
+
 import axios from "../../../axios";
 import { ADD_ALL_USERS } from "../../../Routes";
 import "moment/locale/fr";
 import { ROLES } from "../../../Constantes";
 import NoticationAlert from "../../../components/UI/NotificationAlert/NotificationAlert";
 import Aux from "../../../hoc/_Aux/_Aux";
+import { Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
 
 export default function UserTable(props) {
   const [notification, setNotification] = useState({
@@ -76,7 +69,7 @@ export default function UserTable(props) {
   return (
     <Aux>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table style={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell align="right">Nom</TableCell>

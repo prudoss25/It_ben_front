@@ -26,7 +26,7 @@ export default function DownloadButton() {
     <Aux>
       <Button
         fullWidth
-        color="default"
+        color="primary"
         onClick={handleOnDownload}
         startIcon={<DownloadIcon />}
         variant="contained"

@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import * as XLSX from "xlsx";
 import Aux from "../../../hoc/_Aux/_Aux";
 import UserTable from "./UserTable";
-import Button from "@mui/material/Button";
 import FormModal from "../../../common/FormModal/FormModal";
-import { Grid } from "@material-ui/core";
 import DownloadButton from "./DownloadButton";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import { Button, Grid } from "@material-ui/core";
 
 
 export default function AddButton() {
@@ -60,7 +59,7 @@ export default function AddButton() {
 
   return (
     <Aux>
-      <Button variant="contained" onClick={handleOpen}>
+      <Button color="primary" variant="contained" onClick={handleOpen}>
         Ajouter via excel
       </Button>
       <FormModal
