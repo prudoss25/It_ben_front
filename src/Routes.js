@@ -1,3 +1,4 @@
+export const ADD_ALL_USERS = "/addAllUsers";
 export const FIND_ALL_USERS = "/findAllUsers";
 export const POST_USER = "/addUser";
 export const DELETE_USER = "/deleteUser/";
