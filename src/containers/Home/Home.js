@@ -8,7 +8,7 @@ import GaleriePhoto from "./GaleriePhoto/GaleriePhoto";
 import Actualite from "./Actualites/Actualitee";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
-import { FIND_ALL_EVENTS_DESC, FIND_ALL_NEXT_EVENTS, FIND_ALL_SPONSORS } from "../../Routes";
+import { FIND_ALL_EVENTS_DESC, FIND_ALL_SPONSORS } from "../../Routes";
 import { Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEvents } from "../../features/Event/EventSlice";
@@ -27,21 +27,12 @@ const Home = () => {
       ])
   }, []);
   useEffect(() => {
-    console.log("EVENT_BUG_NEXT",nextEvents)
-
     setEvenements(nextEvents)
   },[nextEvents])
   useEffect(() => {
     setActualites(currentEvents)
   },[currentEvents])
-  const getActualites = () => {
-    axios.get(FIND_ALL_NEXT_EVENTS).then((response) => {
-      if (response.status === 200) {
-        setActualites([...response.data]);
-      }
-      return [];
-    });
-  };
+  
   const getSponsors = () => {
     axios.get(FIND_ALL_SPONSORS).then((response) => {
       if (response.status === 200) {
@@ -53,7 +44,6 @@ const Home = () => {
     axios.get(FIND_ALL_EVENTS_DESC).then((response) => {
       if (response.status === 200) {
         dispatch(fetchEvents(response.data))
-        setEvenements([...response.data]);
       }
       return [];
     });

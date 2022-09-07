@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 export const sponsorSlice = createSlice({
     name:'sponsor',
     initialState:{
-        value:[]
+        all:[]
     },
     reducers: {
         fetchSponsors: (state,action) => {
-            state.value = action.payload ? [...action.payload] : [] 
+            state.all = action.payload ? [...action.payload] : [] 
         }
     }
 })

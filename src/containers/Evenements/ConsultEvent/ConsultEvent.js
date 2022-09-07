@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 const ConsultEvent = (props) => {
-  const sponsors = useSelector((state) => state.sponsor.value)
+  const sponsors = useSelector((state) => state.sponsor.all)
 
   const [event, setEvent] = useState({});
   const descriptionElementRef = React.useRef(null);

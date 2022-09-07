@@ -8,6 +8,11 @@ import ConfirmAlert from "../../components/UI/ConfirmAlert/ConfirmAlert";
 import NoticationAlert from "../../components/UI/NotificationAlert/NotificationAlert";
 import Table from "../Table/Table";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { EventsManagementType, SponsorsManagementType, UsersManagementType } from "../../Constantes";
+import { fetchEvents } from "../../features/Event/EventSlice";
+import { fetchSponsors } from "../../features/Sponsor/SponsorSlice";
+import { fetchUsers } from "../../features/User/UserSlice";
 
 const ManagementDashboard = ({
   render,
@@ -16,11 +21,10 @@ const ManagementDashboard = ({
   idField,
   typeManagement,
 }) => {
-  const [objects, setObjects] = useState([]);
   const [loading, setLoading] = useState(false);
   const [openObjectForm, setOpenObjectForm] = useState(false);
   const [openConsultObject, setOpenConsultObject] = useState(false);
-
+  const dispatch = useDispatch();
   const [notification, setNotification] = useState({
     open: false,
     type: "info",
@@ -40,12 +44,29 @@ const ManagementDashboard = ({
     axios.get(getDataListRoute).then((response) => {
       if (response.status === 200) {
         const liste = [...response.data];
-        setObjects(liste);
+        setObjectList(liste);
         setCurrentObject(null);
         setLoading(false);
       }
     });
   };
+
+  const setObjectList = (values) => {
+    switch (typeManagement) {
+      case UsersManagementType:
+        dispatch(fetchUsers(values))
+        break;
+      case SponsorsManagementType:
+        dispatch(fetchSponsors(values))
+        break;
+      case EventsManagementType:
+        dispatch(fetchEvents(values))
+        break;
+      default:
+        break;
+    }
+  }
+
   useEffect(() => {
     getData();
   }, []);
@@ -113,7 +134,6 @@ const ManagementDashboard = ({
   };
 
   /* Consult Object Informations */
-
   const handleConsultObject = (object) => {
     setCurrentObject(object);
     setOpenConsultObject(true);
@@ -194,7 +214,6 @@ const ManagementDashboard = ({
             </Grid>
           </Grid>
           <Table
-            elements={objects}
             typeManagement={typeManagement}
             onConsult={consultObject}
             onDelete={deleteObject}

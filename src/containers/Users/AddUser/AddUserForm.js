@@ -22,6 +22,8 @@ import {
 } from "@material-ui/pickers";
 import { Autocomplete } from "@material-ui/lab";
 import withManagementForm from "../../../common/ManagementDashboard/withManagementForm";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTowns } from "../../../features/Town/TownSlice";
 const initialGeneralInfo = {
   lastName: "",
   firstName: "",
@@ -39,9 +41,12 @@ const initialGeneralInfo = {
 };
 
 const addUserForm = (props) => {
+  const dispatch = useDispatch();
+  const villesList = useSelector((state) => state.town.all)
   useEffect(() => {
     morrocoTownFetcher.get(MOROCCO_TOWN).then((response) => {
       setVilles(response.data);
+      dispatch(fetchTowns(response.data))
     });
   }, []);
   useEffect(() => {
@@ -51,9 +56,13 @@ const addUserForm = (props) => {
       setGeneralInfos(initialGeneralInfo);
     }
   }, [props.user]);
+
   const [generalInfos, setGeneralInfos] = useState(initialGeneralInfo);
   const [villes, setVilles] = useState([]);
   const [loading,setLoading] = useState(false);
+  useEffect(() => {
+    setVilles(villesList)
+  },[villesList])
   const defaultProps = {
     options: villes,
     getOptionLabel: (option) => option.ville,

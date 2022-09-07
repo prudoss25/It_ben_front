@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 export const townSlice = createSlice({
     name:'town',
     initialState:{
-        value:[]
+        all:[]
     },
     reducers: {
         fetchTowns: (state,action) => {
-            state.value = action.payload ? [...action.payload] : [] 
+            state.all = action.payload ? [...action.payload] : [] 
         }
     }
 })
