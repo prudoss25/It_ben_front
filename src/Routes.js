@@ -5,6 +5,7 @@ export const DELETE_USER = "/deleteUser/";
 export const UPDATE_USER = "/updateUser";
 
 export const FIND_ALL_EVENTS = "/findAllEvents";
+export const FIND_ALL_EVENTS_DESC = "/findAllEventsDesc";
 export const POST_EVENT = "/addEvent";
 export const DELETE_EVENT = "/deleteEvent/";
 export const UPDATE_EVENT = "/updateEvent";

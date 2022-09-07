@@ -8,39 +8,42 @@ import GaleriePhoto from "./GaleriePhoto/GaleriePhoto";
 import Actualite from "./Actualites/Actualitee";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
-import { FIND_ALL_NEWS, FIND_ALL_NEXT_EVENTS, FIND_ALL_SPONSORS } from "../../Routes";
+import { FIND_ALL_EVENTS_DESC, FIND_ALL_SPONSORS } from "../../Routes";
 import { Grid } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEvents } from "../../features/Event/EventSlice";
+import { fetchSponsors } from "../../features/Sponsor/SponsorSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const nextEvents = useSelector(state => state.event.nexts);
+  const currentEvents = useSelector(state => state.event.currents);
   const [actualites, setActualites] = useState(null);
   const [evenements, setEvenements] = useState(null);
-  const [sponsors, setSponsors] = useState(null);
   useEffect(() => {
-    Promise.all([getActualites(),
+    Promise.all([
       getSponsors(),
       getEvenements()
       ])
-    
   }, []);
-  const getActualites = () => {
-    axios.get(FIND_ALL_NEXT_EVENTS).then((response) => {
-      if (response.status === 200) {
-        setActualites([...response.data]);
-      }
-      return [];
-    });
-  };
+  useEffect(() => {
+    setEvenements(nextEvents)
+  },[nextEvents])
+  useEffect(() => {
+    setActualites(currentEvents)
+  },[currentEvents])
+  
   const getSponsors = () => {
     axios.get(FIND_ALL_SPONSORS).then((response) => {
       if (response.status === 200) {
-        setSponsors(response.data);
+        fetchSponsors(response.data);
       }
     });
   }
   const getEvenements = () => {
-    axios.get(FIND_ALL_NEWS).then((response) => {
+    axios.get(FIND_ALL_EVENTS_DESC).then((response) => {
       if (response.status === 200) {
-        setEvenements([...response.data]);
+        dispatch(fetchEvents(response.data))
       }
       return [];
     });
@@ -48,17 +51,14 @@ const Home = () => {
   return (
     <Aux>
       <HeroSection />
-      {/* <div className={classes.Section_Actu}> */}
       <Grid container wrap>
         <Grid item xs={7}>
-          <Actualite actualites={actualites} sponsors={sponsors} />
+          <Actualite actualites={actualites} />
         </Grid>
         <Grid item xs={5}>
-          <Evenement evenements={evenements} sponsors={sponsors} />
+          <Evenement evenements={evenements} />
         </Grid>
       </Grid>
-
-      {/* </div> */}
       <Partenaires />
       <Statistiques />
       <GaleriePhoto />

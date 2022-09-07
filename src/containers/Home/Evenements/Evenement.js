@@ -5,8 +5,10 @@ import EvenementItem from "./EvenementItem/EvenementItem";
 import ConsultEvent from "../../Evenements/ConsultEvent/ConsultEvent";
 import chevronHaut from "../../../assets/images/chevron-haut.png";
 import chevronBas from "../../../assets/images/chevron-bas.png";
+import PropTypes from "prop-types";
 
 const evenement = (props) => {
+
   const [currentEvent, setCurrentEvent] = useState(null);
   const [openConsult, setOpenConsult] = useState(null);
   const [loading, setLoading] = useState(true)
@@ -150,7 +152,6 @@ const evenement = (props) => {
       </div>
       {openConsult && (
           <ConsultEvent
-            sponsors={props.sponsors}
             event={currentEvent}
             open={openConsult}
             handleToggle={() => handleCloseConsult()}
@@ -161,3 +162,6 @@ const evenement = (props) => {
 }
 
 export default evenement;
+evenement.propTypes = {
+  evenements: PropTypes.array.isRequired
+};

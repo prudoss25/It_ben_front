@@ -13,8 +13,6 @@ const toolbar = (props) => {
       <div>
         <span className={classes.Menu}>
           <DrawerToggle
-            clicked={props.toggleSidebar}
-            open={props.openSidebar}
           />
         </span>
         <div className={classes.Logo}>

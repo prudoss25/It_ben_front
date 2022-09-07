@@ -17,7 +17,6 @@ export default function UserTable(props) {
   });
 
   const onNotificationClosed = () => {
-    //props.refreshDataFunc();
     setNotification({
       open: false,
       type: "info",
@@ -58,7 +57,8 @@ export default function UserTable(props) {
       .then((response) => {
         if (response.status === 200){
           openNotification("success", `Les Utilisateurs ont été ajouté!`);
-          props.handleClose()
+          props.refreshDataFunc();
+          props.handleClose();
         }
       })
       .catch(() => {
@@ -69,7 +69,7 @@ export default function UserTable(props) {
   return (
     <Aux>
       <TableContainer component={Paper}>
-        <Table style={{ minWidth: 650 }} aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell align="right">Nom</TableCell>
@@ -97,8 +97,10 @@ export default function UserTable(props) {
           </TableBody>
         </Table>
       </TableContainer>
-      <Grid>
-        <Button onClick={onSave}>Ajouter</Button>
+      <Grid container>
+        <Grid item>
+          <Button color="primary" onClick={onSave}>Ajouter</Button>
+        </Grid>
       </Grid>
       <NoticationAlert handleClose={onNotificationClosed} {...notification} />
     </Aux>

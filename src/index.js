@@ -5,6 +5,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
+import { Provider } from 'react-redux'
+import store from "./store";
 
 
 axios.defaults.baseURL = 'https://springitbenbackend.herokuapp.com';
@@ -28,11 +30,13 @@ axios.interceptors.response.use(
   }
 );
 const app = (
-  <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </BrowserRouter>
+  </Provider>
 );
 
 ReactDOM.render(app, document.getElementById("root"));

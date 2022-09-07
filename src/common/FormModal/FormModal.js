@@ -1,5 +1,3 @@
-// import { Container, Modal, Typography } from "@mui/material";
-// import { Box } from "@mui/system";
 import React from "react";
 import PropTypes from "prop-types";
 import { Box, Container, Modal, Typography } from "@material-ui/core";
@@ -15,6 +13,7 @@ const formModal = (props) => {
     border: "2px solid #ccc",
     boxShadow: 24,
     p: 4,
+    ...props.style
   };
   return (
     <Modal
@@ -40,4 +39,5 @@ formModal.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
+  style:PropTypes.object
 };

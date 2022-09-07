@@ -8,7 +8,7 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { Button, Grid } from "@material-ui/core";
 
 
-export default function AddButton() {
+export default function AddButton(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   
@@ -66,6 +66,7 @@ export default function AddButton() {
         open={open}
         title="Enregistrer une liste de Membres"
         handleClose={handleClose}
+        style={{width:800}}
       >
         <form>
           <Grid container>
@@ -96,8 +97,8 @@ export default function AddButton() {
                   Chargez la liste Remplie
                 </Button>
               </label>
-              <Grid>
-                {fileName && rows && <UserTable handleClose={handleClose} dataRows={rows}></UserTable>}
+              <Grid item xs={12}>
+                {fileName && rows && <UserTable refreshDataFunc={() => props.refreshDataFunc()} handleClose={handleClose} dataRows={rows}></UserTable>}
               </Grid>
             </Grid>
           </Grid>

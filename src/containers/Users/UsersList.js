@@ -34,7 +34,7 @@ const UsersList = () => {
             </Grid>
            
             <Grid item>
-              <AddButton/>
+              <AddButton refreshDataFunc={() => refreshDataFunc()} />
             </Grid>
       
               <AddUserForm

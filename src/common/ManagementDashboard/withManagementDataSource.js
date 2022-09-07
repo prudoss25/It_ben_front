@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 import {
   UsersManagementType,
   EventsManagementType,
@@ -7,6 +8,33 @@ import {
 } from "../../Constantes";
 
 const withManagementDataSource = (Component) => (props) => {
+
+  const users = useSelector((state) => state.user.all)
+  const sponsors = useSelector((state) => state.sponsor.all)
+  const events = useSelector((state) => state.event.all)
+
+  const userListCalculated = useMemo(() => {
+    return users ? [...users].map((user) => ({
+      ...user,
+      roleLabel: ROLES[user.role] || "",
+      registrationDate:
+        user.registrationDate && new Date(user.registrationDate),
+      birthDate: user.birthDate && new Date(user.birthDate)
+    })) : [];
+  },[users])
+
+  const eventListCalculated = useMemo(() => {
+    return events ? [...events].map((event) => ({
+      ...event,
+      startDate: event.startDate,
+      endDate: event.endDate,
+  })) : [];
+  },[events])
+
+  const sponsorListCalculated = useMemo(() => {
+    return events ? [...sponsors] : [];
+  },[sponsors])
+
   const managementDashbordInfos = {
     Users: {
       fieldNames: [
@@ -53,30 +81,19 @@ const withManagementDataSource = (Component) => (props) => {
   }
 
   const items = useMemo(() => {
-    let elements;
+
+    console.log("MANAGEMENT_VALUES",userListCalculated,eventListCalculated,sponsorListCalculated)
     switch (props.typeManagement) {
       case UsersManagementType:
-        elements = [...props.elements].map((user) => ({
-          ...user,
-          roleLabel: ROLES[user.role] || "",
-          registrationDate:
-            user.registrationDate && new Date(user.registrationDate),
-          birthDate: user.birthDate && new Date(user.birthDate),
-        }));
-        return getItems(elements,UsersManagementType);
+        return getItems(userListCalculated,UsersManagementType);
       case EventsManagementType:
-        elements = [...props.elements].map((event) => ({
-            ...event,
-            startDate: event.startDate,
-            endDate: event.endDate,
-        }));
-        return getItems(elements,EventsManagementType);
-        case SponsorsManagementType:
-            return getItems([...props.elements],SponsorsManagementType);
+        return getItems(eventListCalculated,EventsManagementType);
+      case SponsorsManagementType:
+          return getItems(sponsorListCalculated,SponsorsManagementType);
       default:
         return {};
     }
-  }, [props.elements, props.typeManagement]);
+  }, [userListCalculated,eventListCalculated,sponsorListCalculated, props.typeManagement]);
 
   return <Component {...props} {...items} />;
 };

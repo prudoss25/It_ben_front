@@ -2,10 +2,12 @@ import React from "react";
 import SideNavigationItems from "./SideNavigationItems/SideNavigationItems";
 import classes from "./Sidebar.css";
 import Aux from "../../../hoc/_Aux/_Aux";
+import { useSelector } from "react-redux";
 
-const sidebar = (props) => {
+const sidebar = () => {
+    const sidebarDrawer = useSelector((state) => state.sidebarDrawer.value)
     let attachedClasses = [classes.Sidebar, classes.Close];
-    if(props.open){
+    if(sidebarDrawer){
         attachedClasses = [classes.Sidebar,classes.Open];
     }
   return (
