@@ -12,6 +12,9 @@ import AdresseMail from "./ContactezNous/AdresseMail/AdresseMail";
 import ReseauxSociaux from "./ContactezNous/ReseauxSociaux/ReseauxSociaux";
 import Telephone from "./ContactezNous/Telephone/Telephone";
 
+
+
+
 class Contacts extends Component {
   render() {
     return (
