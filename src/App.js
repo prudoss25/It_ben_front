@@ -7,8 +7,6 @@ import Layout from "./hoc/Layout/Layout";
 import UsersList from "./containers/Users/UsersList";
 import EventsList from "./containers/Evenements/EventsList";
 import SponsorsList from "./containers/Sponsors/SponsorsList";
-import Auth from "./containers/Auth/Auth";
-import ChangePassword from "./containers/Auth/ChangePassword";
 
 class App extends Component {
   render() {
@@ -22,8 +20,6 @@ class App extends Component {
             <Route path="/users" component={UsersList} />
             <Route path="/events" component={EventsList} />
             <Route path="/sponsors" component={SponsorsList} />
-            <Route path="/auth" component={Auth} />
-            <Route path="/changepassword" component={ChangePassword} />
           </Switch>
         </Layout>
       </div>

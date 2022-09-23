@@ -7,9 +7,8 @@ import Presentation from "./Presentation/Presentation";
 // import classes from "./About.css";
 import statuts from "../../assets/files/STATUTS_ASEBEM_2019_version_officielle.pdf";
 import guide from "../../assets/files/GUIDE_DES_BENINOIS_AU_MAROC_COBEM.pdf";
-import { Button, Grid} from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import GetAppIcon from "@material-ui/icons/GetApp";
-
 
 const About = (props) => {
   const files = [

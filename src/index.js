@@ -9,7 +9,6 @@ import { Provider } from 'react-redux'
 import store from "./store";
 
 
-
 axios.defaults.baseURL = 'https://springitbenbackend.herokuapp.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -31,7 +30,6 @@ axios.interceptors.response.use(
   }
 );
 const app = (
-     
   <Provider store={store}>
     <BrowserRouter>
       <React.StrictMode>
@@ -39,7 +37,6 @@ const app = (
       </React.StrictMode>
     </BrowserRouter>
   </Provider>
-    
 );
 
 ReactDOM.render(app, document.getElementById("root"));

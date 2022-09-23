@@ -23,12 +23,6 @@ const sideNavigationItems = () => {
       <SideNavigationItem link="/sponsors" active={location.pathname === "/sponsors"}>
         Sponsors
       </SideNavigationItem>
-      <SideNavigationItem link="/auth" active={location.pathname === "/auth"}>
-        Auth
-      </SideNavigationItem>
-      <SideNavigationItem link="/changepassword" active={location.pathname === "/changepassword"}>
-        ChangePassword
-      </SideNavigationItem>
     </ul>
   );
 };
