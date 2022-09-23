@@ -6,6 +6,7 @@ import ActualiteItem from "./ActualiteItem/ActualiteItem";
 import RubriqueTitle from "../../../components/UI/RubriqueTitle/RubriqueTitle";
 import ConsultEvent from "../../Evenements/ConsultEvent/ConsultEvent";
 import PropTypes from "prop-types";
+import ActualiteVide from "../ActualiteVide";
 
 const Actualite = (props) => {
   const [currentActualite, setCurrentActualite] = useState(null);
@@ -17,72 +18,75 @@ const Actualite = (props) => {
     visibility: "",
   });
   const [position, setPosition] = useState(0);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [style, setStyle] = useState({
     width: "100%",
     display: "flex",
     flexDirection: "row",
-  })
-  
+  });
+
   useEffect(() => {
-    afficher_masquer(position)
-    if(props.actualites)
-    {
-      setLoading(false)
-      setStyle({...style,width:[...props.actualites].length * 50 + "%"})
+    afficher_masquer(position);
+    if (props.actualites) {
+      setLoading(false);
+      const length = [...props.actualites].length;
+      setStyle({ ...style, width: length >= 2 ? length * 50 + "%" : "100%" });
+    } else {
+      setLoading(true);
     }
-    else{
-      setLoading(true)
-    }
-    console.log("EVENT_BUG",props.actualites)
-  },[props.actualites])
- 
+  }, [props.actualites]);
+
   const { Data_Actu, n } = useMemo(() => {
-      return props.actualites ? {
-        Data_Actu: [...props.actualites],
-        n: [...props.actualites].length,
-      } : {
-        Data_Actu: [1,2],
-        n: 0,
-      };
+    return props.actualites
+      ? {
+          Data_Actu: [...props.actualites],
+          n: [...props.actualites].length,
+        }
+      : {
+          Data_Actu: [1, 2],
+          n: 0,
+        };
   }, [props.actualites]);
 
   const afficher_masquer = (pos) => {
-    pos === -n + 2
-      ? setMasquerGauche({ visibility: "hidden" })
-      : setMasquerGauche({ visibility: "visible" });
-    pos === 0
-      ? setMasquerDroit({ visibility: "hidden" })
-      : setMasquerDroit({ visibility: "visible" });
+    if (n <= 2) {
+      setMasquerGauche({ visibility: "hidden" });
+      setMasquerDroit({ visibility: "hidden" });
+    } else {
+      pos === -n + 2
+        ? setMasquerGauche({ visibility: "hidden" })
+        : setMasquerGauche({ visibility: "visible" });
+      pos === 0
+        ? setMasquerDroit({ visibility: "hidden" })
+        : setMasquerDroit({ visibility: "visible" });
+    }
   };
 
   const boutonGaucheHandler = () => {
     let newPosition = position;
-    if (position> -(n + 2)) 
-      newPosition = position-1;
+    if (position > -(n + 2)) newPosition = position - 1;
     setPosition(newPosition);
     setStyle({
       ...style,
-      width: newPosition* 50 + "%",
+      width: newPosition * 50 + "%",
       transform: "translate(" + newPosition * 25 + "%)",
       transition: "all 0.5s ease",
-    })
-    
+    });
+
     afficher_masquer(newPosition);
   };
 
   const boutonDroitHandler = () => {
     let newPosition = position;
-    if (position< 0) 
-      newPosition = position+1;
+    if (position < 0) newPosition = position + 1;
     setPosition(newPosition);
     setStyle({
       ...style,
       width: Math.abs(newPosition * 50 + "%"),
       transform: "translate(" + newPosition * 25 + "%)",
       transition: "all 0.5s ease",
-    })
-    
+    });
+
     afficher_masquer(newPosition);
   };
   const consulter = (actualite) => {
@@ -118,17 +122,21 @@ const Actualite = (props) => {
       </div>
 
       <div style={style}>
-        {Data_Actu.map((actu) => (
-          <ActualiteItem
-            startDate={actu.startDate}
-            loading={loading}
-            key={actu.idEvent}
-            title={actu.title}
-            theme={actu.theme}
-            description={actu.description}
-            action={() => consulter(actu)}
-          />
-        ))}
+        {Data_Actu.length > 0 ? (
+          Data_Actu.map((actu) => (
+            <ActualiteItem
+              startDate={actu.startDate}
+              loading={loading}
+              key={actu.idEvent}
+              title={actu.title}
+              theme={actu.theme}
+              description={actu.description}
+              action={() => consulter(actu)}
+            />
+          ))
+        ) : (
+          <ActualiteVide text={"Pas d'actualités en cours"} />
+        )}
         {openConsult && (
           <ConsultEvent
             event={currentActualite}
@@ -144,5 +152,5 @@ const Actualite = (props) => {
 export default Actualite;
 
 Actualite.propTypes = {
-  actualites: PropTypes.array.isRequired
+  actualites: PropTypes.array.isRequired,
 };

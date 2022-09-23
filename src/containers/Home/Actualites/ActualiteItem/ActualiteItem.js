@@ -10,6 +10,7 @@ import {
 import { Skeleton } from "@material-ui/lab";
 import moment from "moment";
 import { stringTruncedShower } from "../../../../Functions";
+import eventImg from "../../../../assets/images/events.jpeg";
 
 const actualiteItem = (props) => {
   const { loading = false, title, theme, description, action,startDate } = props;
@@ -64,7 +65,7 @@ const actualiteItem = (props) => {
         <CardMedia
           component="img"
           height="140"
-          image="https://picsum.photos/260/190"
+          image={eventImg}
           alt={title}
         />
       )}
@@ -88,19 +89,6 @@ const actualiteItem = (props) => {
       </CardContent>
     </Card>
   );
-  // return (
-  //   <div className={classes.Actu}>
-  //     <p>
-  //       <img src={asebemLogo} alt={props.sousTitre} className={classes.ActuImg} />
-  //     </p>
-  //     <h3 className={classes.ActuTitre}>{props.title}</h3>
-  //     <h3 className={classes.ActuTheme}>{props.theme}</h3>
-  //     <p className={classes.ActuDescription}>{props.description}</p>
-  //     <Button action={props.action}>
-  //       {props.titreBouton}
-  //     </Button>
-  //   </div>
-  // );
 };
 
 export default actualiteItem;

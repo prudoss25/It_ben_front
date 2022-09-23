@@ -6,6 +6,7 @@ import ConsultEvent from "../../Evenements/ConsultEvent/ConsultEvent";
 import chevronHaut from "../../../assets/images/chevron-haut.png";
 import chevronBas from "../../../assets/images/chevron-bas.png";
 import PropTypes from "prop-types";
+import ActualiteVide from "../ActualiteVide";
 
 const evenement = (props) => {
 
@@ -31,19 +32,27 @@ const evenement = (props) => {
     if(props.evenements)
     {
       setLoading(false)
-      setStyle({...style,height:[...props.evenements].length * 50 + "%"})
+      const length = [...props.evenements].length;
+      setStyle({...style,height:length >= 2 ? length * 50 + "%" : "100%"})
     }
     else{
       setLoading(true)
     }
   },[props.evenements])
   const afficher_masquer = (pos) => {
-    pos === -n + 2
-      ? setMasquerHaut({ visibility: "hidden" })
-      : setMasquerHaut({ visibility: "visible" });
-    pos === 0
-      ? setMasquerBas({ visibility: "hidden" })
-      : setMasquerBas({ visibility: "visible" });
+    if(n <= 2)
+    {
+      setMasquerHaut({ visibility: "hidden" })
+      setMasquerBas({ visibility: "hidden" })
+    }
+    else{
+      pos === -n + 2
+        ? setMasquerHaut({ visibility: "hidden" })
+        : setMasquerHaut({ visibility: "visible" });
+      pos === 0
+        ? setMasquerBas({ visibility: "hidden" })
+        : setMasquerBas({ visibility: "visible" });
+    }
   };
 
   const boutonHautHandler = () => {
@@ -91,7 +100,7 @@ const evenement = (props) => {
       Data_Actu: [1,2],
       n: 0,
     };
-}, [props.evenements]);
+  }, [props.evenements]);
   return (
     <div className={classes.Evenement}>
       <div className={classes.BlocHeaderEvent}>
@@ -117,7 +126,8 @@ const evenement = (props) => {
       </div>
       <div style={{overflow:"hidden"}}>
         <div style={style}>
-          {Data_Actu.map((event) => (
+          {
+          Data_Actu.length > 0 ? Data_Actu.map((event) => (
             <EvenementItem 
               startDate={event.startDate}
               loading={loading}
@@ -125,28 +135,11 @@ const evenement = (props) => {
               title={event.title}
               theme={event.theme}
               description={event.description}
-              src={"https://picsum.photos/150/150"}
               action={() => consulter(event)}
               />
-            // <div className={classes.Event} key={event.id}>
-            //   <div className={classes.BlocImg}>
-            //       <img
-            //         className={classes.EventImg}
-            //         src={event.img}
-            //         alt={event.title}
-            //       />
-            //   </div>
-            //   <div>
-            //     <div className={classes.EventHeader}>
-            //       <p className={classes.EventTitre}>{event.title}</p>
-            //       <p className={classes.EventDate}>{event.date}</p>
-            //     </div>
-            //     <p className={classes.EventDescription}>
-            //       {event.description}
-            //     </p>
-            //   </div>
-            // </div>
-          ))}
+          ))
+          : <ActualiteVide text={"Pas d'évènements à venir"} />
+        }
           
         </div>
       </div>

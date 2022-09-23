@@ -11,6 +11,7 @@ import { Skeleton } from "@material-ui/lab";
 import moment from "moment";
 import React from "react";
 import { stringTruncedShower } from "../../../../Functions";
+import eventImg from "../../../../assets/images/events.jpeg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,7 +63,7 @@ const EvenementItem = (props) => {
         <CardMedia
           component="img"
           className={classes.cover}
-          image="https://picsum.photos/260/190"
+          image={eventImg}
           alt={title}
         />
       )}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ManagementDashboard from "../../common/ManagementDashboard/ManagementDashboard";
 import { EventsManagementType } from "../../Constantes";
-import { DELETE_EVENT, FIND_ALL_EVENTS, FIND_ALL_SPONSORS } from "../../Routes";
+import { DELETE_EVENT, FIND_ALL_EVENTS_DESC, FIND_ALL_SPONSORS } from "../../Routes";
 import Aux from "../../hoc/_Aux/_Aux";
 import { Grid, Typography } from "@material-ui/core";
 import EventForm from "./EventForm/EventForm";
@@ -21,7 +21,7 @@ const EventsList = () => {
   return (
     <ManagementDashboard
       deleteDataRoute={`${DELETE_EVENT}`}
-      getDataListRoute={`${FIND_ALL_EVENTS}`}
+      getDataListRoute={`${FIND_ALL_EVENTS_DESC}`}
       idField="idEvent"
       typeManagement={`${EventsManagementType}`}
       render={({
