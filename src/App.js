@@ -1,12 +1,9 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import About from "./containers/About/About";
-import Contacts from "./containers/Contact/Contact";
-import Home from "./containers/Home/Home";
+import React, { Component, useState, useEffect } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Layout from "./hoc/Layout/Layout";
-import UsersList from "./containers/Users/UsersList";
-import EventsList from "./containers/Evenements/EventsList";
-import SponsorsList from "./containers/Sponsors/SponsorsList";
+import { useSelector } from "react-redux";
+import Unauthorized from "./Unauthorized";
+import getRoutes from "./NavigationRoute";
 
 class App extends Component {
   render() {
@@ -14,12 +11,12 @@ class App extends Component {
       <div>
         <Layout>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/contacts" component={Contacts} />
-            <Route path="/users" component={UsersList} />
-            <Route path="/events" component={EventsList} />
-            <Route path="/sponsors" component={SponsorsList} />
+
+          {
+            getRoutes().map((route, index) => {
+              return <CustomRoute exact {...route} key={index} />
+            })
+          }
           </Switch>
         </Layout>
       </div>
@@ -28,3 +25,34 @@ class App extends Component {
 }
 
 export default App;
+
+const CustomRoute = ({ component: Component, roles, path }) => {
+  roles = roles || [];
+  const [isAuth,setIsAuth] = useState(false) 
+  const role = useSelector((state) => state.auth.userInfos.role)
+  const token = useSelector((state) => state.auth.token)
+  useEffect(() => {
+    setIsAuth(token != null)
+  },[token])
+  const hasRoles = () => {
+    return [...roles].includes(role) || [...roles].includes('All')
+  }
+  console.log("isAuth",isAuth)
+  return (
+      <Route
+          path={path}
+          exact={true}
+          render={(props) => 
+              hasRoles(roles) ? (
+                  <Component {...props} />
+              ) : (
+                  isAuth ? (
+                      <Unauthorized />
+                  ) : (
+                      <Redirect to="/auth" />
+                  )
+              )
+          }
+      />
+  );
+}

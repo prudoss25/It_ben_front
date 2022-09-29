@@ -8,10 +8,9 @@ import Notification from "../Notification/Notification";
 import Profil from "../Profil/Profil";
 import { useSelector } from "react-redux";
 
-const toolbar = (props) => {
+const toolbar = () => {
   const token = useSelector((state) => state.auth.token)
   const [authenticated, setAuthenticated] = useState(false);
-  console.log('test token',token)
   useEffect(()=> {
     setAuthenticated(token == null ? false : true )
   },[token])

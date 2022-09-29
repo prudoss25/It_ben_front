@@ -1,25 +1,13 @@
-import { Contacts } from "@material-ui/icons";
 import About from "./containers/About/About";
 import Auth from "./containers/Auth/Auth";
 import ChangePassword from "./containers/Auth/ChangePassword";
+import Contacts from "./containers/Contact/Contact";
 import EventsList from "./containers/Evenements/EventsList";
 import Home from "./containers/Home/Home";
 import SponsorsList from "./containers/Sponsors/SponsorsList";
 import UsersList from "./containers/Users/UsersList";
 
 const NavigationRoutes = [
-    {
-        'name': 'Changement de Mot de Passe',
-        'path': '/changepassword',
-        'component': ChangePassword,
-        'roles': ['All'],
-    },
-    {
-        'name': 'Connexion',
-        'path': '/auth',
-        'component': Auth,
-        'roles': ['All'],
-    },
     {
         'name': 'Accueil',
         'path': '/',
@@ -39,7 +27,19 @@ const NavigationRoutes = [
         'roles': ['All'],
     },
     {
-        'name': 'users',
+        'name': 'Connexion',
+        'path': '/auth',
+        'component': Auth,
+        'roles': ['All'],
+    },
+    {
+        'name': 'Changement de Mot de Passe',
+        'path': '/changepassword',
+        'component': ChangePassword,
+        'roles': ['All'],
+    },
+    {
+        'name': 'Gestion des Utilisateurs',
         'path': '/users',
         'component': UsersList,
         'roles': ['PCC','PACC','SGH','SGA','SG'],
@@ -75,7 +75,7 @@ const compile = (parentRoute, subRoutes) => {
         'name': '',
         'path': '',
     };
-    const flatRoutes = compile(parentRoute, NavigationRoutes.filter(route => route.roles.includes(role)|| route.roles.includes('All')));
+    const flatRoutes = compile(parentRoute, NavigationRoutes);
     return flatRoutes;
  }
 export default getRoutes;

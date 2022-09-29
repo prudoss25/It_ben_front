@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggle } from "../../../../features/SidebarDrawer/SidebarDrawerSlice";
+import { toggle } from "../../../../services/reducers/SidebarDrawer/SidebarDrawerSlice";
 import classes from "./DrawerToggle.css";
 
 const drawerToggle = (props) => {

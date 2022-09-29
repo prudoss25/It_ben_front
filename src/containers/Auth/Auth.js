@@ -195,7 +195,8 @@ import Container from "@material-ui/core/Container";
 import Logo from "../../components/Logo/Logo";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authenticate } from "../../features/Auth/AuthSlice";
+import { authenticateUser } from "../../services/actions/Auth/AuthActions";
+import NoticationAlert from "../../components/UI/NotificationAlert/NotificationAlert";
 
 function Copyright() {
   return (
@@ -233,23 +234,41 @@ const useStyles = makeStyles((theme) => ({
 const Auth = () => {
   const [matricule, setMatricule] = useState(null);
   const [password, setPassword] = useState(null);
+  const [notification, setNotification] = useState({
+    open: false,
+    type: "info",
+    message: "",
+  });
+  const onNotificationClosed = () => {
+    setNotification({
+      open: false,
+      type: "info",
+      message: "",
+    });
+  };
+  const openNotification = (type, message) => {
+    setNotification({
+      open: true,
+      type,
+      message,
+    });
+  };
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(
-      authenticate({
-        user: {
-          firstName: "DOSSOU",
-          lastName: "Prudence",
-          role:"PCC"
-        },
-        token:"12365MPLKJhs458663smp879251547"
-      })
-    );
-    console.log(password,matricule)
-    history.push("/")
+    const result = dispatch(authenticateUser(matricule,password))
+    if(result)
+    {
+      openNotification("success","Authentification Réussie")
+      history.push("/")
+    }
+    else {
+      openNotification("error","Authentification Echouée")
+      setMatricule(null)
+      setPassword(null)
+    }
   };
   const handleMatriculeChange = (event) => {
     setMatricule(event.target.value);
@@ -260,6 +279,12 @@ const Auth = () => {
   };
   return (
     <Container component="main" maxWidth="xs">
+     { notification.open && (
+        <NoticationAlert
+          handleClose={() => onNotificationClosed()}
+          {...notification}
+        />
+      ) }
       <CssBaseline />
       <div className={classes.paper}>
         <Logo />
@@ -273,6 +298,7 @@ const Auth = () => {
             required
             fullWidth
             onChange={handleMatriculeChange}
+            value={matricule||""}
             id="matricule"
             label="N° Matricule"
             name="matricule"
@@ -285,6 +311,7 @@ const Auth = () => {
             required
             fullWidth
             onChange={handlePasswordChange}
+            value={password ||""}
             name="password"
             label="Password"
             type="password"
@@ -304,7 +331,7 @@ const Auth = () => {
           >
             S'authentifier
           </Button>
-          <Grid container>
+          <Grid container alignContent="center">
             <Grid item xs>
               <Link href="#" variant="body2">
                 Mot de passe oublié ?
