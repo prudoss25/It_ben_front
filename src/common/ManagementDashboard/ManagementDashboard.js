@@ -10,9 +10,9 @@ import Table from "../Table/Table";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { EventsManagementType, SponsorsManagementType, UsersManagementType } from "../../Constantes";
-import { fetchEvents } from "../../features/Event/EventSlice";
-import { fetchSponsors } from "../../features/Sponsor/SponsorSlice";
-import { fetchUsers } from "../../features/User/UserSlice";
+import { fetchEvents } from "../../services/reducers/Event/EventSlice";
+import { fetchSponsors } from "../../services/reducers/Sponsor/SponsorSlice";
+import { fetchUsers } from "../../services/reducers/User/UserSlice";
 
 const ManagementDashboard = ({
   render,

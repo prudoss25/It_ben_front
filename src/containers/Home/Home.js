@@ -11,8 +11,8 @@ import axios from "axios";
 import { FIND_ALL_EVENTS_DESC, FIND_ALL_SPONSORS } from "../../Routes";
 import { Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchEvents } from "../../features/Event/EventSlice";
-import { fetchSponsors } from "../../features/Sponsor/SponsorSlice";
+import { fetchEvents } from "../../services/reducers/Event/EventSlice";
+import { fetchSponsors } from "../../services/reducers/Sponsor/SponsorSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
