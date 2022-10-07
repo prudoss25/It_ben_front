@@ -19,3 +19,4 @@ export const UPDATE_SPONSOR = "/updateSponsor";
 
 export const MOROCCO_TOWN = "/villes";
 export const TEST_AUTH = "/auth";
+export const UPDATE_PASSWORD ="/updatePassword";
