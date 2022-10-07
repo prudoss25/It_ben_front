@@ -386,10 +386,10 @@ const ChangePassword = () => {
    
 
 
-    const result = dispatch(authenticateUser(matricule,oldPassword))
+    // const result = dispatch(authenticateUser(matricule,oldPassword))
     
-    if(result)
-        {
+    // if(result)
+    //     {
             
                 if (confirmPassword === password && confirmPassword !==null && password!==null ){
                     if( !validatePassword(password)){
@@ -435,14 +435,14 @@ const ChangePassword = () => {
                 }
 
          }
-    else{
-            openNotification("error","Ancien Mot de passe incorrect")
-                        setPassword(null)
-                        setOldPassword(null)
-                        setConfirmPassword(null)
+    // else{
+    //         openNotification("error","Ancien Mot de passe incorrect")
+    //                     setPassword(null)
+    //                     setOldPassword(null)
+    //                     setConfirmPassword(null)
 
-        }
-  };
+    //     }
+//   };
 
 
   const handleMatriculeChange = (event) => {
