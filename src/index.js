@@ -6,8 +6,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import { Provider } from 'react-redux'
-import store from "./store";
-
+import {persistor, store} from "./store";
+import { PersistGate } from 'redux-persist/integration/react'
 
 axios.defaults.baseURL = 'https://springitbenbackend.herokuapp.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -31,11 +31,13 @@ axios.interceptors.response.use(
 );
 const app = (
   <Provider store={store}>
-    <BrowserRouter>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </BrowserRouter>
+     <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </BrowserRouter>
+     </PersistGate>
   </Provider>
 );
 

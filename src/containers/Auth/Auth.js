@@ -258,17 +258,19 @@ const Auth = () => {
   const classes = useStyles();
   const onSubmit = (event) => {
     event.preventDefault();
-    const result = dispatch(authenticateUser(matricule,password))
-    if(result)
-    {
-      openNotification("success","Authentification Réussie")
-      history.push("/")
-    }
-    else {
-      openNotification("error","Authentification Echouée")
-      setMatricule(null)
-      setPassword(null)
-    }
+    dispatch(authenticateUser(matricule,password))
+    .then((state) => {
+      if(state)
+      {
+        openNotification("success","Authentification Réussie")
+        history.push("/")
+      }
+      else {
+        openNotification("error","Authentification Echouée")
+        setMatricule(null)
+        setPassword(null)
+      }
+    })    
   };
   const handleMatriculeChange = (event) => {
     setMatricule(event.target.value);

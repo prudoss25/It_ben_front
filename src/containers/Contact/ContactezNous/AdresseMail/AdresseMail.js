@@ -1,30 +1,40 @@
 import React from "react";
-import { Grid, List, ListItem, ListItemAvatar, Avatar, ListItemText } from "@material-ui/core";
+import {
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+} from "@material-ui/core";
 import MailIcon from "@material-ui/icons/Mail";
 import RubriqueTitle from "../../../../components/UI/RubriqueTitle/RubriqueTitle";
 
 const mails = [
   {
-    name:"Conseil Consultatif",
-    link:"https://web.facebook.com/AsebemOfficiel",
-    icon:<MailIcon/>
+    name: "Conseil Consultatif",
+    link: "cc.asebem.officiel@gmail.com",
+    icon: <MailIcon />,
   },
   {
-    name:"Bureau Exécutif",
-    link:"https://www.instagram.com/asebem_nationale/",
-    icon:<MailIcon />
-  }
-]
+    name: "Bureau Exécutif",
+    link: "asebem.official@gmail.com",
+    icon: <MailIcon />,
+  },
+];
+
 export default function AdresseMail() {
   return (
     <Grid item>
-      <RubriqueTitle>
-        {/* <MailIcon fontSize="medium" style={{marginRight:8}} /> */}
-        Adresses mails
-      </RubriqueTitle>
-      <List dense>
+      <RubriqueTitle>Adresses mails</RubriqueTitle>
+      <List component="nav">
         {mails.map((reseau, index) => (
-          <ListItem key={index}>
+          <ListItem
+            button
+            component="a"
+            href={`mailto:${reseau.link}`}
+            key={index}
+          >
             <ListItemAvatar>
               <Avatar>{reseau.icon}</Avatar>
             </ListItemAvatar>

@@ -6,7 +6,6 @@ import HeroSection from "./HeroSection/HeroSection";
 import Evenement from "./Evenements/Evenement";
 import GaleriePhoto from "./GaleriePhoto/GaleriePhoto";
 import Actualite from "./Actualites/Actualitee";
-import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 import { FIND_ALL_EVENTS_DESC, FIND_ALL_SPONSORS } from "../../Routes";
 import { Grid } from "@material-ui/core";
@@ -62,7 +61,7 @@ const Home = () => {
       <Partenaires />
       <Statistiques />
       <GaleriePhoto />
-      <Footer />
+      {/* <Footer /> */}
     </Aux>
   );
 };

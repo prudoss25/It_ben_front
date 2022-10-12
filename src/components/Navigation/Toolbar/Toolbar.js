@@ -5,6 +5,7 @@ import DrawerToggle from "../Sidebar/DrawerToggle/DrawerToggle";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import Search from "../Search/Search";
 import Notification from "../Notification/Notification";
+import Disconnect from "../Disconnect/Disconnect";
 import Profil from "../Profil/Profil";
 import { useSelector } from "react-redux";
 
@@ -34,6 +35,9 @@ const toolbar = () => {
       {
         authenticated &&(
           <div>
+            <div>
+              <Disconnect />
+            </div>
             <div>
               <Notification />
             </div>

@@ -28,6 +28,9 @@ export default function ReseauxSociaux() {
           <List dense>
               {reseauxList.map((reseau, index) => 
                 <ListItem
+                button
+                component="a"
+                href={reseau.link}
                 key={index}
                 >
                   <ListItemAvatar>

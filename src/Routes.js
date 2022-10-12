@@ -4,6 +4,8 @@ export const POST_USER = "/addUser";
 export const DELETE_USER = "/deleteUser/";
 export const UPDATE_USER = "/updateUser";
 
+export const AUTHENTICATE_USER = "/authenticateUser";
+
 export const FIND_ALL_EVENTS = "/findAllEvents";
 export const FIND_ALL_EVENTS_DESC = "/findAllEventsDesc";
 export const POST_EVENT = "/addEvent";
