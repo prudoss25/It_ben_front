@@ -19,6 +19,8 @@ class Contacts extends Component {
         <Grid>
           <Card>
             <CardHeader
+              titleTypographyProps={{align:"center"}}
+              subheaderTypographyProps={{align:"center"}}
               title="Contactez-Nous"
               subheader="Ci-joint les différents canaux par lesquels nous sommes
         joignables. N'hésitez pas à nous joindre ou nous envoyer un

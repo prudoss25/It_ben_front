@@ -9,7 +9,7 @@ const notification = (props) => {
       aria-label="show 17 new notifications"
       color="inherit"
     >
-      <Badge badgeContent={17} color="secondary" overlap="rectangular">
+      <Badge badgeContent={0} color="secondary" overlap="rectangular">
         <NotificationsIcon />
       </Badge>
     </IconButton>
