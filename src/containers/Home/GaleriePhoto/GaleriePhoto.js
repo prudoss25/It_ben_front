@@ -1,7 +1,7 @@
-import React, { Component, useState } from "react";
-import chevronGauche from "../../../assets/images/chevron-gauche.png";
-import chevronDroit from "../../../assets/images/chevron-droit.png";
-import classes from "./GaleriePhoto.css";
+import React from "react";
+// import chevronGauche from "../../../assets/images/chevron-gauche.png";
+// import chevronDroit from "../../../assets/images/chevron-droit.png";
+// import classes from "./GaleriePhoto.css";
 import { ImageList, ImageListItem, ImageListItemBar, makeStyles } from "@material-ui/core";
 import image1 from "../../../assets/images/gallery/image1.jpeg";
 import image2 from "../../../assets/images/gallery/image2.png";
@@ -64,18 +64,18 @@ const GaleriePhoto = () => {
     { img: image8, title:"Image 8" },
     { img: image4, title:"Image 4" },
   ];
-  const [style, setStyle] = useState({
-    width: Data_Photo.length + "px",
-    height: "450px",
-    display: "flex",
-    flexDirection: "row",
-  })
-  const [masquerGauche, setMasquerGauche] = useState({
-    visibility: "",
-  })
-  const [masquerDroit, setMasquerDroit] = useState({
-    visibility: "",
-  })
+  // const [style, setStyle] = useState({
+  //   width: Data_Photo.length + "px",
+  //   height: "450px",
+  //   display: "flex",
+  //   flexDirection: "row",
+  // })
+  // const [masquerGauche, setMasquerGauche] = useState({
+  //   visibility: "",
+  // })
+  // const [masquerDroit, setMasquerDroit] = useState({
+  //   visibility: "",
+  // })
   // state = {
   //   style: {
   //     width: this.Data_Photo.length + "px",
