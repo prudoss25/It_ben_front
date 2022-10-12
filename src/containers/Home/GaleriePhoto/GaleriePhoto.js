@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React from "react";
 // import chevronGauche from "../../../assets/images/chevron-gauche.png";
 // import chevronDroit from "../../../assets/images/chevron-droit.png";
 // import classes from "./GaleriePhoto.css";
