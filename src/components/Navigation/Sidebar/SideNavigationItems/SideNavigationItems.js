@@ -4,16 +4,18 @@ import classes from "./SideNavigationItems.css";
 import { useLocation } from "react-router-dom";
 import getRoutes from "../../../../NavigationRoute";
 import { useSelector } from "react-redux";
+import { List } from "@material-ui/core";
 
 const sideNavigationItems = () => {
   const location = useLocation();
   const role = useSelector((state) => state.auth.userInfos.role)
   
   return (
-    <ul className={classes.SideNavigationItems}>
+    // <ul className={classes.SideNavigationItems}>
+    <List component="ul" aria-label="main mailbox folders" className={classes.SideNavigationItems}>
       {
         getRoutes().filter(route => [...route.roles].includes('All') || [...route.roles].includes(role)).map((route,index) => (
-          <SideNavigationItem link={route.path} active={location.pathname === route.path} key={index}>
+          <SideNavigationItem link={route.path} icon={route.icon} active={location.pathname === route.path} key={index}>
             {route.name}
           </SideNavigationItem>
         ) )
@@ -40,7 +42,8 @@ const sideNavigationItems = () => {
       <SideNavigationItem link="/changepassword" active={location.pathname === "/changepassword"}>
         Changer Mot de Passe
       </SideNavigationItem> */}
-    </ul>
+    </List>
+    // </ul>
   );
 };
 

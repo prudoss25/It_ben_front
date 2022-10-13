@@ -12,13 +12,13 @@ import RubriqueTitle from "../../../../components/UI/RubriqueTitle/RubriqueTitle
 
 const telephone = [
   {
-    name: "+212 XXX XXX XXX",
-    link: "https://web.facebook.com/AsebemOfficiel",
+    name: "+212 680-491051",
+    link: "+212 680-491051",
     icon: <PhoneIcon />,
   },
   {
-    name: "+212 XXX XXX XXX",
-    link: "https://web.facebook.com/AsebemOfficiel",
+    name: "+212 630-796061",
+    link: "+212 630-796061",
     icon: <PhoneIcon />,
   },
 ];
@@ -28,7 +28,7 @@ export default function Telephone() {
       <RubriqueTitle>Téléphone</RubriqueTitle>
       <List dense>
         {telephone.map((reseau, index) => (
-          <ListItem key={index}>
+          <ListItem button component="a" href={`tel:${reseau.link}`} key={index}>
             <ListItemAvatar>
               <Avatar>{reseau.icon}</Avatar>
             </ListItemAvatar>

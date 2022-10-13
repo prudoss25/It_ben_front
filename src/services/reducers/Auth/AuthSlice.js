@@ -5,7 +5,7 @@ export const authSlice = createSlice({
   initialState: {
     userInfos: {
       name: "",
-      role: "",
+      role: "Ano",
     },
     token: null,
     fail: false,
@@ -19,7 +19,7 @@ export const authSlice = createSlice({
     disconnect: (state) => {
       state.userInfos = {
         name: "",
-        role: "",
+        role: "Ano",
       };
       state.token = null
     },
