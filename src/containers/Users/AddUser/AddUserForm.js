@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import FormModal from "../../../common/FormModal/FormModal";
-import axios, { morrocoTownFetcher } from "../../../axios";
-import { MOROCCO_TOWN, POST_USER, UPDATE_USER } from "../../../Routes";
+import axios from "../../../axios";
+import { POST_USER, UPDATE_USER } from "../../../Routes";
 import { RoleList } from "../../../Constantes";
 import {
   Button,
@@ -22,8 +22,8 @@ import {
 } from "@material-ui/pickers";
 import { Autocomplete } from "@material-ui/lab";
 import withManagementForm from "../../../common/ManagementDashboard/withManagementForm";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTowns } from "../../../services/reducers/Town/TownSlice";
+import { cities } from "morocco-cities";
+
 const initialGeneralInfo = {
   lastName: "",
   firstName: "",
@@ -41,13 +41,9 @@ const initialGeneralInfo = {
 };
 
 const addUserForm = (props) => {
-  const dispatch = useDispatch();
-  const villesList = useSelector((state) => state.town.all)
   useEffect(() => {
-    morrocoTownFetcher.get(MOROCCO_TOWN).then((response) => {
-      setVilles(response.data);
-      dispatch(fetchTowns(response.data))
-    });
+    
+    setVilles(cities);
   }, []);
   useEffect(() => {
     if (props.user) {
@@ -60,12 +56,10 @@ const addUserForm = (props) => {
   const [generalInfos, setGeneralInfos] = useState(initialGeneralInfo);
   const [villes, setVilles] = useState([]);
   const [loading,setLoading] = useState(false);
-  useEffect(() => {
-    setVilles(villesList)
-  },[villesList])
+
   const defaultProps = {
     options: villes,
-    getOptionLabel: (option) => option.ville,
+    getOptionLabel: (option) => option.name,
   };
 
   const handleInfosChange = (value, field) => {
@@ -261,10 +255,10 @@ const addUserForm = (props) => {
               {...defaultProps}
               name="city"
               onChange={(event, value) =>
-                handleInfosChange(value.ville, "city")
+                handleInfosChange(value != null ? value.name : "", "city")
               }
               value={{
-                ville: generalInfos.city,
+                name: generalInfos.city,
               }}
               fullWidth
               id="auto-complete"

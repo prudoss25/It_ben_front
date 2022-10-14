@@ -37,7 +37,6 @@ const CustomRoute = ({ component: Component, roles, path }) => {
   const hasRoles = () => {
     return [...roles].includes(role) || [...roles].includes('All')
   }
-  console.log("isAuth",isAuth)
   return (
       <Route
           path={path}
