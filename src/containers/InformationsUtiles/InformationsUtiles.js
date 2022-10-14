@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import Aux from "../../hoc/_Aux/_Aux";
 import ArticleResume from "./ArticleResume";
 import CarteSejour from "./Articles/CarteSejour";
+import CycleIngenieur from "./Articles/CycleIngenieur";
+import Transport from "./Articles/Transport";
 import ConsultInfo from "./ConsultInfo/ConsultInfo";
+
 
 const InformationsUtiles = () => {
   const [openConsult, setOpenConsult] = useState(false);
@@ -21,30 +24,30 @@ const InformationsUtiles = () => {
     },
     {
       id: 2,
-      title: "Carte de Séjour",
+      title: "MOYENS DE TRANSPORT",
       author: "ADDA Réthens",
       date: Date.now(),
-      component: <CarteSejour />,
+      component: <Transport />,
       resume:
-        "Toute immigration au sein d’un nouveau territoire requiert la présentation d’un ensemble de documents et de pièces d’identité légalisant le séjour quelle que soit sa durée.",
+        "Pour faciliter la circulation et le transport de ses citoyens, les autorités marocaines ont instaurées un système de transport assez développé et facilement accessible.",
     },
     {
       id: 3,
-      title: "Carte de Séjour",
-      author: "ADDA Réthens",
+      title: "Cycle Ingénieur",
+      author: "KPADONOU Joel",
       date: Date.now(),
-      component: <CarteSejour />,
+      component: <CycleIngenieur />,
       resume:
-        "Toute immigration au sein d’un nouveau territoire requiert la présentation d’un ensemble de documents et de pièces d’identité légalisant le séjour quelle que soit sa durée.",
+        "Le cycle d’ingénieur s’étale sur trois ans de spécialisation, et conduit à l’obtention d’un BAC+5 (équivalent Master). Pour entrer en école d’ingénieur, plusieurs options sont possibles ",
     },
     {
       id: 4,
-      title: "Carte de Séjour",
+      title: "MOYENS DE TRANSPORT",
       author: "ADDA Réthens",
       date: Date.now(),
-      component: <CarteSejour />,
+      component: <Transport />,
       resume:
-        "Toute immigration au sein d’un nouveau territoire requiert la présentation d’un ensemble de documents et de pièces d’identité légalisant le séjour quelle que soit sa durée.",
+        "Pour faciliter la circulation et le transport de ses citoyens, les autorités marocaines ont instaurées un système de transport assez développé et facilement accessible.",
     },
     {
       id: 5,
@@ -56,13 +59,13 @@ const InformationsUtiles = () => {
         "Toute immigration au sein d’un nouveau territoire requiert la présentation d’un ensemble de documents et de pièces d’identité légalisant le séjour quelle que soit sa durée.",
     },
     {
-      id: 6,
-      title: "Carte de Séjour",
-      author: "ADDA Réthens",
+      id: 4,
+      title: "Cycle Ingénieur",
+      author: "KPADONOU Joel",
       date: Date.now(),
-      component: <CarteSejour />,
+      component: <CycleIngenieur />,
       resume:
-        "Toute immigration au sein d’un nouveau territoire requiert la présentation d’un ensemble de documents et de pièces d’identité légalisant le séjour quelle que soit sa durée.",
+        "Le cycle d’ingénieur s’étale sur trois ans de spécialisation, et conduit à l’obtention d’un BAC+5 (équivalent Master). Pour entrer en école d’ingénieur, plusieurs options sont possibles ",
     },
   ];
   const showDetail = (info) => {
