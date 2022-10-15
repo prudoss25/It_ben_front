@@ -36,7 +36,6 @@ export const authSlice = createSlice({
       state.fail = false;
       state.loading = false;
       state.success = false;
-      console.log("tests credentials", action.payload.user);
     },
   },
 });
