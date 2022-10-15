@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import FormModal from "../../../common/FormModal/FormModal";
-import axios, { morrocoTownFetcher } from "../../../axios";
-import { MOROCCO_TOWN, POST_USER, UPDATE_USER } from "../../../Routes";
+import axios from "../../../axios";
+import { POST_USER, UPDATE_USER } from "../../../Routes";
 import { RoleList } from "../../../Constantes";
 import {
   Button,
@@ -23,7 +23,8 @@ import {
 import { Autocomplete } from "@material-ui/lab";
 import withManagementForm from "../../../common/ManagementDashboard/withManagementForm";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTowns } from "../../../services/reducers/Town/TownSlice";
+import { getMoroccoCities } from "../../../services/actions/Town/TownActions";
+
 const initialGeneralInfo = {
   lastName: "",
   firstName: "",
@@ -41,13 +42,10 @@ const initialGeneralInfo = {
 };
 
 const addUserForm = (props) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const villesList = useSelector((state) => state.town.all)
   useEffect(() => {
-    morrocoTownFetcher.get(MOROCCO_TOWN).then((response) => {
-      setVilles(response.data);
-      dispatch(fetchTowns(response.data))
-    });
+    dispatch(getMoroccoCities())
   }, []);
   useEffect(() => {
     if (props.user) {
@@ -56,16 +54,18 @@ const addUserForm = (props) => {
       setGeneralInfos(initialGeneralInfo);
     }
   }, [props.user]);
+  useEffect(() => {
+    setVilles(villesList)
+  },[villesList])
+
 
   const [generalInfos, setGeneralInfos] = useState(initialGeneralInfo);
   const [villes, setVilles] = useState([]);
   const [loading,setLoading] = useState(false);
-  useEffect(() => {
-    setVilles(villesList)
-  },[villesList])
+
   const defaultProps = {
     options: villes,
-    getOptionLabel: (option) => option.ville,
+    getOptionLabel: (option) => option.asciiname,
   };
 
   const handleInfosChange = (value, field) => {
@@ -261,10 +261,10 @@ const addUserForm = (props) => {
               {...defaultProps}
               name="city"
               onChange={(event, value) =>
-                handleInfosChange(value.ville, "city")
+                handleInfosChange(value != null ? value.asciiname : "", "city")
               }
               value={{
-                ville: generalInfos.city,
+                asciiname: generalInfos.city,
               }}
               fullWidth
               id="auto-complete"

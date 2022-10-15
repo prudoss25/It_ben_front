@@ -5,6 +5,7 @@ export const DELETE_USER = "/deleteUser/";
 export const UPDATE_USER = "/updateUser";
 
 export const AUTHENTICATE_USER = "/authenticateUser";
+export const UPDATE_PASSWORD ="/updatePassword";
 
 export const FIND_ALL_EVENTS = "/findAllEvents";
 export const FIND_ALL_EVENTS_DESC = "/findAllEventsDesc";
@@ -18,6 +19,3 @@ export const FIND_ALL_SPONSORS = "/findAllSponsors";
 export const POST_SPONSOR = "/addSponsor";
 export const DELETE_SPONSOR = "/deleteSponsor/";
 export const UPDATE_SPONSOR = "/updateSponsor";
-
-export const MOROCCO_TOWN = "/villes";
-export const TEST_AUTH = "/auth";

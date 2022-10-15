@@ -5,8 +5,9 @@ const instance = axios.create({
 });
 
 export const morrocoTownFetcher = axios.create({
-    baseURL:'https://calm-fjord-14795.herokuapp.com/api'
+    baseURL:'https://parseapi.back4app.com/classes'
 })
+
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
