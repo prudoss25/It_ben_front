@@ -22,7 +22,8 @@ import {
 } from "@material-ui/pickers";
 import { Autocomplete } from "@material-ui/lab";
 import withManagementForm from "../../../common/ManagementDashboard/withManagementForm";
-import { cities } from "morocco-cities";
+import { useDispatch, useSelector } from "react-redux";
+import { getMoroccoCities } from "../../../services/actions/Town/TownActions";
 
 const initialGeneralInfo = {
   lastName: "",
@@ -41,9 +42,10 @@ const initialGeneralInfo = {
 };
 
 const addUserForm = (props) => {
+  const dispatch = useDispatch()
+  const villesList = useSelector((state) => state.town.all)
   useEffect(() => {
-    
-    setVilles(cities);
+    dispatch(getMoroccoCities())
   }, []);
   useEffect(() => {
     if (props.user) {
@@ -52,6 +54,10 @@ const addUserForm = (props) => {
       setGeneralInfos(initialGeneralInfo);
     }
   }, [props.user]);
+  useEffect(() => {
+    setVilles(villesList)
+  },[villesList])
+
 
   const [generalInfos, setGeneralInfos] = useState(initialGeneralInfo);
   const [villes, setVilles] = useState([]);
@@ -59,7 +65,7 @@ const addUserForm = (props) => {
 
   const defaultProps = {
     options: villes,
-    getOptionLabel: (option) => option.name,
+    getOptionLabel: (option) => option.asciiname,
   };
 
   const handleInfosChange = (value, field) => {
@@ -255,10 +261,10 @@ const addUserForm = (props) => {
               {...defaultProps}
               name="city"
               onChange={(event, value) =>
-                handleInfosChange(value != null ? value.name : "", "city")
+                handleInfosChange(value != null ? value.asciiname : "", "city")
               }
               value={{
-                name: generalInfos.city,
+                asciiname: generalInfos.city,
               }}
               fullWidth
               id="auto-complete"
