@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "asebem-book"
-  }
+    "default": "projetasebem",
+    "projetAsebem": "projetasebem"
+  },
+  "targets": {},
+  "etags": {}
 }
