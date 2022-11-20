@@ -11,7 +11,7 @@ const profil = (props) => {
   return (
     <div className={classes.Profil}>
       <div className={classes.AvatarContainer}>
-        <Avatar photoProfil={defaultAvatar} name="John Joe" />
+        <Avatar photoProfil={defaultAvatar} name={user.name} />
       </div>
       <Identifiants name={user.name} title={ROLES[user.role]} />
     </div>

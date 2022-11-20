@@ -4,3 +4,21 @@
     justify-content: space-evenly;
     margin-top: 50px;
 }
+
+.ActuGrid {
+    width: 60%;
+}
+
+.EventGrid {
+    width: 40%;
+}
+
+@media (max-width:1000px) {
+    .ActuGrid {
+        width: 100%;
+    }
+    
+    .EventGrid {
+        width: 100%;
+    }
+}

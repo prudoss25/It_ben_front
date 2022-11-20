@@ -4,10 +4,9 @@ import Logo from "../../Logo/Logo";
 import DrawerToggle from "../Sidebar/DrawerToggle/DrawerToggle";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import Search from "../Search/Search";
-import Notification from "../Notification/Notification";
-import Disconnect from "../Disconnect/Disconnect";
-import Profil from "../Profil/Profil";
 import { useSelector } from "react-redux";
+import AuthenticationNavs from "./AuthenticationNavs/AuthenticationNavs";
+import {StyleRoot} from "radium";
 
 const toolbar = () => {
   const token = useSelector((state) => state.auth.token)
@@ -16,39 +15,27 @@ const toolbar = () => {
     setAuthenticated(token == null ? false : true )
   },[token])
   return (
-    <header className={classes.Toolbar}>
-      <div>
-        <span className={classes.Menu}>
-          <DrawerToggle
-          />
-        </span>
-        <div className={classes.Logo}>
-          <Logo />
-        </div>
-        <nav>
-          <NavigationItems />
-        </nav>
-      </div>
-      <div>
-        <Search />
-      </div>
-      {
-        authenticated &&(
-          <div>
-            <div>
-              <Disconnect />
-            </div>
-            <div>
-              <Notification />
-            </div>
-            <div>
-              <Profil />
-            </div>
+    <StyleRoot>
+      <header className={classes.Toolbar}>
+        <div>
+          <span className={classes.Menu}>
+            <DrawerToggle
+            />
+          </span>
+          <div className={classes.Logo}>
+            <Logo />
           </div>
-        )
-      }
-      
-    </header>
+          <nav>
+            <NavigationItems />
+          </nav>
+        </div>
+        <div>
+          <Search />
+        </div>
+        <AuthenticationNavs authenticated={authenticated} />
+        
+      </header>
+    </StyleRoot>
   );
 };
 

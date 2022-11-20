@@ -30,3 +30,9 @@
 .HeroText{
     text-align: center;
 }
+
+@media (max-width:1500px) {
+    .HeroSection {
+        display: none;
+    }
+}

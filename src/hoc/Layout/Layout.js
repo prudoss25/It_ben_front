@@ -1,9 +1,9 @@
 import React from "react";
-import Aux from "../_Aux/_Aux";
 import classes from "./Layout.css";
 import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 import Sidebar from "../../components/Navigation/Sidebar/Sidebar";
 import { useSelector } from "react-redux";
+import {StyleRoot} from "radium";
 
 const layout = (props) => {
   const sidebarDrawer = useSelector((state) => state.sidebarDrawer.value)
@@ -14,7 +14,7 @@ const layout = (props) => {
       : [classes.Content, classes.Extended];
     
     return (
-      <Aux>
+      <StyleRoot>
         {/* HEADER */}
         <Toolbar
         />
@@ -26,7 +26,7 @@ const layout = (props) => {
         </div>
         {/* FOOTER */}
         {/* <Footer /> */}
-      </Aux>
+      </StyleRoot>
     );
   
 }

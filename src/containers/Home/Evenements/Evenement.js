@@ -7,6 +7,7 @@ import chevronHaut from "../../../assets/images/chevron-haut.png";
 import chevronBas from "../../../assets/images/chevron-bas.png";
 import PropTypes from "prop-types";
 import ActualiteVide from "../ActualiteVide";
+import { Grid } from "@material-ui/core";
 
 const evenement = (props) => {
 
@@ -125,23 +126,23 @@ const evenement = (props) => {
         </div>
       </div>
       <div style={{overflow:"hidden"}}>
-        <div style={style}>
+        <Grid style={style}>
           {
           Data_Actu.length > 0 ? Data_Actu.map((event) => (
-            <EvenementItem 
-              startDate={event.startDate}
-              loading={loading}
-              key={event.idEvent}
-              title={event.title}
-              theme={event.theme}
-              description={event.description}
-              action={() => consulter(event)}
-              />
+            <Grid item key={event.idEvent}>
+              <EvenementItem 
+                startDate={event.startDate}
+                loading={loading}
+                title={event.title}
+                theme={event.theme}
+                description={event.description}
+                action={() => consulter(event)}
+                />
+            </Grid>
           ))
           : <ActualiteVide text={"Pas d'évènements à venir"} />
         }
-          
-        </div>
+        </Grid>
       </div>
       {openConsult && (
           <ConsultEvent
