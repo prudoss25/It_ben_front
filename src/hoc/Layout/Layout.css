@@ -13,7 +13,7 @@
 }
 
 .Shrunken {
-    width: 85%;
+    width: 83%;
     transform: translateX(0%);
 }
 
@@ -22,4 +22,10 @@
     height: 75%;
     width: 100%;
     box-sizing: border-box;
+}
+
+@media (max-width:500px) {
+    .Shrunken {
+        display: none;
+    }
 }

@@ -12,6 +12,7 @@ import { Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEvents } from "../../services/reducers/Event/EventSlice";
 import { fetchSponsors } from "../../services/reducers/Sponsor/SponsorSlice";
+import classes from "./Home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -50,11 +51,11 @@ const Home = () => {
   return (
     <Aux>
       <HeroSection />
-      <Grid container wrap>
-        <Grid item xs={7}>
+      <Grid container justifyContent="space-around">
+        <Grid item className={classes.ActuGrid}>
           <Actualite actualites={actualites} />
         </Grid>
-        <Grid item xs={5}>
+        <Grid item className={classes.EventGrid}>
           <Evenement evenements={evenements} />
         </Grid>
       </Grid>
