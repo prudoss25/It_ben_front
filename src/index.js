@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 import {persistor, store} from "./store";
 import { PersistGate } from 'redux-persist/integration/react'
 
-axios.defaults.baseURL = 'https://springitbenbackend.herokuapp.com';
+axios.defaults.baseURL = process.env.IT_BEN_API_BASE_URL;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 axios.interceptors.request.use(
