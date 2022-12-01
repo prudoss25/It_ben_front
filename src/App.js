@@ -7,6 +7,7 @@ import getRoutes from "./NavigationRoute";
 
 class App extends Component {
   render() {
+    console.log("ENVIRONNEMENT",process.env.NODE_ENV)
     return (
       <div>
         <Layout>
