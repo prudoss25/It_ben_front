@@ -11,7 +11,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 axios.defaults.baseURL = process.env.REACT_APP_IT_BEN_API_BASE_URL;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
-console.log("ENV", process.env.REACT_APP_IT_BEN_API_BASE_URL)
+
 axios.interceptors.request.use(
   (request) => {
     return request;
