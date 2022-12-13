@@ -1,55 +1,79 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Layout from "./hoc/Layout/Layout";
 import { useSelector } from "react-redux";
 import Unauthorized from "./Unauthorized";
 import getRoutes from "./NavigationRoute";
+import ChangePassword from "./containers/Auth/ChangePassword";
+import Aux from "./hoc/_Aux/_Aux";
 
-class App extends Component {
-  render() {
+const App = () => {
+  const firstAuthentication = useSelector((state) => state.auth.firstAuthentication)
+  const token = useSelector((state) => state.auth.token)
+
+  const [isAuth,setIsAuth] = useState(false) 
+  useEffect(() => {
+    setIsAuth(token != null)
+  },[token])
     return (
       <div>
         <Layout>
           <Switch>
-
           {
-            getRoutes().map((route, index) => {
-              return <CustomRoute exact {...route} key={index} />
+            (isAuth && firstAuthentication) ?
+            (
+              <Aux>
+                <Route path="/changepassword">
+                  <ChangePassword />
+                </Route>
+                <Route >
+                  <Redirect to={{pathname:"/changepassword"}} />
+                </Route>
+              </Aux>
+            )
+            :
+            getRoutes().map((route) => {
+              return <CustomRoute exact {...route} key={route.path} isAuth />
             })
           }
           </Switch>
         </Layout>
       </div>
     );
-  }
 }
 
 export default App;
 
-const CustomRoute = ({ component: Component, roles, path }) => {
+const CustomRoute = ({ component: Component, roles, path,exact, isAuth }) => {
   roles = roles || [];
-  const [isAuth,setIsAuth] = useState(false) 
+  
   const role = useSelector((state) => state.auth.userInfos.role)
-  const token = useSelector((state) => state.auth.token)
-  useEffect(() => {
-    setIsAuth(token != null)
-  },[token])
+
+  
   const hasRoles = () => {
     return [...roles].includes(role) || [...roles].includes('All')
   }
+  console.log(Component,hasRoles())
   return (
       <Route
           path={path}
-          exact={true}
+          exact={exact}
           render={(props) => 
-              hasRoles(roles) ? (
-                  <Component {...props} />
-              ) : (
+              (
+                hasRoles() ? (
+                    <Component {...props} />
+                ) : (
                   isAuth ? (
-                      <Unauthorized />
-                  ) : (
-                      <Redirect to="/auth" />
-                  )
+                        <Unauthorized />
+                    ) : (
+                        <Redirect to={
+                          {
+                            pathname:"/auth",
+                            state: { from: props.location } 
+                          }
+                        } />
+                    )
+                )
               )
           }
       />

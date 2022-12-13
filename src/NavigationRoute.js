@@ -80,7 +80,8 @@ const NavigationRoutes = [
         'name': 'Changement de Mot de Passe',
         'path': '/changepassword',
         'component': ChangePassword,
-        'roles': ['PCC','PACC','SGH','SGA','SG','Membre'],
+        // 'roles': ['Ano'],
+        'roles': ['PCC','PACC','Tresorier','SGH','SGA','SG','Membre','Commissaire','Communication','RV'],
     },
 ]
 

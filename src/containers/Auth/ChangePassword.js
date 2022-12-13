@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Logo from "../../components/Logo/Logo";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   changePassword,
 } from "../../services/actions/Auth/AuthActions";
@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ChangePassword = () => {
+  const registrationNumber = useSelector((state) => state.auth.userInfos.registrationNumber)
   const [matricule, setMatricule] = useState(null);
   const [password, setPassword] = useState(null);
   const [oldPassword, setOldPassword] = useState(null);
@@ -78,6 +79,9 @@ const ChangePassword = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
+  useEffect(() => {
+    setMatricule(registrationNumber)
+  },[registrationNumber])
   const onSubmit = (event) => {
     event.preventDefault();
 
@@ -103,7 +107,7 @@ const ChangePassword = () => {
           oldPassword: oldPassword,
           registrationNumber: matricule,
         };
-        changePassword(updateInfos)
+        dispatch(changePassword(updateInfos))
           .then((response) => {
             if (response === true) {
               openNotification(
@@ -164,6 +168,7 @@ const ChangePassword = () => {
           <TextField
             variant="outlined"
             margin="normal"
+            disabled
             required
             fullWidth
             onChange={handleMatriculeChange}

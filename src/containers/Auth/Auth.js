@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Auth = () => {
+
   const [matricule, setMatricule] = useState(null);
   const [password, setPassword] = useState(null);
   const [notification, setNotification] = useState({
