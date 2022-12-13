@@ -4,6 +4,7 @@ import {
   authenticate,
   disconnect,
   failAuthentication,
+  updatePassword,
 } from "../../reducers/Auth/AuthSlice";
 
 const setAuthenticationTimeout = () => (dispatch) => {
@@ -15,17 +16,17 @@ export const changePassword = ({
   registrationNumber,
   oldPassword,
   newPassword,
-}) => {
+}) => (dispatch) => {
   const updateInfos = {
     newPassword: newPassword,
     oldPassword: oldPassword,
     registrationNumber: registrationNumber,
   };
-  console.log("UPDATE_PASSWORD", updateInfos);
   return axios
     .put(UPDATE_PASSWORD, updateInfos)
     .then((response) => {
       if (response.status === 200) {
+        dispatch(updatePassword())
         return true;
       }
       return false;
@@ -36,7 +37,6 @@ export const disconnectUser = () => (dispatch) => {
   dispatch(disconnect());
 };
 export const authenticateUser = (registrerNumber, password) => (dispatch) => {
-  console.log("authentication user")
   var credentials = {};
   return axios
     .post(AUTHENTICATE_USER, {
@@ -50,7 +50,9 @@ export const authenticateUser = (registrerNumber, password) => (dispatch) => {
             firstName: response.data["firstName"],
             lastName: response.data["lastName"],
             role: response.data["role"],
+            registrationNumber: response.data["registrationNumber"]
           },
+          firstAuthentication:response.data["firstAuthentication"],
           token: response.data["accessToken"],
         };
         dispatch(setAuthenticationTimeout());
@@ -62,44 +64,4 @@ export const authenticateUser = (registrerNumber, password) => (dispatch) => {
       dispatch(failAuthentication());
       return false;
     });
-  // if(registrerNumber === "BEN2022080001" && password === "test2022")
-  // {
-  //     credentials = {
-  //         user: {
-  //           firstName: "DOSSOU",
-  //           lastName: "Prudence",
-  //           role:"PCC"
-  //         },
-  //         token:"12365MPLKJhs458663smp879251547"
-  //       }
-  // }
-  // else if(registrerNumber === "BEN2022080002" && password === "test2022")
-  // {
-  //     credentials = {
-  //         user: {
-  //           firstName: "AKAKPO",
-  //           lastName: "Joël",
-  //           role:"PACC"
-  //         },
-  //         token:"12365MPLKJhs458663smp879251547"
-  //       }
-  // }
-  // else if(registrerNumber === "BEN2022080003" && password === "test2022")
-  // {
-  //     credentials = {
-  //         user: {
-  //           firstName: "SAGBO",
-  //           lastName: "Michel",
-  //           role:"Membre"
-  //         },
-  //         token:"12365MPLKJhs458663smp879251547"
-  //       }
-  // }
-  // else{
-  //     dispatch(failAuthentication())
-  //     return false;
-  // }
-  // dispatch(setAuthenticationTimeout())
-  // dispatch(authenticate(credentials))
-  // return true;
 };
