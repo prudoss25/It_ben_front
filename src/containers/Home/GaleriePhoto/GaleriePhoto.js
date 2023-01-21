@@ -19,21 +19,23 @@ import image13 from "../../../assets/images/gallery/image13.jpeg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
+
+   /* overflow: 'hidden', */
     marginBottom:'8px',
     backgroundColor: theme.palette.background.paper,
   },
   imageList: {
-    flexWrap: 'nowrap',
+     // border: 'black solid 3px',
+    display: 'flex',   
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
   },
   title: {
     color: theme.palette.primary.light,
   },
+  
   titleBar: {
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
@@ -131,11 +133,13 @@ const GaleriePhoto = () => {
   // render() {
     const classes = useStyles();
     return (
+      
     <div className={classes.root}>
-      <ImageList className={classes.imageList} cols={4.5} >
+      <ImageList className={classes.imageList} >
         {Data_Photo.map((item) => (
-          <ImageListItem key={item.img} style={{height:'400px'}}>
-            <img src={item.img} alt={item.title} style={{objectFit:"cover"}} />
+          <ImageListItem key={item.img} style={{height:'300px', width: '300px', marginBottom: '10px'}}
+          className={classes.dim}>
+            <img src={item.img} alt={item.title} style={{objectFit:"cover" }} />
             <ImageListItemBar
               title={item.title}
               classes={{

@@ -66,25 +66,27 @@ const EquipeDirigeante = props => {
             <h2 className={classes.Titre}>Bureau Executif</h2>
             <section className={classes.EquipeDirigeante}>
                 {BureauExecutif.map((membre, index) =>(
-                    <p key={index}>
-                        <img style={{objectFit:"contain"}} src={membre.image} alt="Membre Equipe Dirigeante"/>
-                        <br/>
-                        {membre.nom}
-                        <br/>
-                        <span>{membre.poste}</span>
-                    </p>
+                    <div className={classes.composant}>
+                        <div key={index}>
+                            <img style={{objectFit:"contain", marginLeft: '12%'}} src={membre.image} alt="Membre Equipe Dirigeante"/>
+                            <br/>
+                            <div style={{textAlign: 'center', color: 'inherit', marginTop: '2px'}}>{membre.nom}</div>
+                            <div style={{textAlign: 'center', color: '#D72F2F', marginTop: '2px'}}>{membre.poste}</div>
+                        </div>
+                    </div>
                 ))}
             </section>
             <h2 className={classes.Titre}>Conseil Consultatif</h2>
             <section className={classes.EquipeDirigeante}>
                 {ConseilConsultatif.map((membre, index) =>(
-                    <p key={index}>
-                        <img style={{objectFit:"contain"}} src={membre.image} alt="Membre Equipe Dirigeante"/>
-                        <br/>
-                        {membre.nom}
-                        <br/>
-                        <span>{membre.poste}</span>
-                    </p>
+                    <div className={classes.composant}>
+                        <div key={index}>
+                            <img style={{objectFit:"contain", marginLeft: '12%'}} src={membre.image} alt="Membre Equipe Dirigeante"/>
+                            <br/>
+                            <div style={{textAlign: 'center', color: 'inherit', marginTop: '2px'}}>{membre.nom}</div>
+                            <div style={{textAlign: 'center', color: '#D72F2F', marginTop: '2px'}}>{membre.poste}</div>
+                        </div>
+                    </div>
                 ))}
 
             </section>

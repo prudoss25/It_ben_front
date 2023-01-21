@@ -38,14 +38,16 @@ const Concepteur = props => {
         <Aux>
             <h2 className={classes.Titre}>Ont contribué à la conception de la plateforme</h2>
             <section className={classes.Concepteur}>
+
                 {Concepteur.map((membre, index) =>(
-                    <p  key={index}>
-                        <img style={{objectFit:"contain"}} src={membre.image} alt={membre.Titre}/>
-                        <br/>
-                        {membre.nom}
-                        <br/>
-                        <span>{membre.Titre}</span>
-                    </p>
+                    <div className={classes.composant}>
+                        <div key={index}>
+                            <img style={{objectFit:"contain", marginLeft: '12%'}} src={membre.image} alt={membre.Titre}/>
+                            <br/>
+                            <div style={{textAlign: 'center', color: 'inherit', marginTop: '2px'}}>{membre.nom}</div>
+                            <div style={{textAlign: 'center', color: '#D72F2F', marginTop: '2px'}}>{membre.Titre}</div>
+                        </div>
+                    </div>
                 ))}
             </section>
            

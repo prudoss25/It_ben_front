@@ -2,8 +2,16 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    width: 80%;
+    padding: auto;
+    margin: auto;
     
+}
+.composant{
+    padding: auto;
+    width: 225px;
+    margin-bottom: 10px;
 }
 .EquipeDirigeante p {
     text-align: center;

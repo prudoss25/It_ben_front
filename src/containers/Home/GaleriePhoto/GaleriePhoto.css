@@ -49,3 +49,10 @@
     margin-top: 25px;
     margin-bottom: 50px;
 }
+
+@media (max-width: 500px){
+    .dim{
+        width: 200px;
+        height: 200px,
+    }
+}
