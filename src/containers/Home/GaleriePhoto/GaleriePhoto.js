@@ -2,7 +2,7 @@ import React from "react";
 // import chevronGauche from "../../../assets/images/chevron-gauche.png";
 // import chevronDroit from "../../../assets/images/chevron-droit.png";
 // import classes from "./GaleriePhoto.css";
-import { ImageList, ImageListItem, ImageListItemBar, makeStyles } from "@material-ui/core";
+import { ImageList, ImageListItem, ImageListItemBar,/* makeStyles */} from "@material-ui/core";
 import image1 from "../../../assets/images/gallery/image1.jpeg";
 import image2 from "../../../assets/images/gallery/image2.png";
 import image3 from "../../../assets/images/gallery/image3.jpeg";
@@ -16,11 +16,13 @@ import image10 from "../../../assets/images/gallery/image10.JPG";
 import image11 from "../../../assets/images/gallery/image11.jpeg";
 import image12 from "../../../assets/images/gallery/image12.jpeg";
 import image13 from "../../../assets/images/gallery/image13.jpeg";
+import classes from "./GaleriePhoto.css";
 
+/*
 const useStyles = makeStyles((theme) => ({
   root: {
-
-   /* overflow: 'hidden', */
+    display: 'flex',
+    alignSelf: 'center',
     marginBottom:'8px',
     backgroundColor: theme.palette.background.paper,
   },
@@ -40,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
-}));
+})); */
 
 const GaleriePhoto = () => {
   // const Data_Photo = [
@@ -131,14 +133,13 @@ const GaleriePhoto = () => {
   //   this.afficher_masquer();
   // };
   // render() {
-    const classes = useStyles();
+    //const classe = useStyles();
     return (
       
-    <div className={classes.root}>
-      <ImageList className={classes.imageList} >
+    <div className={classes.route}>
+      <ImageList className={classes.imageList}  >
         {Data_Photo.map((item) => (
-          <ImageListItem key={item.img} style={{height:'300px', width: '300px', marginBottom: '10px'}}
-          className={classes.dim}>
+          <ImageListItem key={item.img}  style={{height: '300px', width: '300px'}} className={classes.imageListItem}>
             <img src={item.img} alt={item.title} style={{objectFit:"cover" }} />
             <ImageListItemBar
               title={item.title}
