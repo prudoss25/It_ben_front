@@ -17,6 +17,7 @@ import image11 from "../../../assets/images/gallery/image11.jpeg";
 import image12 from "../../../assets/images/gallery/image12.jpeg";
 import image13 from "../../../assets/images/gallery/image13.jpeg";
 import classes from "./GaleriePhoto.css";
+import ImageGallery from 'react-image-gallery';
 
 /*
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
   },
 })); */
 
+
+
 const GaleriePhoto = () => {
   // const Data_Photo = [
   //   { img: "https://picsum.photos/1000/450?1", title:"Image 1" },
@@ -53,21 +56,32 @@ const GaleriePhoto = () => {
   //   { img: "https://picsum.photos/1000/450?5", title:"Image 5" },
   //   { img: "https://picsum.photos/1000/450?6", title:"Image 6" },
   // ];
+
+
   const Data_Photo = [
-    { img: image1, title:"Image 1" },
-    { img: image12, title:"Accueil des nouveaux" },
-    { img: image9, title:"Image 9" },
-    { img: image2, title:"Image 2" },
-    { img: image3, title:"Image 3" },
-    { img: image10, title:"Image 10" },
-    { img: image11, title:"Image 11" },
-    { img: image13, title:"Accueil des nouveaux" },
-    { img: image5, title:"Image 5" },
-    { img: image6, title:"Image 6" },
-    { img: image7, title:"Image 7" },
-    { img: image8, title:"Image 8" },
-    { img: image4, title:"Image 4" },
+    { original: image1, originalTitle:"Image 1" },
+    { original: image12,originalTitlee:"Accueil des nouveaux" },
+    { original: image9, originalTitle:"Image 9" },
+    { original: image2, originalTitle:"Image 2" },
+    { original: image3, originalTitle:"Image 3" },
+    { original: image10,originalTitle:"Image 10" },
+    { original: image11,originalTitle:"Image 11" },
+    { original: image13,originalTitle:"Accueil des nouveaux" },
+    { original: image5, originalTitle:"Image 5" },
+    { original: image6, originalTitle:"Image 6" },
+    { original: image7, originalTitle:"Image 7" },
+    { original: image8, originalTitle:"Image 8" },
+    { original: image4, originalTitle:"Image 4" },
   ];
+
+  class MyGallery extends React.Component {
+    render() {
+      return <ImageGallery items={Data_Photo} />;
+    }
+  }
+
+const galerie = new MyGallery();
+
   // const [style, setStyle] = useState({
   //   width: Data_Photo.length + "px",
   //   height: "450px",
@@ -134,22 +148,13 @@ const GaleriePhoto = () => {
   // };
   // render() {
     //const classe = useStyles();
+
+
     return (
-      
+
     <div className={classes.route}>
       <ImageList className={classes.imageList}  >
-        {Data_Photo.map((item) => (
-          <ImageListItem key={item.img}  style={{height: '300px', width: '300px'}} className={classes.imageListItem}>
-            <img src={item.img} alt={item.title} style={{objectFit:"cover" }} />
-            <ImageListItemBar
-              title={item.title}
-              classes={{
-                root: classes.titleBar,
-                title: classes.title,
-              }}
-            />
-          </ImageListItem>
-        ))}
+        {galerie.render()}
       </ImageList>
     </div>
 
@@ -183,8 +188,25 @@ const GaleriePhoto = () => {
       //     />
       //   </div>
       // </section>
-    );
-  // }
+    ); 
+  // } 
 }
 
 export default GaleriePhoto;
+
+ /*<div className={classes.route}>
+      <ImageList className={classes.imageList}  >
+        {Data_Photo.map((item) => (
+          <ImageListItem key={item.img}  style={{height: '300px', width: '300px'}} className={classes.imageListItem}>
+            <img src={item.img} alt={item.title} style={{objectFit:"cover" }} />
+            <ImageListItemBar
+              title={item.title}
+              classes={{
+                root: classes.titleBar,
+                title: classes.title,
+              }}
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
+    </div> */

@@ -54,18 +54,18 @@
 
 
 .route{
-    border: 2px solid red; 
+    /*border: 2px solid red; 
     padding: auto;
     margin: auto;
-    /*align-content: center; */
-    width: 90%;
+    /*align-content: center; 
+    width: 90%; */
 } 
 
 .imageList{
-    display: flex;
+   /* display: flex;
     justify-content: space-evenly;
     border: black 2px solid;
-    margin: auto;
+    margin: auto; */
 }
 .imageListItem{
    /* margin-bottom: 10px; */
@@ -74,21 +74,21 @@
 
 @media (max-width: 1085px){
     .route{
-        padding: auto;
+       /* padding: auto;
         margin: auto;
-        /*align-content: center; */
+        /*align-content: center; 
         border: none;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: center; */
     }
     .imageList{
-        display: flex;
+       /* display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
         width: 50%;
         height: 325px;
         overflow-x: scroll;
-        overflow-y: unset;
+        overflow-y: unset; */
     }
 }
