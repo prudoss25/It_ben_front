@@ -168,7 +168,7 @@ const galerie = new MyGallery();
       //         <div className={classes.image} key={index}>
       //           <img src={photo.image} alt="photo_carousel" />
       //         </div>
-      //       ))}
+      //       )
       //     </div>
       //     <img
       //       src={chevronGauche}
