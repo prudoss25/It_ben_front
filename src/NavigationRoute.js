@@ -15,9 +15,11 @@ import ContactsIcon from "@material-ui/icons/Contacts";
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import CachedIcon from '@material-ui/icons/Cached';
 import GroupIcon from '@material-ui/icons/Group';
-import EventIcon from '@material-ui/icons/Event';
+import EventIcon from '@material-ui/icons/Event'; 
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
-
+import ServiceList from "./containers/Services/ServiceList";
+import ServiceDetails from "./containers/MarketPlace/ServiceDetails";
+import MarketPlaces from "./containers/MarketPlace/MarketPlaces";
 const NavigationRoutes = [
     {
         'icon': <HomeIcon />,
@@ -59,21 +61,32 @@ const NavigationRoutes = [
         'name': 'Gestion des Utilisateurs',
         'path': '/users',
         'component': UsersList,
-        'roles': ['PCC','PACC','SGH','SGA','SG'],
+        //'roles': ['PCC','PACC','SGH','SGA','SG'],
+        'roles': ['All'],
+    },
+    {
+        'icon': <GroupIcon />,
+        'name': 'Gestion des Services',
+        'path': '/services',
+        'component': ServiceList,
+        //'roles': ['PCC','PACC','SGH','SGA','SG'],
+        'roles': ['All'],
     },
     {
         'icon': <EventIcon />,
         'name': 'Gestion Evènement',
         'path': '/events',
         'component': EventsList,
-        'roles': ['PCC','PACC','SGH','SGA','SG','Communication','CCS'],
+        'roles': ['All'],
+        //'roles': ['PCC','PACC','SGH','SGA','SG','Communication','CCS'],
     },
     {
         'icon': <BusinessCenterIcon />,
         'name': 'Gestion Sponsors',
         'path': '/sponsors',
         'component': SponsorsList,
-        'roles': ['PCC','PACC','SGH','SGA','SG'],
+        'roles': ['All'],
+        //'roles': ['PCC','PACC','SGH','SGA','SG'],
     },
     {
         'icon': <CachedIcon />,
@@ -83,6 +96,27 @@ const NavigationRoutes = [
         // 'roles': ['Ano'],
         'roles': ['PCC','PACC','Tresorier','SGH','SGA','SG','Membre','Commissaire','Communication','RV'],
     },
+
+    {
+        'icon': <CachedIcon />,
+        'name': 'MarketPlace',
+        'path': '/marketplaces',
+        'component': MarketPlaces,
+         'roles': ['All'],
+        //'roles': ['PCC','PACC','Tresorier','SGH','SGA','SG','Membre','Commissaire','Communication','RV'],
+    },
+
+
+    {
+        'icon': <CachedIcon />,
+        'name': 'Service',
+        'path': "/service/:id",
+        'component': ServiceDetails,
+         'roles': ['All'],
+        //'roles': ['PCC','PACC','Tresorier','SGH','SGA','SG','Membre','Commissaire','Communication','RV'],
+    },
+
+
 ]
 
 const compile = (parentRoute, subRoutes) => {

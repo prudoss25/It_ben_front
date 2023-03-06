@@ -1,3 +1,5 @@
+
+
 export const ROLES = {
   Membre: "Membre",
   SG: "Secrétaire Général",
@@ -62,6 +64,31 @@ export const RoleList =  [
 
 export const UsersManagementType = "Users";
 
+export const ServicesManagementType = "Services";
+
 export const EventsManagementType = "Events";
 
 export const SponsorsManagementType = "Sponsors";
+
+
+
+
+export const CategorieList =  [
+  {
+    default: true,
+    value: "Divers",
+    label: "Divers",
+  },
+  {
+    value: "SD",
+    label: "Services Digitaux",
+  },
+  {
+    value: "R",
+    label: "Restauration",
+  },
+  {
+    value: "P",
+    label: "Produits",
+  },
+  ];
