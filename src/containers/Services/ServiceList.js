@@ -5,15 +5,15 @@ import { ServicesManagementType } from "../../Constantes";
 import AddServiceForm from "./AddService/AddServiceForm";
 import ConsultService from "./ConsultService/ConsultService";
 import Aux from "../../hoc/_Aux/_Aux";
-import { FIND_ALL_USERS, DELETE_USER } from "../../Routes";
+import { FIND_ALL_SERVICES, DELETE_SERVICE } from "../../Routes";
 
 
 const ServicesList = () => {
   const [openServiceForm,setOpenServiceForm] = useState(false)
   return (
     <ManagementDashboard
-      deleteDataRoute={`${DELETE_USER}`}
-      getDataListRoute={`${FIND_ALL_USERS}`}
+      deleteDataRoute={`${DELETE_SERVICE}`}
+      getDataListRoute={`${FIND_ALL_SERVICES}`}
       idField="idService"
       typeManagement={`${ServicesManagementType}`}
       render={({object, consult, edit, add, refreshDataFunc,setOpenObjectForm,setOpenConsultObject}) => {

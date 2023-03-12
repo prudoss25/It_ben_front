@@ -1,47 +1,50 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardActionArea, CardContent, CardMedia, Typography, CardActions, Button, styled } from '@material-ui/core';
+import { Card, CardContent, CardMedia, Typography, CardActions, Button, styled, CardHeader, Chip } from '@material-ui/core';
 
 const ServiceCardStyled = styled(Card)(({ theme }) => ({
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-  alignItems: 'center',
   minHeight: 350,
   width: '100%',
   [theme.breakpoints.up('sm')]: {
-    width: '100%',
+    width: 400,
   },
 }));
 
 const ServiceCards = ({ service }) => {
-  const { name, category, dateAdded, image, title, description, id } = service;
+  const { idService,title,
+  description,
+  category,
+  imageUrl,
+  vendorID } = service;
 
   return (
     <ServiceCardStyled>
-      <CardActionArea>
+        <CardHeader 
+          action={
+            <div>
+              <Chip label={category} size="small" sx={{fontSize:10}}  />
+            </div>
+          }
+          title={
+          <Typography variant="h6" gutterBottom>
+            {title}
+          </Typography>}
+          subheader={vendorID} 
+        />
+
         <CardMedia
           component="img"
           alt={title}
-          height="140"
-          image={image}
+          height="150"
+          image={imageUrl}
           title={title}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {title}
-          </Typography>
+        <CardContent style={{ minHeight: 50, maxHeight: 50 }}>
           <Typography variant="body2" color="textSecondary" component="p">
             {description}
           </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {name} | {category} | {dateAdded}
-        </Typography>
       </CardContent>
-      <Link to={`/service/${id}`}>
+      <Link to={`/service/${idService}`}>
         <CardActions>
           <Button size="small" color="primary">
             Voir Plus

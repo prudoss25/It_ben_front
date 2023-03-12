@@ -13,7 +13,7 @@ const withManagementDataSource = (Component) => (props) => {
   const users = useSelector((state) => state.user.all)
   const sponsors = useSelector((state) => state.sponsor.all)
   const events = useSelector((state) => state.event.all)
-  const services = useSelector((state) => state.user.all)
+  const services = useSelector((state) => state.service.all)
 
   const serviceListCalculated = useMemo(() => {
     return services ? [...services].map((service) => ({
@@ -54,7 +54,7 @@ const withManagementDataSource = (Component) => (props) => {
         "category",
         "vendorID",
       ],
-      headerTitles: ["titre", "Description", "date d'ajout", "categorie", "Id vendeur"],
+      headerTitles: ["Titre", "Description", "Date D'ajout", "Categorie", "Id vendeur"],
     },
     Users: {
       fieldNames: [

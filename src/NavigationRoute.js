@@ -10,6 +10,9 @@ import SponsorsList from "./containers/Sponsors/SponsorsList";
 import UsersList from "./containers/Users/UsersList";
 import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from "@material-ui/icons/Info";
+import StorefrontIcon from '@material-ui/icons/Storefront';
+import RoomServiceIcon from '@material-ui/icons/RoomService';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import InfoUtilesIcon from "@material-ui/icons/ImportContacts";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
@@ -50,6 +53,22 @@ const NavigationRoutes = [
         'roles': ['All']
     },
     {
+        'icon': <StorefrontIcon />,
+        'name': 'MarketPlace',
+        'path': '/marketplaces',
+        'component': MarketPlaces,
+         'roles': ['All'],
+        //'roles': ['PCC','PACC','Tresorier','SGH','SGA','SG','Membre','Commissaire','Communication','RV'],
+    },
+    {
+        'icon': <RoomServiceIcon />,
+        'name': 'Service',
+        'path': "/service/:idService",
+        'component': ServiceDetails,
+         'roles': ['All'],
+        //'roles': ['PCC','PACC','Tresorier','SGH','SGA','SG','Membre','Commissaire','Communication','RV'],
+    },
+    {
         'icon': <PowerSettingsNewIcon />,
         'name': 'Connexion',
         'path': '/auth',
@@ -65,7 +84,7 @@ const NavigationRoutes = [
         'roles': ['All'],
     },
     {
-        'icon': <GroupIcon />,
+        'icon': <AccountTreeIcon />,
         'name': 'Gestion des Services',
         'path': '/services',
         'component': ServiceList,
@@ -97,24 +116,7 @@ const NavigationRoutes = [
         'roles': ['PCC','PACC','Tresorier','SGH','SGA','SG','Membre','Commissaire','Communication','RV'],
     },
 
-    {
-        'icon': <CachedIcon />,
-        'name': 'MarketPlace',
-        'path': '/marketplaces',
-        'component': MarketPlaces,
-         'roles': ['All'],
-        //'roles': ['PCC','PACC','Tresorier','SGH','SGA','SG','Membre','Commissaire','Communication','RV'],
-    },
-
-
-    {
-        'icon': <CachedIcon />,
-        'name': 'Service',
-        'path': "/service/:id",
-        'component': ServiceDetails,
-         'roles': ['All'],
-        //'roles': ['PCC','PACC','Tresorier','SGH','SGA','SG','Membre','Commissaire','Communication','RV'],
-    },
+    
 
 
 ]

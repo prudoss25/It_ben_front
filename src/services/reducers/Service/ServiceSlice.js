@@ -9,7 +9,13 @@ export const serviceSlice = createSlice({
     },
     reducers: {
         fetchServices: (state,action) => {
-            state.all = action.payload && [...action.payload]
+            state.all = action.payload && [...action.payload];
+        },
+        deleteService: (state,action) => {
+            state.all = [state.all].filter(service => service.idService !== action.payload);
+        },
+        addService: (state,action) => {
+            state.all = [...state.all, action.payload];
         },
         setCurrentService: (state,action) => {
             state.currentService = action.payload
@@ -20,6 +26,6 @@ export const serviceSlice = createSlice({
     }
 })
 
-export const { fetchServices, setCurrentService, reinitialiseCurrentService } = serviceSlice.actions;
+export const { fetchServices, setCurrentService, reinitialiseCurrentService, addService,deleteService } = serviceSlice.actions;
 
 export default serviceSlice.reducer;

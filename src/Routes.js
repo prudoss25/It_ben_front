@@ -19,3 +19,9 @@ export const FIND_ALL_SPONSORS = "/findAllSponsors";
 export const POST_SPONSOR = "/addSponsor";
 export const DELETE_SPONSOR = "/deleteSponsor/";
 export const UPDATE_SPONSOR = "/updateSponsor";
+
+export const ADD_ALL_SERVICES = "/addAllServices";
+export const FIND_ALL_SERVICES = "/findAllServices";
+export const POST_SERVICE = "/addService";
+export const DELETE_SERVICE = "/deleteService/";
+export const UPDATE_SERVICE = "/updateService";

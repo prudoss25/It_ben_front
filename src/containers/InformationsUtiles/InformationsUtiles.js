@@ -1,4 +1,4 @@
-import { Divider, Grid } from "@material-ui/core";
+import { Divider } from "@material-ui/core";
 import React, { useState } from "react";
 import Aux from "../../hoc/_Aux/_Aux";
 import ArticleResume from "./ArticleResume";

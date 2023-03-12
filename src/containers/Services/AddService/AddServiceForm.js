@@ -89,7 +89,7 @@ const addServiceForm = (props) => {
           if (response.status === 200)
             props.openNotication(
               "success",
-              `Utilisateur ${serviceInfos.title} est ajouté!`
+              `Le Service ${serviceInfos.title} est ajouté!`
             );
           props.handleToggle();
         })
@@ -114,7 +114,7 @@ const addServiceForm = (props) => {
           if (response.status === 200)
             props.openNotication(
               "success",
-              `Utilisateur ${serviceInfos.title}  est modifié!`
+              `Le service ${serviceInfos.title} a été modifié !`
             );
           props.handleToggle();
         })
@@ -156,23 +156,29 @@ const addServiceForm = (props) => {
                 onChange={(event) =>
                   handleInfosChange(event.target.value, "title")
                 }
-                label="titre"
+                label="Titre"
                 id="standard-size-small"
                 size="small"
                 variant="standard"
               />
             </Grid>
             <Grid item xs={6}>
-              <TextField
-                name="Description"
-                value={serviceInfos.description}
-                onChange={(event) =>
-                  handleInfosChange(event.target.value, "description")
+              <Autocomplete
+                {...defaultProps}
+                name="city"
+                onChange={(event, value) =>
+                  handleInfosChange(value != null ? value.asciiname : "", "city")
                 }
-                label="Description"
-                id="standard-size-small"
-                size="small"
-                variant="standard"
+                value={{
+                  asciiname: serviceInfos.city,
+                }}
+                fullWidth
+                id="auto-complete"
+                autoComplete
+                includeInputInList
+                renderInput={(params) => (
+                  <TextField {...params} label="Villes" variant="standard" />
+                )}
               />
             </Grid>
           </Grid>
@@ -213,23 +219,18 @@ const addServiceForm = (props) => {
             </MuiPickersUtilsProvider>
           </Grid>
           <Grid item container xs={12}>
-            <Autocomplete
-              {...defaultProps}
-              name="city"
-              onChange={(event, value) =>
-                handleInfosChange(value != null ? value.asciiname : "", "city")
-              }
-              value={{
-                asciiname: serviceInfos.city,
-              }}
-              fullWidth
-              id="auto-complete"
-              autoComplete
-              includeInputInList
-              renderInput={(params) => (
-                <TextField {...params} label="Ville" variant="standard" />
-              )}
-            />
+            <TextField
+                name="Description"
+                value={serviceInfos.description}
+                onChange={(event) =>
+                  handleInfosChange(event.target.value, "description")
+                }
+                label="Description"
+                id="standard-size-small"
+                size="small"
+                variant="standard"
+                fullWidth
+              />
           </Grid>
           <Grid item container>
             <FormControl variant="standard" fullWidth>
@@ -255,6 +256,62 @@ const addServiceForm = (props) => {
               </Select>
             </FormControl>
           </Grid>
+          <Grid item container xs={12}>
+              <TextField
+                name="facebook"
+                value={serviceInfos.title}
+                onChange={(event) =>
+                  handleInfosChange(event.target.value, "facebook")
+                }
+                label="Facebook"
+                id="standard-size-small"
+                size="small"
+                variant="standard"
+                fullWidth
+              />
+            </Grid>
+            <Grid item container xs={12}>
+              <TextField
+                name="instagram"
+                value={serviceInfos.title}
+                onChange={(event) =>
+                  handleInfosChange(event.target.value, "instagram")
+                }
+                label="Instagram"
+                id="standard-size-small"
+                size="small"
+                variant="standard"
+                fullWidth
+              />
+            </Grid>
+            <Grid item container xs={12}>
+              <TextField
+                fullWidth
+                name="whatsapp"
+                value={serviceInfos.title}
+                onChange={(event) =>
+                  handleInfosChange(event.target.value, "whatsapp")
+                }
+                label="Whatsapp"
+                id="standard-size-small"
+                size="small"
+                variant="standard"
+              />
+            </Grid>
+            <Grid item container xs={12}>
+              <TextField
+                fullWidth
+                name="site"
+                value={serviceInfos.title}
+                onChange={(event) =>
+                  handleInfosChange(event.target.value, "site")
+                }
+                label="Site Internet"
+                id="standard-size-small"
+                size="small"
+                variant="standard"
+              />
+            </Grid>
         </Grid>
         <Grid
           container
