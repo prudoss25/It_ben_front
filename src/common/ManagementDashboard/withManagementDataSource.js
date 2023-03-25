@@ -101,8 +101,6 @@ const withManagementDataSource = (Component) => (props) => {
   }
 
   const items = useMemo(() => {
-
-    console.log("MANAGEMENT_VALUES",userListCalculated,eventListCalculated,sponsorListCalculated, serviceListCalculated)
     switch (props.typeManagement) {
       case ServicesManagementType:
         return getItems(serviceListCalculated,ServicesManagementType);

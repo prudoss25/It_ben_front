@@ -1,47 +1,80 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link, useParams } from "react-router-dom";
-import { Card, CardContent, CardMedia, Typography, Grid } from "@material-ui/core";
+import { useParams } from "react-router-dom";
+import { Card, CardContent, CardMedia, Typography, Grid, List, makeStyles, ListItem, ListItemIcon, ListItemText, Chip, CardHeader } from "@material-ui/core";
 import { useSelector } from 'react-redux';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import LanguageIcon from '@material-ui/icons/Language';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+  },
+  couvertureGeographique: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(0.5),
+    },
+  }
+}));
 const ServiceDetails = () => {
+  const classes = useStyles();
   const { idService } = useParams();
   const [service, setService] = useState(null);
-  // const [entrepreneur, setEntrepreneur] = useState(null);
   const services = useSelector((state) => state.service.all)
 
   const currentService = useMemo(() => {
     var serviceObject = [...services].find(el => el.idService === idService)
     return serviceObject;
-    
   },[services])
-  useEffect(()=> {
-    console.log("service", services,idService)
-  },[idService])
-  useEffect(() => {
-    setService(currentService)
-  },[currentService])
-  // useEffect(() => {
-  //   const service1 = {
-  //     'id':'1',
-  //     'title' : 'aaaa', 
-  //     'description' : 'Dis erat, platea sagittis. Curae; praesent elit habitasse fermentum sit faucibus duis ut turpis parturient iaculis molestie. Vitae fermentum per eleifend curae; luctus elit quam maecenas praesent morbi. Nisl consectetur scelerisque praesent ligula sociosqu quisque inceptos ut fringilla imperdiet, parturient placerat. Turpis at congue duis viverra tincidunt placerat mus leo! Dignissim lacinia porttitor quis etiam rutrum purus hac tristique scelerisque.', 
-  //     'category' : 'categorie1',
-  //     'dateAdded' : "02-02-2002",
-  //     'image' : 'https://media.gettyimages.com/id/541851452/fr/photo/rabat-avenue-mohammed-v.jpg?s=612x612&w=gi&k=20&c=9qwYuBdczOVJhKH2kOrsbsTOOFkXRixJDOCKyn6vWSE='
-  //   };
-     
-  //   const entrepreneur = { 
-  //     'name' : "aaa",
-  //     'bio' : 'aaaaaa', 
-  //     'imageUrl' : 'https://media.gettyimages.com/id/541851452/fr/photo/rabat-avenue-mohammed-v.jpg?s=612x612&w=gi&k=20&c=9qwYuBdczOVJhKH2kOrsbsTOOFkXRixJDOCKyn6vWSE=',
-  //     'email' : 'aaa@gmail.com',
-  //     'phoneNumber' : '0222555', 
-  //     'location' : "Rabat"
-  //   };
 
-  //   setService(service1);
-  //   setEntrepreneur(entrepreneur);
-  // }, [id]);
+  const [entrepreneurContacts,couvertureGeographique] = useMemo(() => {
+    var contacts = [];
+    var couverture = [];
+    if(service != null)
+    {
+      if(service.facebook)
+      {
+        contacts = [...contacts, {name:"Facebook",link:service.facebook, icon:<FacebookIcon color='primary'/>}]
+      }
+      if(service.whatsapp)
+      {
+        contacts = [...contacts, {name:"Whatsapp",link:service.whatsapp, icon:<WhatsAppIcon htmlColor='green'/>}]
+      }
+      if(service.instagram)
+      {
+        contacts = [...contacts, {name:"Instagram",link:service.instagram, icon:<InstagramIcon htmlColor='red'/>}]
+      }
+      if(service.siteInternet)
+      {
+        contacts = [...contacts, {name:"Site Internet",link:service.siteInternet, icon:<LanguageIcon />}]
+      }
+
+      if(service.couvertureGeographique && [...service.couvertureGeographique].length > 0)
+      {
+        if([...service.couvertureGeographique].includes("All"))
+        {
+          couverture = ["Partout au Maroc"]
+        }
+        else{
+          couverture = [...service.couvertureGeographique]
+        }
+      }
+    }
+
+    return [contacts,couverture];
+  },[service])
+  useEffect(() => {
+    if(currentService)
+    {
+      setService(currentService)
+    }
+  },[currentService])
 
   return (
     <Grid container spacing={2}>
@@ -62,13 +95,58 @@ const ServiceDetails = () => {
       </Grid>
       <Grid item xs={12} md={4}>
         {
+          service &&
           <Card>
+            <CardHeader 
+              title={
+                <Typography variant="h6">
+                {service.entrepreneur.userName||''}
+                </Typography>}
+              />
             <CardContent>
-              <Typography variant="h6">Nom Vendeur : </Typography>
-              <Link>
-                <Typography variant="h5">Whatsapp :</Typography>
-              </Link>
-              <Typography variant="body1">Instagram : </Typography>
+              {
+                  couvertureGeographique && couvertureGeographique.length > 0 &&
+                  <List
+                    component="nav"
+                    subheader={
+                      <Typography variant="h7">
+                        Couverture au Maroc
+                      </Typography>
+                    }
+                    className={classes.root}
+                  >
+                    {
+                    <ListItem className={classes.couvertureGeographique}>
+                      {couvertureGeographique.map(couverture => (
+                        <Chip label={couverture}/>
+                      ))}
+                    </ListItem>
+                    }
+                </List>
+              }
+              {entrepreneurContacts && entrepreneurContacts.length > 0 &&
+              <List
+                  component="nav"
+                  subheader={
+                    <Typography variant="h7">
+                      Contacts
+                    </Typography>
+                  }
+                  className={classes.root}
+                >
+                  {
+                    entrepreneurContacts.map(contact => (
+                      <ListItem key={contact.name} button component="a" href={contact.link}>
+                        <ListItemIcon>
+                          {contact.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={contact.name} />
+                      </ListItem>
+                    ))
+                  }
+              </List>
+              }
+              
             </CardContent>
           </Card>
         }

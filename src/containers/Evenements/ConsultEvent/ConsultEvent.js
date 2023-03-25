@@ -32,14 +32,15 @@ const ConsultEvent = (props) => {
     setEvent({
       ...props.event,
       sponsors:
-        (props.event.sponsors && sponsors &&
+        (props.event.sponsors && sponsors && [sponsors].length > 0 &&
           [...props.event.sponsors].map((idSponsor) => {
-            return [sponsors].find(
+            return [...sponsors].find(
               (sponsor) => parseInt(idSponsor, 10) === sponsor.idSponsor
             );
           })) ||
         [],
     });
+    
   }, [props.event, sponsors]);
   return (
     <Dialog

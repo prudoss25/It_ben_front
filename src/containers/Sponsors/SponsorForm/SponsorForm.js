@@ -26,7 +26,6 @@ const SponsorForm = (props) => {
  
   useEffect(() => {
     if (props.sponsor) {
-      console.log("sponsor test",props.sponsor)
       setGeneralInfos({
         ...props.sponsor,
       });
