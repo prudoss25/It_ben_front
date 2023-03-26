@@ -1,4 +1,4 @@
-import { Divider, Grid } from "@material-ui/core";
+import { Divider } from "@material-ui/core";
 import React, { useState } from "react";
 import Aux from "../../hoc/_Aux/_Aux";
 import ArticleResume from "./ArticleResume";
@@ -81,22 +81,15 @@ const InformationsUtiles = () => {
       <h2 style={{ textAlign: "center" }}>Informations Utiles</h2>
       <Divider style={{marginTop:8,marginBottom:8}} />
         <h4>Informations Administratives</h4>
-        <div>
-            <Grid
-                container
-                wrap="wrap"
-                spacing={2}
-                direction="row"
-                style={{ marginLeft: 16, width: "90%" , marginTop:8,marginBottom:8}}
-                alignContent="center"
-                justifyContent="space-around"
-            >
+        <div style={{display: 'flex' , flexFlow:'row' , flexWrap:'wrap', width:'100%',
+         justifyContent:'space-evenly', textAlign:"center"}}>
+            
                 {infosList.map((info) => {
                 return (
-                    <Grid
+                    <div
                     item
                     key={info.id}
-                    style={{ marginRight: 0.5, width: "100%" }}
+                    style={{ marginRight: "70px", width: "275px", marginBottom: "15px" }}
                     xs={3}
                     >
                     <ArticleResume
@@ -106,30 +99,22 @@ const InformationsUtiles = () => {
                         date={info.date}
                         action={() => showDetail(info)}
                     />
-                    </Grid>
+                    </div>
                 );
                 })}
-            </Grid>
         </div>
         <h4>Parcours Académique</h4>
       <div>
-        <Grid
-            container
-            wrap="wrap"
-            spacing={2}
-            direction="row"
-            style={{ marginLeft: 16, width: "90%",marginTop:8,marginBottom:8 }}
-            alignContent="center"
-            justifyContent="space-around"
-        >
+      <div style={{display: 'flex' , flexFlow:'row' , flexWrap:'wrap', width:'100%',
+         justifyContent:'space-evenly', textAlign:"center"}}>
             {infosList.map((info) => {
             return (
-                <Grid
-                item
-                key={info.id}
-                style={{ marginRight: 0.5, width: "100%" }}
-                xs={3}
-                >
+              <div
+              item
+              key={info.id}
+              style={{ marginRight: "70px", width: "275px", marginBottom: "15px" }}
+              xs={3}
+              >
                 <ArticleResume
                     title={info.title}
                     resume={info.resume}
@@ -137,7 +122,7 @@ const InformationsUtiles = () => {
                     date={info.date}
                     action={() => showDetail(info)}
                 />
-                </Grid>
+                </div>
             );
             })}
             {openConsult && (
@@ -149,7 +134,7 @@ const InformationsUtiles = () => {
             />
             )}
 
-        </Grid>
+        </div>
       </div>
     </Aux>
   );

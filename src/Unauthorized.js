@@ -1,7 +1,6 @@
 import React from "react";
 
 const Unauthorized = () => {
-    console.log("We are Here")
   return (
     <div className="error-page d-flex align-items-center flex-wrap justify-content-center pd-20">
       <div className="pd-10">

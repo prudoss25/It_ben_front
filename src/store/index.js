@@ -3,6 +3,7 @@ import sidebarDrawerReducer from '../services/reducers/SidebarDrawer/SidebarDraw
 import eventReducer from '../services/reducers/Event/EventSlice';
 import sponsorReducer from '../services/reducers/Sponsor/SponsorSlice';
 import townReducer from '../services/reducers/Town/TownSlice';
+import serviceReducer from '../services/reducers/Service/ServiceSlice';
 import userReducer from '../services/reducers/User/UserSlice';
 import authReducer from '../services/reducers/Auth/AuthSlice';
 import storage from 'redux-persist/lib/storage'
@@ -20,7 +21,8 @@ export const rootReducers = combineReducers({
   sidebarDrawer:sidebarDrawerReducer,
   event:eventReducer,
   sponsor:sponsorReducer,
-  town:townReducer
+  town:townReducer,
+  service:serviceReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducers)

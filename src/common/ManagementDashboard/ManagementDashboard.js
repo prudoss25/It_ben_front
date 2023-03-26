@@ -9,10 +9,13 @@ import NoticationAlert from "../../components/UI/NotificationAlert/NotificationA
 import Table from "../Table/Table";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { EventsManagementType, SponsorsManagementType, UsersManagementType } from "../../Constantes";
+import { EventsManagementType, SponsorsManagementType, UsersManagementType, ServicesManagementType } from "../../Constantes";
 import { fetchEvents } from "../../services/reducers/Event/EventSlice";
 import { fetchSponsors } from "../../services/reducers/Sponsor/SponsorSlice";
 import { fetchUsers } from "../../services/reducers/User/UserSlice";
+import { fetchServices } from "../../services/reducers/Service/ServiceSlice";
+import { FIND_ALL_SERVICES } from "../../Routes";
+import { getServiceListes } from "../../services/actions/Service/ServiceAction";
 
 const ManagementDashboard = ({
   render,
@@ -41,14 +44,23 @@ const ManagementDashboard = ({
   });
   const getData = () => {
     setLoading(true);
-    axios.get(getDataListRoute).then((response) => {
-      if (response.status === 200) {
-        const liste = [...response.data];
-        setObjectList(liste);
-        setCurrentObject(null);
-        setLoading(false);
-      }
-    });
+    if(getDataListRoute === FIND_ALL_SERVICES)
+    {
+      dispatch(getServiceListes())
+      setCurrentObject(null);
+      setLoading(false);
+    }
+    else{
+      axios.get(getDataListRoute).then((response) => {
+        if (response.status === 200) {
+          const liste = [...response.data];
+          setObjectList(liste);
+          setCurrentObject(null);
+          setLoading(false);
+        }
+      });
+    }
+    
   };
 
   const setObjectList = (values) => {
@@ -62,6 +74,9 @@ const ManagementDashboard = ({
       case EventsManagementType:
         dispatch(fetchEvents(values))
         break;
+      case ServicesManagementType:
+          dispatch(fetchServices(values))
+          break;
       default:
         break;
     }

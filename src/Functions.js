@@ -7,3 +7,7 @@ export const toBase64 = file => new Promise((resolve, reject) => {
 
 export const stringTruncedShower = (text,limit) => 
   `${text.substring(0,limit)}${text.length > limit ? '...':''}`
+
+
+
+

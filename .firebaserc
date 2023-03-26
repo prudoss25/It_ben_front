@@ -3,6 +3,14 @@
     "default": "projetasebem",
     "projetAsebem": "projetasebem"
   },
-  "targets": {},
+  "targets": {
+    "projetasebem": {
+      "hosting": {
+        "projetAsebem": [
+          "projetAsebem"
+        ]
+      }
+    }
+  },
   "etags": {}
 }

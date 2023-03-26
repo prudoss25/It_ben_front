@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import {
+  ServicesManagementType,
   UsersManagementType,
   EventsManagementType,
   ROLES,
@@ -12,6 +13,15 @@ const withManagementDataSource = (Component) => (props) => {
   const users = useSelector((state) => state.user.all)
   const sponsors = useSelector((state) => state.sponsor.all)
   const events = useSelector((state) => state.event.all)
+  const services = useSelector((state) => state.service.all)
+
+  const serviceListCalculated = useMemo(() => {
+    return services ? [...services].map((service) => ({
+      ...service,
+      registrationDate:
+        service.registrationDate && new Date(service.registrationDate),
+    })) : [];
+  },[services])
 
   const userListCalculated = useMemo(() => {
     return users ? [...users].map((user) => ({
@@ -36,6 +46,16 @@ const withManagementDataSource = (Component) => (props) => {
   },[sponsors])
 
   const managementDashbordInfos = {
+    Services: {
+      fieldNames: [
+        "title",
+        "description",
+        "registrationDate",
+        "category",
+        "vendorID",
+      ],
+      headerTitles: ["Titre", "Description", "Date D'ajout", "Categorie", "Id vendeur"],
+    },
     Users: {
       fieldNames: [
         "lastName",
@@ -81,9 +101,9 @@ const withManagementDataSource = (Component) => (props) => {
   }
 
   const items = useMemo(() => {
-
-    console.log("MANAGEMENT_VALUES",userListCalculated,eventListCalculated,sponsorListCalculated)
     switch (props.typeManagement) {
+      case ServicesManagementType:
+        return getItems(serviceListCalculated,ServicesManagementType);
       case UsersManagementType:
         return getItems(userListCalculated,UsersManagementType);
       case EventsManagementType:
@@ -93,7 +113,7 @@ const withManagementDataSource = (Component) => (props) => {
       default:
         return {};
     }
-  }, [userListCalculated,eventListCalculated,sponsorListCalculated, props.typeManagement]);
+  }, [serviceListCalculated,userListCalculated,eventListCalculated,sponsorListCalculated, props.typeManagement]);
 
   return <Component {...props} {...items} />;
 };
