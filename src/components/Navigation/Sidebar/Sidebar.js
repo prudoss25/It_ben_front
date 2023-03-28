@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import SideNavigationItems from "./SideNavigationItems/SideNavigationItems";
 import classes from "./Sidebar.css";
 import Aux from "../../../hoc/_Aux/_Aux";
@@ -7,11 +7,7 @@ import Profil from "../Profil/Profil";
 import Radium from "radium";
 
 const sidebar = () => {
-  const token = useSelector((state) => state.auth.token)
-  const [authenticated, setAuthenticated] = useState(false);
-  useEffect(()=> {
-    setAuthenticated(token == null ? false : true )
-  },[token])
+ 
   const sidebarDrawer = useSelector((state) => state.sidebarDrawer.value);
   let attachedClasses = [classes.Sidebar, classes.Close];
   if (sidebarDrawer) {
@@ -25,12 +21,9 @@ const sidebar = () => {
   return (
     <Aux>
       <aside className={attachedClasses.join(" ")}>
-        {
-          authenticated &&
           <div style={styleProfil}>
             <Profil />
           </div>
-        }
         <nav>
           <SideNavigationItems />
         </nav>

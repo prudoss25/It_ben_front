@@ -16,7 +16,6 @@
 }
 
 .Toolbar div {
-    height: 96%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,11 +36,11 @@
 }
 
 .Menu {
-    height: 75%;
+    height: 40px;
 }
 
 .Notification {
-    height: 75%;
+    height: 40px;
 }
 
 /* @media (max-width:500px) {
