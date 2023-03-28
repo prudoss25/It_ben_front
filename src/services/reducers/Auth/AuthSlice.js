@@ -8,8 +8,7 @@ export const authSlice = createSlice({
       role: "Ano",
     },
     firstAuthentication:false,
-    authenticationDate:null,
-    token: null,
+    authenticated:false,
     fail: false,
     loading: false,
     success: false,
@@ -24,10 +23,8 @@ export const authSlice = createSlice({
         name: "",
         role: "Ano",
       };
-      state.authenticationDate= null;
       state.firstAuthentication=false;
-      state.token = null;
-      state.authenticationDate = null;
+      state.authenticated = false;
     },
     loadAuthentication: (state) => {
       state.loading = true;
@@ -40,11 +37,11 @@ export const authSlice = createSlice({
       state.userInfos = {
         name: user.lastName + " " + user.firstName,
         role: user.role,
-        registrationNumber: user.registrationNumber
+        registrationNumber: user.registrationNumber,
+        emailAdress: user.emailAdress
       };
       state.firstAuthentication = action.payload.firstAuthentication;
-      state.authenticationDate = Date.now
-      state.token = action.payload.token;
+      state.authenticated = true;
       state.fail = false;
       state.loading = false;
       state.success = false;

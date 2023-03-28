@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Layout from "./hoc/Layout/Layout";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Unauthorized from "./Unauthorized";
 import getRoutes from "./NavigationRoute";
 import ChangePassword from "./containers/Auth/ChangePassword";
 import Aux from "./hoc/_Aux/_Aux";
+import { useJwt } from "react-jwt";
+import { disconnectUser } from "./services/actions/Auth/AuthActions";
 
 const App = () => {
   const firstAuthentication = useSelector((state) => state.auth.firstAuthentication)
-  const token = useSelector((state) => state.auth.token)
-
+  const dispatch = useDispatch();
+  const authenticated = useSelector((state) => state.auth.authenticated)
+  const tokenGetting = localStorage.getItem("access_token");
+  const { isExpired } = useJwt(tokenGetting);
   const [isAuth,setIsAuth] = useState(false) 
   useEffect(() => {
-    setIsAuth(token != null)
-  },[token])
+    if(isExpired)
+    {
+      dispatch(disconnectUser());
+    }
+  },[isExpired])
+  
+  useEffect(() => {
+    setIsAuth(authenticated)
+  },[authenticated])
     return (
       <div>
         <Layout>
