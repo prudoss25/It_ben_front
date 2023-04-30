@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { Container, Grid } from '@material-ui/core';
 import Service from './ServiceCards';
 import { useDispatch, useSelector } from 'react-redux';
-import { getServiceListes } from '../../services/actions/Service/ServiceAction';
+import { getServiceListes } from '../../features/actions/Service/ServiceAction';
 
 const MarketPlaces = () => {
   const services = useSelector((state) => state.service.all)

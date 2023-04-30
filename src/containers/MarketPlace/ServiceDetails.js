@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { Card, CardContent, CardMedia, Typography, Grid, List, makeStyles, ListItem, ListItemIcon, ListItemText, Chip, CardHeader } from "@material-ui/core";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import LanguageIcon from '@material-ui/icons/Language';
+import { getService } from '../../features/actions/Service/ServiceAction';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,12 +27,12 @@ const ServiceDetails = () => {
   const classes = useStyles();
   const { idService } = useParams();
   const [service, setService] = useState(null);
-  const services = useSelector((state) => state.service.all)
+  const currentService = useSelector((state) => state.service.currentService)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getService(idService))
+  },[])
 
-  const currentService = useMemo(() => {
-    var serviceObject = [...services].find(el => el.idService === idService)
-    return serviceObject;
-  },[services])
 
   const [entrepreneurContacts,couvertureGeographique] = useMemo(() => {
     var contacts = [];
@@ -136,7 +137,7 @@ const ServiceDetails = () => {
                 >
                   {
                     entrepreneurContacts.map(contact => (
-                      <ListItem key={contact.name} button component="a" href={contact.link}>
+                      <ListItem key={contact.name} button component="a" target="_blank" href={contact.link}>
                         <ListItemIcon>
                           {contact.icon}
                         </ListItemIcon>

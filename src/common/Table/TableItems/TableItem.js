@@ -7,7 +7,14 @@ import { IconButton } from "@material-ui/core";
 
 const TableItem = (props) => {
     const fieldValues = useMemo(() => {
-        return [...props.fieldNames].map(field => props.object[field])
+        return [...props.fieldNames].map(field => {
+          if(field.includes('.'))
+          {
+            const fields = field.split('.');
+            return props.object[fields[0]][fields[1]] 
+          }
+          return props.object[field]
+        })
     }, [props.fieldNames,props.object])
   return (
     <tr key={props.key}>

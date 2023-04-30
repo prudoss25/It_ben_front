@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import FormModal from "../../../common/FormModal/FormModal";
-import axios from "../../../axios";
-import { POST_USER, UPDATE_USER } from "../../../Routes";
 import { CategorieList } from "../../../Constantes";
 import {
   Button,
   FormControl,
   Grid,
   InputLabel,
-  MenuItem,
-  Select,
-  TextField, 
+  NativeSelect,
+  TextField,
 } from "@material-ui/core";
 import MomentUtils from "@date-io/moment";
 import moment from "moment";
@@ -23,7 +20,12 @@ import {
 import { Autocomplete } from "@material-ui/lab";
 import withManagementForm from "../../../common/ManagementDashboard/withManagementForm";
 import { useDispatch, useSelector } from "react-redux";
-import { getMoroccoCities } from "../../../services/actions/Town/TownActions";
+import { getMoroccoCities } from "../../../features/actions/Town/TownActions";
+import { getEntrepreneurListe } from "../../../features/actions/User/UserAction";
+import {
+  postService,
+  putService,
+} from "../../../features/actions/Service/ServiceAction";
 
 const initialServiceInfo = {
   title: "",
@@ -32,37 +34,65 @@ const initialServiceInfo = {
   vendorId: "",
   image: "Not Set",
   registrationDate: new Date(),
-  // phoneNumber: "",
-  // role: "",
-  // city: "",
-  // registrationNumber: "",
+  couvertureGeographique: [],
+  entrepreneurRegistrationNumber: "",
+  facebook: "",
+  whatsapp: "",
+  instagram: "",
+  siteInternet: "",
 };
 
 const addServiceForm = (props) => {
-  const dispatch = useDispatch()
-  const villesList = useSelector((state) => state.town.all)
+  const dispatch = useDispatch();
+  const villesList = useSelector((state) => state.town.all);
+  const [edit, seEdit] = useState(false);
+  const entrepreneursListe = useSelector((state) => state.user.entrepreneurs);
+  const [serviceInfos, setServiceInfos] = useState(initialServiceInfo);
+  const [villes, setVilles] = useState([]);
+  const [entrepreneurs, setEntrepreneurs] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    dispatch(getMoroccoCities())
+    dispatch(getMoroccoCities());
+    dispatch(getEntrepreneurListe());
   }, []);
   useEffect(() => {
-    if (props.user) {
-      setServiceInfos(props.user);
+    console.log("service", props.service);
+    if (props.service) {
+      seEdit(true);
+      setServiceInfos({
+        ...props.service,
+        category: CategorieList.find(
+          (cat) => cat.label === props.service.category
+        ).value,
+        entrepreneurRegistrationNumber:
+          props.service.entrepreneur.registrationNumber,
+      });
     } else {
       setServiceInfos(initialServiceInfo);
     }
-  }, [props.user]);
+  }, [props.service]);
   useEffect(() => {
-    setVilles(villesList)
-  },[villesList])
+    setVilles(villesList);
+  }, [villesList]);
+  useEffect(() => {
+    if (entrepreneursListe)
+      setEntrepreneurs(
+        [...entrepreneursListe].map((el) => ({
+          ...el,
+          label: `${el.registrationNumber} ${el.userName}`,
+        }))
+      );
+    else setEntrepreneurs([]);
+  }, [entrepreneursListe]);
 
-
-  const [serviceInfos, setServiceInfos] = useState(initialServiceInfo);
-  const [villes, setVilles] = useState([]);
-  const [loading,setLoading] = useState(false);
-
-  const defaultProps = {
+  const defaultCitiesProps = {
     options: villes,
     getOptionLabel: (option) => option.asciiname,
+  };
+  const defaultUsersProps = {
+    options: entrepreneurs,
+    getOptionLabel: (option) => option.label,
   };
 
   const handleInfosChange = (value, field) => {
@@ -72,25 +102,24 @@ const addServiceForm = (props) => {
 
   const onSave = () => {
     if (
-      serviceInfos.city &&
+      serviceInfos.couvertureGeographique &&
       serviceInfos.title &&
       serviceInfos.description &&
       serviceInfos.category &&
-      serviceInfos.registrationDate 
+      serviceInfos.dateLimite
     ) {
-      setLoading(true)
-      const infos = {
-        ...serviceInfos,
-        startFunctionDate: serviceInfos.registrationDate,
-      };
-      axios
-        .post(POST_USER, infos)
+      setLoading(true);
+      dispatch(postService(serviceInfos))
         .then((response) => {
-          if (response.status === 200)
+          if (response) {
             props.openNotication(
               "success",
               `Le Service ${serviceInfos.title} est ajouté!`
             );
+          } else {
+            props.openNotication("error", "Une erreur est survenue !");
+            props.handleToggle();
+          }
           props.handleToggle();
         })
         .catch(() => {
@@ -101,21 +130,23 @@ const addServiceForm = (props) => {
   };
   const onEdit = () => {
     if (
-      serviceInfos.city &&
+      serviceInfos.couvertureGeographique &&
       serviceInfos.title &&
       serviceInfos.description &&
       serviceInfos.category &&
-      serviceInfos.registrationDate 
+      serviceInfos.dateLimite
     ) {
-      setLoading(true)
-      axios
-        .put(UPDATE_USER, serviceInfos)
+      setLoading(true);
+      dispatch(putService(serviceInfos))
         .then((response) => {
-          if (response.status === 200)
+          if (response) {
             props.openNotication(
               "success",
               `Le service ${serviceInfos.title} a été modifié !`
             );
+          } else {
+            props.openNotication("error", "Une erreur est survenue !");
+          }
           props.handleToggle();
         })
         .catch(() => {
@@ -126,12 +157,12 @@ const addServiceForm = (props) => {
   };
 
   const onSubmit = () => {
-    if (props.user) {
+    if (props.service) {
       onEdit();
     } else {
       onSave();
     }
-    setLoading(false)
+    setLoading(false);
   };
 
   return (
@@ -142,176 +173,187 @@ const addServiceForm = (props) => {
     >
       <form>
         <Grid container>
-          <Grid
-            item
-            container
-            lg={12}
-            justifyContent={"space-between"}
-            alignItems="center"
-          >
-            <Grid item xs={6}>
-              <TextField
-                name="title"
-                value={serviceInfos.title}
-                onChange={(event) =>
-                  handleInfosChange(event.target.value, "title")
-                }
-                label="Titre"
-                id="standard-size-small"
-                size="small"
-                variant="standard"
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Autocomplete
-                {...defaultProps}
-                name="city"
-                onChange={(event, value) =>
-                  handleInfosChange(value != null ? value.asciiname : "", "city")
-                }
-                value={{
-                  asciiname: serviceInfos.city,
-                }}
-                fullWidth
-                id="auto-complete"
-                autoComplete
-                includeInputInList
-                renderInput={(params) => (
-                  <TextField {...params} label="Villes" variant="standard" />
-                )}
-              />
-            </Grid>
+          <Grid item container xs={12}>
+            <TextField
+              fullWidth
+              name="title"
+              value={serviceInfos.title}
+              onChange={(event) =>
+                handleInfosChange(event.target.value, "title")
+              }
+              label="Titre"
+              id="standard-size-small"
+              size="small"
+              variant="standard"
+            />
           </Grid>
           <Grid item container xs={12}>
-          <Grid item xs={6}>
-              <TextField
-                name="VendorID"
-                value={serviceInfos.vendorId}
-                onChange={(event) =>
-                  handleInfosChange(event.target.value, "VendorId")
-                }
-                label="VendorID"
-                id="standard-size-small"
-                size="small"
-                variant="standard"
-              />
-            </Grid>
+            <Autocomplete
+              {...defaultCitiesProps}
+              multiple
+              name="couvertureGeographique"
+              onChange={(event, value) => {
+                handleInfosChange(
+                  value != null ? [...value].map((e) => e.asciiname) : "",
+                  "couvertureGeographique"
+                );
+              }}
+              value={[...serviceInfos.couvertureGeographique].map((city) => ({
+                asciiname: city,
+              }))}
+              fullWidth
+              id="auto-complete"
+              autoComplete
+              includeInputInList
+              renderInput={(params) => (
+                <TextField {...params} label="Villes" variant="standard" />
+              )}
+            />
+          </Grid>
+
+          <Grid item container xs={12}>
+            <Autocomplete
+              {...defaultUsersProps}
+              disabled={edit}
+              name="entrepreneurRegistrationNumber"
+              onChange={(event, value) => {
+                handleInfosChange(
+                  value != null ? value.registrationNumber : "",
+                  "entrepreneurRegistrationNumber"
+                );
+              }}
+              value={entrepreneurs.find(
+                (entrepreneur) =>
+                  entrepreneur.registrationNumber ===
+                  serviceInfos.entrepreneurRegistrationNumber
+              )}
+              fullWidth
+              id="auto-complete"
+              autoComplete
+              includeInputInList
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Entrepreneur"
+                  variant="standard"
+                />
+              )}
+            />
+          </Grid>
+          <Grid item container xs={12}>
             <MuiPickersUtilsProvider
               libInstance={moment}
               utils={MomentUtils}
               locale={"fr"}
             >
-              <Grid item xs={6}>
-                <KeyboardDatePicker
-                  clearable
-                  views={["year", "month", "date"]}
-                  format="L"
-                  mask="__/__/____"
-                  placeholder="dd/MM/yyyy"
-                  label="Date d'inscription"
-                  name="registrationDate"
-                  value={serviceInfos.registrationDate}
-                  onChange={(date) =>
-                    handleInfosChange(date, "registrationDate")
-                  }
-                />
-              </Grid>
+              <KeyboardDatePicker
+                fullWidth
+                clearable
+                views={["year", "month", "date"]}
+                format="L"
+                mask="__/__/____"
+                placeholder="dd/MM/yyyy"
+                label="Date Limite"
+                name="dateLimite"
+                value={serviceInfos.dateLimite}
+                onChange={(date) => handleInfosChange(date, "dateLimite")}
+              />
             </MuiPickersUtilsProvider>
           </Grid>
           <Grid item container xs={12}>
             <TextField
-                name="Description"
-                value={serviceInfos.description}
-                onChange={(event) =>
-                  handleInfosChange(event.target.value, "description")
-                }
-                label="Description"
-                id="standard-size-small"
-                size="small"
-                variant="standard"
-                fullWidth
-              />
+              name="Description"
+              value={serviceInfos.description}
+              onChange={(event) =>
+                handleInfosChange(event.target.value, "description")
+              }
+              multiline
+              maxRows={5}
+              label="Description"
+              id="standard-size-small"
+              size="small"
+              variant="standard"
+              fullWidth
+            />
           </Grid>
           <Grid item container>
             <FormControl variant="standard" fullWidth>
               <InputLabel id="demo-simple-select-standard-label">
                 Categorie
               </InputLabel>
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={serviceInfos.role}
-                name="role"
+              <NativeSelect
+                value={serviceInfos.category}
+                defaultValue={serviceInfos.category || ""}
+                name="category"
                 size="small"
                 onChange={(event) => {
-                  handleInfosChange(event.target.value, "role");
+                  handleInfosChange(event.target.value, "category");
                 }}
-                label="Role"
               >
                 {CategorieList.map((categorie) => (
-                  <MenuItem key={categorie.value} value={categorie.value}>
+                  <option key={categorie.value} value={categorie.value}>
                     {categorie.label}
-                  </MenuItem>
+                  </option>
                 ))}
-              </Select>
+              </NativeSelect>
             </FormControl>
           </Grid>
           <Grid item container xs={12}>
-              <TextField
-                name="facebook"
-                value={serviceInfos.title}
-                onChange={(event) =>
-                  handleInfosChange(event.target.value, "facebook")
-                }
-                label="Facebook"
-                id="standard-size-small"
-                size="small"
-                variant="standard"
-                fullWidth
-              />
-            </Grid>
-            <Grid item container xs={12}>
-              <TextField
-                name="instagram"
-                value={serviceInfos.title}
-                onChange={(event) =>
-                  handleInfosChange(event.target.value, "instagram")
-                }
-                label="Instagram"
-                id="standard-size-small"
-                size="small"
-                variant="standard"
-                fullWidth
-              />
-            </Grid>
-            <Grid item container xs={12}>
-              <TextField
-                fullWidth
-                name="whatsapp"
-                value={serviceInfos.title}
-                onChange={(event) =>
-                  handleInfosChange(event.target.value, "whatsapp")
-                }
-                label="Whatsapp"
-                id="standard-size-small"
-                size="small"
-                variant="standard"
-              />
-            </Grid>
-            <Grid item container xs={12}>
-              <TextField
-                fullWidth
-                name="site"
-                value={serviceInfos.title}
-                onChange={(event) =>
-                  handleInfosChange(event.target.value, "site")
-                }
-                label="Site Internet"
-                id="standard-size-small"
-                size="small"
-                variant="standard"
-              />
-            </Grid>
+            <TextField
+              name="facebook"
+              value={serviceInfos.facebook}
+              onChange={(event) =>
+                handleInfosChange(event.target.value, "facebook")
+              }
+              label="Facebook"
+              id="standard-size-small"
+              size="small"
+              variant="standard"
+              fullWidth
+            />
+          </Grid>
+          <Grid item container xs={12}>
+            <TextField
+              name="instagram"
+              value={serviceInfos.instagram}
+              onChange={(event) =>
+                handleInfosChange(event.target.value, "instagram")
+              }
+              label="Instagram"
+              id="standard-size-small"
+              size="small"
+              variant="standard"
+              fullWidth
+            />
+          </Grid>
+          <Grid item container xs={12}>
+            <TextField
+              fullWidth
+              name="whatsapp"
+              value={serviceInfos.whatsapp}
+              onChange={(event) =>
+                handleInfosChange(event.target.value, "whatsapp")
+              }
+              label="Whatsapp"
+              id="standard-size-small"
+              size="small"
+              variant="standard"
+            />
+          </Grid>
+          <Grid item container xs={12}>
+            <TextField
+              fullWidth
+              name="siteInternet"
+              value={serviceInfos.siteInternet}
+              onChange={(event) =>
+                handleInfosChange(event.target.value, "siteInternet")
+              }
+              label="Site Internet"
+              id="standard-size-small"
+              size="small"
+              variant="standard"
+            />
+          </Grid>
         </Grid>
         <Grid
           container

@@ -10,8 +10,8 @@ import axios from "axios";
 import { FIND_ALL_EVENTS_DESC, FIND_ALL_SPONSORS } from "../../Routes";
 import { Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchEvents } from "../../services/reducers/Event/EventSlice";
-import { fetchSponsors } from "../../services/reducers/Sponsor/SponsorSlice";
+import { fetchEvents } from "../../features/reducers/Event/EventSlice";
+import { fetchSponsors } from "../../features/reducers/Sponsor/SponsorSlice";
 import classes from "./Home.css";
 
 const Home = () => {

@@ -5,32 +5,69 @@ import PropTypes from "prop-types";
 import { Button, Grid } from "@material-ui/core";
 
 const consultService = (props) => {
+  const {service} = props
   return (
     <FormModal
       open={props.open}
-      title={`Informations ${props.service.title}`}
+      title={`Détails Service :  ${service.title}`}
       handleClose={() => props.handleToggle}
     >
       <p>
         <strong>Titre : </strong>
-        {props.service.title}
+        {service.title}
       </p>
       <p>
         <strong>Description : </strong>
-        {props.service.description}
+        {service.description}
       </p>
       <p>
         <strong>Categorie : </strong>
-        {props.service.category}
+        {service.category}
       </p>
       <p>
         <strong>Vendeur : </strong>
-        {props.service.vendorId}
+        {service.entrepreneur ? `${service.entrepreneur.userName} (${service.entrepreneur.registrationNumber})` : "Non défini"}
       </p>
       <p>
-        <strong>Date d'incription : </strong>
-        {props.service.registrationDate &&
-          props.service.registrationDate.toLocaleDateString()}
+        <strong>Couverture Géographique : </strong>
+        {service.couvertureGeographique ? [...service.couvertureGeographique].join(", ") : "Non défini"}
+      </p>
+      <p>
+        <strong>Date Création : </strong>
+        {service.registrationDate &&
+          service.registrationDate.toLocaleDateString()}
+      </p>
+      <p>
+        <strong>Facebook : </strong>
+        {
+          service.facebook ?
+          <a href={service.facebook} target="_blank">Lien Facebook</a>
+          :"Non défini"
+        }
+      </p>
+      <p>
+        <strong>WhatsApp : </strong>
+        {
+          service.whatsapp ?
+          <a href={service.whatsapp} target="_blank">Lien whatsapp</a>
+          :"Non défini"
+        }
+      </p>
+      <p>
+        <strong>Instagram : </strong>
+        {
+          service.instagram ?
+          <a href={service.instagram} target="_blank">Lien Instagram</a>
+          :"Non défini"
+        }
+      </p>
+      <p>
+        <strong>Site Internet : </strong>
+        {
+          service.siteInternet ?
+          <a href={service.siteInternet} target="_blank">Lien Site</a>
+          :"Non défini"
+        }
       </p>
       <Grid
         container

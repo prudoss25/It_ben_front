@@ -21,7 +21,7 @@ const ServiceCardStyled = styled(Card)(({ theme }) => ({
 }));
 
 const ServiceCards = ({ service }) => {
-  const { idService, title, description, category, imageUrl, vendorID } =
+  const { idService, title, description, category, imageUrl, entrepreneur } =
     service;
 
   return (
@@ -37,9 +37,8 @@ const ServiceCards = ({ service }) => {
             {title}
           </Typography>
         }
-        subheader={vendorID}
+        subheader={(entrepreneur && entrepreneur.userName) || ""}
       />
-
       <CardMedia
         component="img"
         alt={title}
