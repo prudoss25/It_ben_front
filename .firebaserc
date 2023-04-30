@@ -2,13 +2,20 @@
   "projects": {
     "default": "projetasebem",
     "projetAsebem": "projetasebem",
-    "staging": "asebem-book"
+    "staging": "projetAsebem-staging"
   },
   "targets": {
     "projetasebem": {
       "hosting": {
         "projetAsebem": [
           "projetAsebem"
+        ]
+      }
+    },
+    "projetAsebem-staging": {
+      "hosting": {
+        "staging": [
+          "staging"
         ]
       }
     }
