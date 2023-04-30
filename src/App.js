@@ -7,7 +7,7 @@ import getRoutes from "./NavigationRoute";
 import ChangePassword from "./containers/Auth/ChangePassword";
 import Aux from "./hoc/_Aux/_Aux";
 import { useJwt } from "react-jwt";
-import { disconnectUser } from "./services/actions/Auth/AuthActions";
+import { disconnectUser } from "./features/actions/Auth/AuthActions";
 
 const App = () => {
   const firstAuthentication = useSelector((state) => state.auth.firstAuthentication)

@@ -13,9 +13,9 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changePassword,
-} from "../../services/actions/Auth/AuthActions";
+} from "../../features/actions/Auth/AuthActions";
 import NoticationAlert from "../../components/UI/NotificationAlert/NotificationAlert";
-import { disconnect } from "../../services/reducers/Auth/AuthSlice";
+import { disconnect } from "../../features/reducers/Auth/AuthSlice";
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/;
 
 function Copyright() {

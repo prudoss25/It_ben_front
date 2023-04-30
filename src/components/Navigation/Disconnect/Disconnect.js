@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LogOutIcon from "@material-ui/icons/ExitToApp";
 import { IconButton } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { disconnectUser } from "../../../services/actions/Auth/AuthActions";
+import { disconnectUser } from "../../../features/actions/Auth/AuthActions";
 
 const disconnectIcon = () => {
   const authenticated = useSelector((state) => state.auth.authenticated);

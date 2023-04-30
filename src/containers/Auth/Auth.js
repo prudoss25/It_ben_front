@@ -13,7 +13,7 @@ import Container from "@material-ui/core/Container";
 import Logo from "../../components/Logo/Logo";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authenticateUser } from "../../services/actions/Auth/AuthActions";
+import { authenticateUser } from "../../features/actions/Auth/AuthActions";
 import NoticationAlert from "../../components/UI/NotificationAlert/NotificationAlert";
 
 function Copyright() {
