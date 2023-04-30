@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "projetasebem",
-    "projetAsebem": "projetasebem"
+    "projetAsebem": "projetasebem",
+    "staging": "asebem-book"
   },
   "targets": {
     "projetasebem": {
