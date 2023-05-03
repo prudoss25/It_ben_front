@@ -15,6 +15,6 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_ASEBEM_BOOK_PROD_APP_ID }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_ASEBEM_BOOK_APP_ID }}'
           channelId: live
           projectId: asebem-book
