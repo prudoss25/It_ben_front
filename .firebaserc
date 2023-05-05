@@ -1,13 +1,16 @@
 {
   "projects": {
-    "default": "projetasebem",
-    "projetAsebem": "projetasebem"
+    "development": "asebem-book",
+    "production": "asebem-book"
   },
   "targets": {
-    "projetasebem": {
+    "asebem-book": {
       "hosting": {
-        "projetAsebem": [
-          "projetAsebem"
+        "development": [
+          "asebem-book-dev"
+        ],
+        "production": [
+          "asebem-book"
         ]
       }
     }
