@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import FormModal from "../../../common/FormModal/FormModal";
-import { CategorieList } from "../../../Constantes";
+import { CategorieList, FileLocationTypes } from "../../../Constantes";
 import {
   Button,
   FormControl,
   Grid,
+  ImageList,
+  ImageListItem,
   InputLabel,
   NativeSelect,
   TextField,
@@ -26,13 +28,16 @@ import {
   postService,
   putService,
 } from "../../../features/actions/Service/ServiceAction";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import { addFile } from "../../../features/actions/File/FileActions";
+import { toBase64 } from "../../../Functions";
 
 const initialServiceInfo = {
   title: "",
   description: "",
   category: "",
   vendorId: "",
-  image: "Not Set",
+  imageUrl: null,
   registrationDate: new Date(),
   couvertureGeographique: [],
   entrepreneurRegistrationNumber: "",
@@ -57,7 +62,6 @@ const addServiceForm = (props) => {
     dispatch(getEntrepreneurListe());
   }, []);
   useEffect(() => {
-    console.log("service", props.service);
     if (props.service) {
       seEdit(true);
       setServiceInfos({
@@ -94,7 +98,23 @@ const addServiceForm = (props) => {
     options: entrepreneurs,
     getOptionLabel: (option) => option.label,
   };
-
+  const addImage = async (event) => {
+    let base64Images = [];
+    for (let i = 0; i < [...event.target.files].length; i++) {
+      await toBase64(event.target.files[i]).then((res) => {
+        const image = { 
+          base64: res,
+          file:event.target.files[i]
+        }
+        base64Images.push(image);
+      });
+    }
+    const newValues = {
+      ...serviceInfos,
+      imageUrl: [...base64Images],
+    };
+    setServiceInfos(newValues);
+  };
   const handleInfosChange = (value, field) => {
     let newValue = { ...serviceInfos, [field]: value };
     setServiceInfos(newValue);
@@ -109,22 +129,32 @@ const addServiceForm = (props) => {
       serviceInfos.dateLimite
     ) {
       setLoading(true);
-      dispatch(postService(serviceInfos))
-        .then((response) => {
+      let service = { ...serviceInfos, imageUrl: null };
+      serviceInfos.imageUrl.length > 0 &&
+        dispatch(
+          addFile(serviceInfos.imageUrl[0].file, FileLocationTypes.Marketplace)
+        ).then((response) => {
           if (response) {
-            props.openNotication(
-              "success",
-              `Le Service ${serviceInfos.title} est ajouté!`
-            );
-          } else {
-            props.openNotication("error", "Une erreur est survenue !");
-            props.handleToggle();
+            service = { ...service, imageUrl: [response] };
+
+            dispatch(postService(service))
+              .then((response) => {
+                if (response) {
+                  props.openNotication(
+                    "success",
+                    `Le Service ${service.title} est ajouté!`
+                  );
+                } else {
+                  props.openNotication("error", "Une erreur est survenue !");
+                  props.handleToggle();
+                }
+                props.handleToggle();
+              })
+              .catch(() => {
+                props.openNotication("error", "Une erreur est survenue !");
+                props.handleToggle();
+              });
           }
-          props.handleToggle();
-        })
-        .catch(() => {
-          props.openNotication("error", "Une erreur est survenue !");
-          props.handleToggle();
         });
     }
   };
@@ -355,6 +385,45 @@ const addServiceForm = (props) => {
             />
           </Grid>
         </Grid>
+        <Grid item xs={12} style={{ marginTop: 8 }}>
+          <input
+            onChange={(event) => addImage(event)}
+            style={{ display: "none" }}
+            accept="image/*"
+            id="contained-button-file"
+            multiple={false}
+            type="file"
+          />
+          <label htmlFor="contained-button-file">
+            <Button
+              variant="contained"
+              color="default"
+              fullWidth
+              startIcon={<CloudUploadIcon />}
+              component="span"
+            >
+              Ajouter l'image Illustrative
+            </Button>
+          </label>
+        </Grid>
+        {serviceInfos.imageUrl && (
+          <Grid item container xs={12} style={{ marginTop: 8 }}>
+            <ImageList rowHeight={215} cols={3}>
+              {[...serviceInfos.imageUrl].map((picture, index) => {
+                console.log("file", picture);
+                return (
+                  <ImageListItem key={index} cols={3}>
+                    <img
+                      style={{ objectFit: "scale-down" }}
+                      src={picture.base64}
+                      alt={index}
+                    />
+                  </ImageListItem>
+                );
+              })}
+            </ImageList>
+          </Grid>
+        )}
         <Grid
           container
           justifyContent={"space-around"}
@@ -391,5 +460,5 @@ addServiceForm.propTypes = {
   handleToggle: PropTypes.func.isRequired,
   openNotication: PropTypes.func.isRequired,
   edit: PropTypes.bool,
-  user: PropTypes.object,
+  service: PropTypes.object,
 };

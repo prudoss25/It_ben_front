@@ -260,3 +260,7 @@ export const ServiceListe = [
     siteInternet:"bbox-ff890.web.app"
   }
 ]
+
+export const FileLocationTypes = {
+  Marketplace : "marketplace"
+}
