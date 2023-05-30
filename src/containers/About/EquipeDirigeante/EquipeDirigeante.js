@@ -10,55 +10,56 @@ import charge_sport_cult from "../../../assets/images/charge_sport_cult.jpeg";
 import commiss_compte from "../../../assets/images/commiss_compte.jpeg";
 import sg from "../../../assets/images/sg.jpeg";
 import cca from "../../../assets/images/cca.jpeg";
+import { stringFormat } from "../../../Functions";
 
 const EquipeDirigeante = props => {
     const BureauExecutif =[
         {
             nom : "TCHAGAFO Nazif",
             poste : "Secretaire general",
-            image: sg
+            image: stringFormat(process.env.REACT_APP_BE_FOLDER_BASE_URL,"SG")
         },
         {
             nom : "ENIANLOKO Dylan",
             poste : "Secretaire general Adjoint",
-            image: sga
+            image: stringFormat(process.env.REACT_APP_BE_FOLDER_BASE_URL,"SGA")
         },
         {
             nom : "BIOKOU Saint Luc",
             poste : "Commissaire aux comptes",
-            image: commiss_compte
+            image: stringFormat(process.env.REACT_APP_BE_FOLDER_BASE_URL,"Commissaire")
         },
         {
             nom : "NASSARA Marie Colombe",
             poste : "Tresorier(e) Général",
-            image: tresoriere
+            image: stringFormat(process.env.REACT_APP_BE_FOLDER_BASE_URL,"Tresorier")
         },
         {
             nom : "AHOSSI Nelly",
             poste : "Chargé de la communication",
-            image: charge_com
+            image: stringFormat(process.env.REACT_APP_BE_FOLDER_BASE_URL,"Communication")
         },
         {
             nom : "ADDA Réthens",
             poste : "Chargé culturel et sportif",
-            image: charge_sport_cult
+            image: stringFormat(process.env.REACT_APP_BE_FOLDER_BASE_URL,"CCS")
         }
     ]
     const ConseilConsultatif =[
         {
             nom : "DOSSOU Prudence",
             poste : "President",
-            image: PCC
+            image: stringFormat(process.env.REACT_APP_BE_FOLDER_BASE_URL,"PCC")
         },
         {
             nom : "Akakpo Joël",
             poste : "Vice-President",
-            image: cca
+            image: stringFormat(process.env.REACT_APP_BE_FOLDER_BASE_URL,"PACC")
         },
         {
             nom : "Soglo Oscar",
             poste : "Secretaire Général d'honneur",
-            image: sg_honneur
+            image: stringFormat(process.env.REACT_APP_BE_FOLDER_BASE_URL,"SGH")
         }
     ]
     return (
