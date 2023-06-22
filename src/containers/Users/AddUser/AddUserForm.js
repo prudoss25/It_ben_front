@@ -23,7 +23,7 @@ import {
 import { Autocomplete } from "@material-ui/lab";
 import withManagementForm from "../../../common/ManagementDashboard/withManagementForm";
 import { useDispatch, useSelector } from "react-redux";
-import { getMoroccoCities } from "../../../services/actions/Town/TownActions";
+import { getMoroccoCities } from "../../../features/actions/Town/TownActions";
 
 const initialGeneralInfo = {
   lastName: "",

@@ -11,7 +11,6 @@ const sideNavigationItems = () => {
   const role = useSelector((state) => state.auth.userInfos.role)
   
   return (
-    // <ul className={classes.SideNavigationItems}>
     <List component="ul" aria-label="main mailbox folders" className={classes.SideNavigationItems}>
       {
         getRoutes().filter(route => [...route.roles].includes('All') || [...route.roles].includes(role)).map((route,index) => (
@@ -20,30 +19,7 @@ const sideNavigationItems = () => {
           </SideNavigationItem>
         ) )
       }
-      {/* <SideNavigationItem link="/informations" active={location.pathname === "/informations"}>
-        Informations
-      </SideNavigationItem>
-      <SideNavigationItem link="/services" active={location.pathname === "/services"}>
-        Services
-      </SideNavigationItem>
-      <hr style={{ width: "99%", textAlign: "left", marginLeft: "0" }}></hr>
-      <SideNavigationItem link="/users" active={location.pathname === "/users"}>
-        Liste Membres
-      </SideNavigationItem>
-      <SideNavigationItem link="/events" active={location.pathname === "/events"}>
-        Evènements
-      </SideNavigationItem>
-      <SideNavigationItem link="/sponsors" active={location.pathname === "/sponsors"}>
-        Sponsors
-      </SideNavigationItem>
-      <SideNavigationItem link="/auth" active={location.pathname === "/auth"}>
-        Authentification
-      </SideNavigationItem>
-      <SideNavigationItem link="/changepassword" active={location.pathname === "/changepassword"}>
-        Changer Mot de Passe
-      </SideNavigationItem> */}
     </List>
-    // </ul>
   );
 };
 

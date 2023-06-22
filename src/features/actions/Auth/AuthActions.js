@@ -6,12 +6,8 @@ import {
   failAuthentication,
   updatePassword,
 } from "../../reducers/Auth/AuthSlice";
+import { decodeToken } from "react-jwt";
 
-const setAuthenticationTimeout = () => (dispatch) => {
-  setTimeout(() => {
-    dispatch(disconnect());
-  }, 24 * 60 * 60 * 1000);
-};
 export const changePassword = ({
   registrationNumber,
   oldPassword,
@@ -34,10 +30,11 @@ export const changePassword = ({
     .catch(() => false);
 };
 export const disconnectUser = () => (dispatch) => {
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("token_type");
   dispatch(disconnect());
 };
 export const authenticateUser = (registrerNumber, password) => (dispatch) => {
-  var credentials = {};
   return axios
     .post(AUTHENTICATE_USER, {
       password: password,
@@ -45,18 +42,10 @@ export const authenticateUser = (registrerNumber, password) => (dispatch) => {
     })
     .then((response) => {
       if (response.status === 200) {
-        credentials = {
-          user: {
-            firstName: response.data["firstName"],
-            lastName: response.data["lastName"],
-            role: response.data["role"],
-            registrationNumber: response.data["registrationNumber"]
-          },
-          firstAuthentication:response.data["firstAuthentication"],
-          token: response.data["accessToken"],
-        };
-        dispatch(setAuthenticationTimeout());
-        dispatch(authenticate(credentials));
+        localStorage.setItem('access_token',response.data["accessToken"])
+        localStorage.setItem('token_type',response.data["type"])
+        const credentials = decodeToken(response.data["accessToken"])
+        dispatch(saveCredentials(credentials))
         return true;
       }
     })
@@ -65,3 +54,17 @@ export const authenticateUser = (registrerNumber, password) => (dispatch) => {
       return false;
     });
 };
+
+const saveCredentials = (credentials) => (dispatch) => {
+  const credentialItems = {
+    user: {
+      firstName: credentials["firstName"],
+      lastName: credentials["lastName"],
+      role: credentials["role"],
+      registrationNumber: credentials["registrationNumber"],
+      emailAdress:credentials["emailAdress"]
+    },
+    firstAuthentication:credentials["firstAuthentication"],
+  };
+  dispatch(authenticate(credentialItems));
+}

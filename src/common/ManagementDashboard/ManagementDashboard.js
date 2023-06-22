@@ -10,12 +10,12 @@ import Table from "../Table/Table";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { EventsManagementType, SponsorsManagementType, UsersManagementType, ServicesManagementType } from "../../Constantes";
-import { fetchEvents } from "../../services/reducers/Event/EventSlice";
-import { fetchSponsors } from "../../services/reducers/Sponsor/SponsorSlice";
-import { fetchUsers } from "../../services/reducers/User/UserSlice";
-import { fetchServices } from "../../services/reducers/Service/ServiceSlice";
+import { fetchEvents } from "../../features/reducers/Event/EventSlice";
+import { fetchSponsors } from "../../features/reducers/Sponsor/SponsorSlice";
+import { fetchUsers } from "../../features/reducers/User/UserSlice";
+import { fetchServices } from "../../features/reducers/Service/ServiceSlice";
 import { FIND_ALL_SERVICES } from "../../Routes";
-import { getServiceListes } from "../../services/actions/Service/ServiceAction";
+import { getServiceListes } from "../../features/actions/Service/ServiceAction";
 
 const ManagementDashboard = ({
   render,

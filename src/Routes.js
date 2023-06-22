@@ -1,5 +1,6 @@
 export const ADD_ALL_USERS = "/addAllUsers";
 export const FIND_ALL_USERS = "/findAllUsers";
+export const FIND_ALL_ENTREPRENEURS = "/entrepreneurs";
 export const POST_USER = "/addUser";
 export const DELETE_USER = "/deleteUser/";
 export const UPDATE_USER = "/updateUser";
@@ -22,6 +23,7 @@ export const UPDATE_SPONSOR = "/updateSponsor";
 
 export const ADD_ALL_SERVICES = "/addAllServices";
 export const FIND_ALL_SERVICES = "/findAllServices";
+export const GET_SERVICE = "/findService/"
 export const POST_SERVICE = "/addService";
 export const DELETE_SERVICE = "/deleteService/";
 export const UPDATE_SERVICE = "/updateService";

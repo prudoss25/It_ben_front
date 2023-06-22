@@ -49,12 +49,12 @@ const withManagementDataSource = (Component) => (props) => {
     Services: {
       fieldNames: [
         "title",
-        "description",
         "registrationDate",
         "category",
-        "vendorID",
+        "entrepreneur.registrationNumber",
+        "entrepreneur.userName",
       ],
-      headerTitles: ["Titre", "Description", "Date D'ajout", "Categorie", "Id vendeur"],
+      headerTitles: ["Titre", "Date D'ajout", "Categorie", "Id vendeur","Entrepreneur"],
     },
     Users: {
       fieldNames: [

@@ -4,14 +4,13 @@ import Disconnect from "../../Disconnect/Disconnect";
 import Profil from "../../Profil/Profil";
 import Radium from "radium";
 
-const AuthenticationNavs =(props) => {
-    const {authenticated} = props
-    const styleProfil = {
-        '@media(max-width:760px)':{
-            display:'none'
-        }
-    }
-    return authenticated ? (
+const AuthenticationNavs =() => {
+    // const styleProfil = {
+    //     '@media(max-width:760px)':{
+    //         display:'none'
+    //     }
+    // }
+    return (
         <div>
             <div>
               <Disconnect />
@@ -19,11 +18,11 @@ const AuthenticationNavs =(props) => {
             <div>
               <Notification />
             </div>
-            <div style={styleProfil}>
+            <div>
               <Profil />
             </div>
         </div>
-    ): (<div></div>)
+    );
 }
 
 export default Radium(AuthenticationNavs);

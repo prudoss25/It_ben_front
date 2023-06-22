@@ -1,11 +1,11 @@
 import { configureStore, combineReducers} from '@reduxjs/toolkit'
-import sidebarDrawerReducer from '../services/reducers/SidebarDrawer/SidebarDrawerSlice';
-import eventReducer from '../services/reducers/Event/EventSlice';
-import sponsorReducer from '../services/reducers/Sponsor/SponsorSlice';
-import townReducer from '../services/reducers/Town/TownSlice';
-import serviceReducer from '../services/reducers/Service/ServiceSlice';
-import userReducer from '../services/reducers/User/UserSlice';
-import authReducer from '../services/reducers/Auth/AuthSlice';
+import sidebarDrawerReducer from '../features/reducers/SidebarDrawer/SidebarDrawerSlice';
+import eventReducer from '../features/reducers/Event/EventSlice';
+import sponsorReducer from '../features/reducers/Sponsor/SponsorSlice';
+import townReducer from '../features/reducers/Town/TownSlice';
+import serviceReducer from '../features/reducers/Service/ServiceSlice';
+import userReducer from '../features/reducers/User/UserSlice';
+import authReducer from '../features/reducers/Auth/AuthSlice';
 import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
