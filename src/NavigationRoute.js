@@ -23,6 +23,7 @@ import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import ServiceList from "./containers/Services/ServiceList";
 import ServiceDetails from "./containers/MarketPlace/ServiceDetails";
 import MarketPlaces from "./containers/MarketPlace/MarketPlaces";
+import SearchEngine from "./containers/SeachEngine/SearchEngine";
 const NavigationRoutes = [
     {
         'icon': <HomeIcon />,
@@ -104,6 +105,14 @@ const NavigationRoutes = [
         'name': 'Gestion Sponsors',
         'path': '/sponsors',
         'component': SponsorsList,
+        'roles': ['All'],
+        //'roles': ['PCC','PACC','SGH','SGA','SG'],
+    },
+    {
+        'icon': <BusinessCenterIcon />,
+        'name': 'Vérifier Numéro',
+        'path': '/searchEngine',
+        'component': SearchEngine,
         'roles': ['All'],
         //'roles': ['PCC','PACC','SGH','SGA','SG'],
     },

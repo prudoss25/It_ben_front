@@ -18,6 +18,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const nextEvents = useSelector(state => state.event.nexts);
   const currentEvents = useSelector(state => state.event.currents);
+  const events = useSelector(state => state.event.all);
   const [actualites, setActualites] = useState(null);
   const [evenements, setEvenements] = useState(null);
   useEffect(() => {
@@ -26,12 +27,15 @@ const Home = () => {
       getEvenements()
       ])
   }, []);
+  // useEffect(() => {
+  //   setEvenements(nextEvents)
+  // },[nextEvents])
+  // useEffect(() => {
+  //   setActualites(currentEvents)
+  // },[currentEvents])
   useEffect(() => {
-    setEvenements(nextEvents)
-  },[nextEvents])
-  useEffect(() => {
-    setActualites(currentEvents)
-  },[currentEvents])
+    setEvenements(events)
+  },[events])
   
   const getSponsors = () => {
     axios.get(FIND_ALL_SPONSORS).then((response) => {
@@ -53,11 +57,11 @@ const Home = () => {
       <HeroSection />
       <Grid container justifyContent="space-around">
         <Grid item className={classes.ActuGrid}>
-          <Actualite actualites={actualites} />
+          <Actualite actualites={evenements} />
         </Grid>
-        <Grid item className={classes.EventGrid}>
+        {/* <Grid item className={classes.EventGrid}>
           <Evenement evenements={evenements} />
-        </Grid>
+        </Grid> */}
       </Grid>
       <Partenaires />
       <Statistiques />

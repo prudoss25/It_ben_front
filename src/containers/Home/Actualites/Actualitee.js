@@ -68,8 +68,7 @@ const Actualite = (props) => {
     setPosition(newPosition);
     setStyle({
       ...style,
-      width: newPosition * 50 + "%",
-      transform: "translate(" + newPosition * 25 + "%)",
+      transform: "translate(" + newPosition * (100/n) + "%)",
       transition: "all 0.5s ease",
     });
 
@@ -82,8 +81,7 @@ const Actualite = (props) => {
     setPosition(newPosition);
     setStyle({
       ...style,
-      width: Math.abs(newPosition * 50 + "%"),
-      transform: "translate(" + newPosition * 25 + "%)",
+      transform: "translate(" + newPosition * (100/n) + "%)",
       transition: "all 0.5s ease",
     });
 

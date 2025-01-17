@@ -18,6 +18,18 @@ const navigationItems = () => {
       >
         Contact
       </NavigationItem>
+      <NavigationItem
+        link="/marketplaces"
+        active={location.pathname === "/marketplaces"}
+      >
+        Marché
+      </NavigationItem>
+      <NavigationItem
+        link="/searchEngine"
+        active={location.pathname === "/searchEngine"}
+      >
+        BD
+      </NavigationItem>
     </ul>
   );
 };
